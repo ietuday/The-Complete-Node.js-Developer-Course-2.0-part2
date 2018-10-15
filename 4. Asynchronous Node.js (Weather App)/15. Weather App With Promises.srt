@@ -1,0 +1,1032 @@
+﻿1
+00:00:00,450 --> 00:00:04,910
+In this video you're going to learn how to use a library that has premises built in.
+
+2
+00:00:04,920 --> 00:00:09,990
+We're going to explore the X-Post library which is really similar to request although instead of using
+
+3
+00:00:09,990 --> 00:00:13,050
+callbacks like request does it uses promises.
+
+4
+00:00:13,140 --> 00:00:18,450
+So we don't have to wrap our calls in promises to get that promise functionality we're actually going
+
+5
+00:00:18,450 --> 00:00:21,260
+to be recreating the entire weather app in this video.
+
+6
+00:00:21,420 --> 00:00:23,980
+We're only going to have to write about 25 lines of code.
+
+7
+00:00:24,000 --> 00:00:28,980
+We'll go through the entire process taking the address getting the coordinates and then fetching the
+
+8
+00:00:28,980 --> 00:00:30,710
+weather to do this.
+
+9
+00:00:30,810 --> 00:00:32,280
+I'm going to duplicate apt.
+
+10
+00:00:32,350 --> 00:00:36,390
+Yes because we do configure yards in here and we're going to want to carry over that code to the new
+
+11
+00:00:36,390 --> 00:00:37,130
+project.
+
+12
+00:00:37,170 --> 00:00:39,800
+There's no need to rewrite it right here.
+
+13
+00:00:39,810 --> 00:00:41,240
+I'm going to duplicate app.
+
+14
+00:00:41,330 --> 00:00:45,620
+J.S. giving it a new name app hyphen promise.
+
+15
+00:00:45,790 --> 00:00:46,900
+Yes.
+
+16
+00:00:47,190 --> 00:00:51,500
+Inside of here before we add anything let's go ahead and read some stuff out.
+
+17
+00:00:51,540 --> 00:00:56,160
+I'm going to be ripping out the code and weather variable declarations we're not going to be requiring
+
+18
+00:00:56,160 --> 00:00:57,070
+any files.
+
+19
+00:00:57,180 --> 00:01:02,220
+Then I'm going to remove everything after our Yard's configuration which in this case is just our call
+
+20
+00:01:02,220 --> 00:01:04,280
+to geocoder address.
+
+21
+00:01:04,290 --> 00:01:05,090
+Excellent.
+
+22
+00:01:05,160 --> 00:01:10,260
+Now that we have a clean slate we can go ahead and get started by installing the new library before
+
+23
+00:01:10,260 --> 00:01:11,790
+we run the NPM install command.
+
+24
+00:01:11,790 --> 00:01:14,220
+I want to show you where you can find the documentation.
+
+25
+00:01:14,340 --> 00:01:24,240
+You can get it by googling NPM x x x i o s right here we have the X CEOs NPM library page where we can
+
+26
+00:01:24,240 --> 00:01:29,520
+view all sorts of information about it including the documentation which we have down below here you
+
+27
+00:01:29,520 --> 00:01:31,050
+can see some things that look familiar.
+
+28
+00:01:31,050 --> 00:01:36,840
+We have calls to then and catch just like we do when we use premises outside of axioms.
+
+29
+00:01:36,840 --> 00:01:41,760
+Over on the right hand side you can see this is a super popular library and the most recent version
+
+30
+00:01:41,760 --> 00:01:44,280
+is zero point 1 3.1.
+
+31
+00:01:44,400 --> 00:01:46,650
+That's the exact version we're going to be using.
+
+32
+00:01:46,710 --> 00:01:50,270
+Feel free to come back to this page when you use x Yeo's in your projects.
+
+33
+00:01:50,290 --> 00:01:53,190
+It is a lot of really good examples and documentation.
+
+34
+00:01:53,190 --> 00:01:56,490
+For now though we can install it back inside of the terminal.
+
+35
+00:01:56,490 --> 00:02:03,790
+I'm going to be running NPM install the library name is X-posts and I am going to specify the version
+
+36
+00:02:03,850 --> 00:02:07,290
+0.1 3.1 with the Save flag.
+
+37
+00:02:07,300 --> 00:02:09,530
+Updating the package that Chaisson file.
+
+38
+00:02:09,730 --> 00:02:15,010
+Now I can go ahead and run the install command which is going to install an over inside of our app promis
+
+39
+00:02:15,040 --> 00:02:19,270
+file we can get started by loading in X he shows up at the top.
+
+40
+00:02:19,270 --> 00:02:26,940
+I'm going to make a constant called X-posts setting equal to require axis just like this.
+
+41
+00:02:26,950 --> 00:02:28,060
+Excellent.
+
+42
+00:02:28,060 --> 00:02:32,010
+Now that we have this in place we can actually start making the calls down below.
+
+43
+00:02:32,140 --> 00:02:36,670
+And this is going to involve us pulling out some of the functionality from the geocoder and whether
+
+44
+00:02:36,670 --> 00:02:37,360
+file.
+
+45
+00:02:37,480 --> 00:02:42,720
+So what I'm going to do is close all of my files except app promise I'm gonna open up geocoder J.S.
+
+46
+00:02:42,920 --> 00:02:44,670
+and then I'm going to open up whether data.
+
+47
+00:02:44,710 --> 00:02:49,600
+Us because we are going to be pulling some of the code from here things like the u r l and some of the
+
+48
+00:02:49,600 --> 00:02:54,150
+error handling techniques although we talk about the differences as they come up.
+
+49
+00:02:54,190 --> 00:02:59,670
+The first thing we need to do is encode the address and get that G.O. code you are out.
+
+50
+00:02:59,770 --> 00:03:02,220
+Now this stuff happens inside of geocoder.
+
+51
+00:03:02,260 --> 00:03:02,800
+Yes.
+
+52
+00:03:02,950 --> 00:03:05,310
+So what I'm going to do is actually copy this line.
+
+53
+00:03:05,320 --> 00:03:06,140
+Exactly.
+
+54
+00:03:07,040 --> 00:03:12,540
+Where we create the encoded address and paste it over here Double-O the are the variable.
+
+55
+00:03:12,560 --> 00:03:14,160
+Now we do need to tweak this a little bit.
+
+56
+00:03:14,180 --> 00:03:15,410
+The address doesn't exist.
+
+57
+00:03:15,410 --> 00:03:19,350
+What we have is are the ADOT address perfect.
+
+58
+00:03:19,410 --> 00:03:20,970
+And now we have the encoded address.
+
+59
+00:03:21,020 --> 00:03:24,740
+The next thing we need to get before we can start using Access is that you are out.
+
+60
+00:03:24,740 --> 00:03:26,830
+We want to make the request too.
+
+61
+00:03:26,930 --> 00:03:30,950
+I'm going to grab that over from the geocoder japes file as well.
+
+62
+00:03:30,950 --> 00:03:34,740
+I'm going to take the R L from the opening ticket to the closing.
+
+63
+00:03:35,000 --> 00:03:38,730
+Copy and paste it over an app promise Dutch Yes.
+
+64
+00:03:38,890 --> 00:03:43,230
+Hear what I'm going to do is make a new variable called G.O. code.
+
+65
+00:03:43,230 --> 00:03:47,640
+You are l sending an equal to what I copied over from the other file.
+
+66
+00:03:47,640 --> 00:03:53,040
+Now we do use the encoded address variable inside of here and that's fine because it does exist right
+
+67
+00:03:53,040 --> 00:03:53,640
+here.
+
+68
+00:03:53,640 --> 00:03:59,220
+So at this point we have our G.O. code you r l and we can get started making our very first X-post request.
+
+69
+00:03:59,210 --> 00:04:05,400
+In this case we're going to be taking the address and getting the Vita tude and long into to make our
+
+70
+00:04:05,400 --> 00:04:06,720
+request down below.
+
+71
+00:04:06,720 --> 00:04:10,870
+We're going to call a method available on X-ers X-posts dot.
+
+72
+00:04:11,010 --> 00:04:17,380
+Get get is the method that lets us make our HTP get request which is exactly what we want to do here.
+
+73
+00:04:17,490 --> 00:04:20,740
+And it's really simple to set up when you're expecting Jason data.
+
+74
+00:04:20,790 --> 00:04:29,250
+All you have to do is pass in the U R L which we have in the geocoding u r l variable.
+
+75
+00:04:29,290 --> 00:04:34,580
+There's no need to provide any other options like a option letting it know it's Jason X-post knows how
+
+76
+00:04:34,580 --> 00:04:41,270
+to automatically parse our Jason data and what get returns is actually a promise which means we can
+
+77
+00:04:41,270 --> 00:04:47,630
+use dot and then in order to run some code when the promise gets fulfilled or rejected whether things
+
+78
+00:04:47,630 --> 00:04:53,420
+go well or things go poorly inside of then I'm going to go ahead and provide one function for the moment.
+
+79
+00:04:53,420 --> 00:04:59,300
+This is going to be the success case the success case is going to get called with one argument which
+
+80
+00:04:59,300 --> 00:05:04,950
+the X-ers library recommends you call response although technically you could call it anything you like.
+
+81
+00:05:04,970 --> 00:05:09,470
+Now here we're going to get access to all of the same information we got inside of the request library
+
+82
+00:05:09,710 --> 00:05:11,080
+things like our headers.
+
+83
+00:05:11,150 --> 00:05:16,210
+Things like response and request headers as well as the body information all sorts of useful info.
+
+84
+00:05:16,340 --> 00:05:20,850
+What we really need though is the response dot data property.
+
+85
+00:05:21,050 --> 00:05:29,850
+I'm going to go ahead and print that using console dot Lague console dialog response dot data and now
+
+86
+00:05:29,850 --> 00:05:35,070
+that we have this in place we can go ahead and run our app promis file passing in a valid address and
+
+87
+00:05:35,070 --> 00:05:40,050
+we can see what happens when we make that request over inside of the command line.
+
+88
+00:05:40,200 --> 00:05:43,160
+I'm going to use clear to clear the terminal output.
+
+89
+00:05:43,170 --> 00:05:47,080
+Then I'm going to run node app HIF and promise.
+
+90
+00:05:47,360 --> 00:05:51,330
+Jay asks passing in an address I'm going to use a valid address.
+
+91
+00:05:51,360 --> 00:05:55,240
+I'll go ahead and use 1301 Lombard Street.
+
+92
+00:05:56,750 --> 00:05:59,890
+Philadelphia perfect.
+
+93
+00:05:59,940 --> 00:06:01,680
+The request goes out and what do we get back.
+
+94
+00:06:01,680 --> 00:06:06,740
+We get back the results object exactly as we saw it when we used the other module.
+
+95
+00:06:06,750 --> 00:06:11,520
+The only difference in this case is that we're using promises built in instead of having to wrap it
+
+96
+00:06:11,520 --> 00:06:13,500
+in promises or using callbacks.
+
+97
+00:06:13,500 --> 00:06:15,380
+And this is really fantastic.
+
+98
+00:06:15,390 --> 00:06:21,480
+Now aside from this success handler we can also add a call to catch which is going to let us catch all
+
+99
+00:06:21,480 --> 00:06:23,310
+of the errors that might occur.
+
+100
+00:06:23,340 --> 00:06:27,450
+We're going to get the air object as the one and only argument and then we can do something with that
+
+101
+00:06:27,450 --> 00:06:29,930
+air object inside of here.
+
+102
+00:06:29,940 --> 00:06:34,130
+I'm going to kick things off by using council dot log to print the error argument.
+
+103
+00:06:34,270 --> 00:06:38,790
+And now we can go ahead and simulate an error by removing the dot and we can see what happens when we
+
+104
+00:06:38,790 --> 00:06:40,530
+run the program.
+
+105
+00:06:40,650 --> 00:06:43,520
+Now I'm doing this to explore the Acciona library.
+
+106
+00:06:43,590 --> 00:06:47,940
+I know exactly what's going to happen that's not why I'm doing it I'm doing it to show you how you should
+
+107
+00:06:47,940 --> 00:06:52,440
+approach new libraries when you get a new library you want to play around with all the different ways
+
+108
+00:06:52,440 --> 00:06:56,990
+it works what exactly comes back in that era argument when we have a request that fails.
+
+109
+00:06:57,090 --> 00:06:58,820
+That's important information to know.
+
+110
+00:06:58,890 --> 00:07:03,370
+So when you go ahead and write a real world app you can add the appropriate error handling code.
+
+111
+00:07:03,570 --> 00:07:07,610
+In this case if I rerun the exact same command we're going to get an error.
+
+112
+00:07:07,710 --> 00:07:10,480
+And as you can see there really is nothing to predict here.
+
+113
+00:07:10,560 --> 00:07:16,310
+We have a lot of very cryptic error codes and even the error message property which usually contains
+
+114
+00:07:16,310 --> 00:07:19,720
+something good does not get address info.
+
+115
+00:07:19,720 --> 00:07:25,750
+Then we have an error code followed by the U R L but we want to do instead is print a plain text English
+
+116
+00:07:25,800 --> 00:07:26,670
+message.
+
+117
+00:07:26,670 --> 00:07:31,050
+To do this we're going to use an if statement checking what the code property is.
+
+118
+00:07:31,050 --> 00:07:36,360
+This is the error code and in this case enough found we know it means it could not connect to the server
+
+119
+00:07:37,780 --> 00:07:39,390
+down inside of the air handler.
+
+120
+00:07:39,460 --> 00:07:49,950
+We can add this by having if and checking the condition if the DOT code equals the not found in upper
+
+121
+00:07:49,950 --> 00:07:54,970
+case if that is the case we're going to print some sort of custom message to the screen using console
+
+122
+00:07:54,970 --> 00:08:03,470
+that Lague console dialog unable to connect to API servers.
+
+123
+00:08:03,550 --> 00:08:04,580
+Excellent.
+
+124
+00:08:04,600 --> 00:08:10,000
+Now we have an air handler that handles this specific case so we can go ahead and remove our call to
+
+125
+00:08:10,000 --> 00:08:11,490
+cancel the log.
+
+126
+00:08:11,770 --> 00:08:16,480
+Now if we save the file and rerun things from the terminal we should get a much nicer error message
+
+127
+00:08:16,480 --> 00:08:17,350
+printing to the screen.
+
+128
+00:08:17,350 --> 00:08:18,590
+That's exactly what we get.
+
+129
+00:08:18,700 --> 00:08:21,670
+Unable to connect to API servers.
+
+130
+00:08:21,760 --> 00:08:26,980
+Now I'm going to add that back in so things start working and we can worry about the response that comes
+
+131
+00:08:26,980 --> 00:08:27,850
+back.
+
+132
+00:08:27,930 --> 00:08:32,310
+And as you remember inside of the geocoder file there was some things we needed to do.
+
+133
+00:08:32,320 --> 00:08:35,440
+We've already handled this error but there is still another error.
+
+134
+00:08:35,560 --> 00:08:42,010
+If the Bobby status property equals zero results we want to do something we want to print an error message
+
+135
+00:08:42,460 --> 00:08:43,150
+to do that.
+
+136
+00:08:43,240 --> 00:08:47,670
+But we're going to do inside of app promise is create our very own error.
+
+137
+00:08:47,710 --> 00:08:53,350
+We're going to throw an error inside of this function that error is going to cause all of the code after
+
+138
+00:08:53,350 --> 00:08:54,730
+it to not run.
+
+139
+00:08:54,730 --> 00:08:58,440
+And it is going to move right into the air handler down below.
+
+140
+00:08:58,450 --> 00:09:03,340
+Now we only want to throw an error if the status property is set to zero results.
+
+141
+00:09:03,460 --> 00:09:14,220
+We're going to add an if statement at the very top to check if response dot data dot status equals in
+
+142
+00:09:14,220 --> 00:09:16,990
+upper case zero underscore results.
+
+143
+00:09:17,160 --> 00:09:21,950
+If that is the case then things went bad and we do not want to move on to make their request.
+
+144
+00:09:21,960 --> 00:09:27,750
+We want to run our cash code down below to throw a new error that our promise can catch.
+
+145
+00:09:27,750 --> 00:09:32,190
+We're going to use a syntax called throw new error.
+
+146
+00:09:32,310 --> 00:09:36,250
+This creates and throws an error letting node know that something went wrong.
+
+147
+00:09:36,240 --> 00:09:43,440
+We can provide our own error message something that's readable to a user unable to find that address
+
+148
+00:09:43,500 --> 00:09:45,140
+should get the job done.
+
+149
+00:09:45,190 --> 00:09:48,440
+And this is a message that's going to let the user know exactly what went wrong.
+
+150
+00:09:48,930 --> 00:09:53,610
+Now in this era gets around the same code is going to run down below and Currently we only have an IF
+
+151
+00:09:53,610 --> 00:09:56,760
+condition that checks if the code property is enough found.
+
+152
+00:09:56,910 --> 00:10:02,490
+Well we're going to do is add an else clause inside of here we can print the error message which is
+
+153
+00:10:02,490 --> 00:10:09,170
+the string we typed up above using the message property console dialog.
+
+154
+00:10:09,240 --> 00:10:15,920
+The DOT message if the error code is not enough found will simply print the message to the screen.
+
+155
+00:10:16,170 --> 00:10:18,060
+This is going to happen if we get zero results.
+
+156
+00:10:18,060 --> 00:10:22,890
+So let's go ahead and simulate that to make sure the code works over in the terminal.
+
+157
+00:10:22,890 --> 00:10:29,210
+I'm going to go ahead and rerun it passing in a zip code at first I'm going to use a valid zip code
+
+158
+00:10:29,280 --> 00:10:37,490
+0 8 8 2 2 and I should get my data back and I do then I'm going to use an invalid one is 0 0 0 0 0 when
+
+159
+00:10:37,490 --> 00:10:38,380
+I run this request.
+
+160
+00:10:38,390 --> 00:10:39,520
+I do get my error.
+
+161
+00:10:39,560 --> 00:10:46,000
+Unable to find that address by calling throw new error we're immediately stopping the execution of this
+
+162
+00:10:46,010 --> 00:10:46,450
+function.
+
+163
+00:10:46,460 --> 00:10:50,090
+So the council laid down below never prints which is exactly what we want.
+
+164
+00:10:50,240 --> 00:10:53,420
+We move right on to the error code below.
+
+165
+00:10:53,520 --> 00:10:57,980
+Now that we have our air handler in place we can go ahead and start generating that whether you are
+
+166
+00:10:57,990 --> 00:11:00,550
+l in order to generate that you are out.
+
+167
+00:11:00,560 --> 00:11:06,860
+I'm going to go ahead and copy that you are from the weather file taking it with the ticks in place
+
+168
+00:11:07,070 --> 00:11:10,230
+and moving it over into the app promise file.
+
+169
+00:11:10,330 --> 00:11:16,900
+I'm going to make a new variable called Whether you are all setting it equal to exactly what we copied.
+
+170
+00:11:16,940 --> 00:11:22,330
+Now whether you are does need a few pieces of information we need that latitude and longitude.
+
+171
+00:11:22,340 --> 00:11:24,050
+We have two variables lat and long.
+
+172
+00:11:24,050 --> 00:11:25,250
+So let's go ahead and create them.
+
+173
+00:11:25,250 --> 00:11:32,410
+Just above getting the appropriate value from that response object var and var log.
+
+174
+00:11:32,720 --> 00:11:34,010
+Excellent.
+
+175
+00:11:34,010 --> 00:11:37,730
+Now in order to pull them off we have to go through that process of digging into the object.
+
+176
+00:11:37,730 --> 00:11:39,190
+We've done it before.
+
+177
+00:11:39,290 --> 00:11:45,050
+We're going to be looking in the response object at the data property which is similar to the body in
+
+178
+00:11:45,050 --> 00:11:46,200
+the other library.
+
+179
+00:11:46,400 --> 00:11:54,650
+Then we're going to go into results grabbing the first item accessing the geometry property then we're
+
+180
+00:11:54,650 --> 00:11:57,550
+going to access location dot latt.
+
+181
+00:11:57,710 --> 00:12:03,770
+Now we can copy what we just typed create an equal sign for the long tattoo'd variable and paste it
+
+182
+00:12:03,770 --> 00:12:06,250
+here replacing lat with L and G.
+
+183
+00:12:06,290 --> 00:12:08,990
+And now we have our lat long variables.
+
+184
+00:12:09,050 --> 00:12:13,040
+Now before we go ahead and make that weather request I do want to print the formatted address because
+
+185
+00:12:13,040 --> 00:12:15,570
+that's something the previous app did as well.
+
+186
+00:12:15,590 --> 00:12:20,870
+I'm going to take our consulate log down below and instead of printing response data I'm going to dive
+
+187
+00:12:20,870 --> 00:12:24,160
+into the data object getting the formatted address.
+
+188
+00:12:24,230 --> 00:12:26,270
+This is also on the results arrays.
+
+189
+00:12:26,270 --> 00:12:32,840
+First item and we're going to be accessing the property formatted underscore address perfect.
+
+190
+00:12:33,110 --> 00:12:37,670
+Now that we have our formatted address printing to the screen we can go ahead and make our second call
+
+191
+00:12:37,760 --> 00:12:39,530
+by returning a new promise.
+
+192
+00:12:39,590 --> 00:12:42,160
+This is going to let us chain these calls together.
+
+193
+00:12:42,380 --> 00:12:49,710
+We're going to return a call to Acciona dot get passing in the RL would justify that.
+
+194
+00:12:49,710 --> 00:12:52,520
+It is whether you are l.
+
+195
+00:12:53,160 --> 00:12:57,510
+Now that we have this call returning would you go ahead and attach another then call right between our
+
+196
+00:12:57,510 --> 00:13:05,100
+previous then call and catch by calling then passing in one function just like this.
+
+197
+00:13:05,110 --> 00:13:08,210
+This function is going to get called when the weather data comes back.
+
+198
+00:13:08,260 --> 00:13:13,320
+We're going to get that same response argument because we're using the same method ASIO's don't get
+
+199
+00:13:13,750 --> 00:13:14,810
+in out of here.
+
+200
+00:13:14,810 --> 00:13:19,080
+We don't have to worry about throwing any errors since we never needed to access abody property in order
+
+201
+00:13:19,080 --> 00:13:21,610
+to check if something went wrong with the weather request.
+
+202
+00:13:21,630 --> 00:13:28,050
+If this callback runs then things went right and we can go ahead and print the weather information in
+
+203
+00:13:28,050 --> 00:13:34,020
+order to get that done we're going to make two variables one called temperature.
+
+204
+00:13:34,110 --> 00:13:39,440
+This is going to get set equal to response dot data.
+
+205
+00:13:39,500 --> 00:13:45,760
+Then we're going to access that currently property then we're going to access temperature and we're
+
+206
+00:13:45,760 --> 00:13:50,830
+going to pull out a second variable the actual temperature or apparent temperature which is the property
+
+207
+00:13:50,890 --> 00:13:56,950
+name of our apparent temperature.
+
+208
+00:13:57,010 --> 00:14:01,580
+We're going to be setting this equal to response data.
+
+209
+00:14:01,750 --> 00:14:04,790
+Currently not apparent temperature
+
+210
+00:14:08,600 --> 00:14:13,340
+now that we have heard two things pulled out into variables we can go ahead and add those things inside
+
+211
+00:14:13,400 --> 00:14:14,740
+of a call the council land.
+
+212
+00:14:15,080 --> 00:14:19,790
+I chose to define two variables so I didn't have to add these two really long property statements to
+
+213
+00:14:19,790 --> 00:14:20,720
+the council log.
+
+214
+00:14:20,840 --> 00:14:24,950
+I can simply reference the variables console like.
+
+215
+00:14:25,180 --> 00:14:30,940
+And we're going to be using template strings here so we can inject those two values inside of quotes.
+
+216
+00:14:30,970 --> 00:14:38,610
+It's currently followed by the temperature I'm going to inject that right here.
+
+217
+00:14:38,690 --> 00:14:40,110
+Then I can add a period.
+
+218
+00:14:40,250 --> 00:14:44,330
+It feels like followed by the apparent temperature.
+
+219
+00:14:44,460 --> 00:14:46,230
+I'm going to inject that right here.
+
+220
+00:14:50,480 --> 00:14:56,130
+Now that we have our string printing to the screen we can go ahead and test that our app works as expected.
+
+221
+00:14:56,180 --> 00:15:00,790
+I'm going to save the file and over inside of the terminal I'm going to go ahead and rerun the command
+
+222
+00:15:00,830 --> 00:15:03,870
+two commands ago where I had a valid zip code.
+
+223
+00:15:04,040 --> 00:15:09,230
+When I run this we do get the weather info for Flemington New Jersey it's currently 84 degrees but it
+
+224
+00:15:09,290 --> 00:15:10,820
+feels like 90.
+
+225
+00:15:10,820 --> 00:15:16,070
+If I go ahead and run something that has a bad address I do get the error message so everything looks
+
+226
+00:15:16,070 --> 00:15:16,880
+great.
+
+227
+00:15:16,880 --> 00:15:21,640
+I'm going to test it out with one more zip code my current zip code 1 9 1 4 6.
+
+228
+00:15:21,740 --> 00:15:26,870
+When I run it I get the appropriate address and I get the weather info printing it to the screen.
+
+229
+00:15:26,870 --> 00:15:28,670
+And this is fantastic.
+
+230
+00:15:28,820 --> 00:15:34,670
+By using the Acciona library we're able to change promises like this without needing to do anything
+
+231
+00:15:34,670 --> 00:15:35,690
+too crazy.
+
+232
+00:15:35,690 --> 00:15:40,520
+The Acciona get method returns or promise so we can access it directly using then.
+
+233
+00:15:40,680 --> 00:15:44,800
+Here we use then once to do something with that geo location data.
+
+234
+00:15:44,900 --> 00:15:49,700
+We print the address to the screen then we return another promise where we make the request for the
+
+235
+00:15:49,700 --> 00:15:51,510
+weather inside of here.
+
+236
+00:15:51,500 --> 00:15:56,900
+Our second then call we go ahead and print the weather to the screen and we also add in a catch call
+
+237
+00:15:57,050 --> 00:16:02,480
+which is going to handle any errors if anything goes wrong with either of our promises or if we throw
+
+238
+00:16:02,480 --> 00:16:07,770
+an error like we do here catch is going to get fired printing the messages to the screen.
+
+239
+00:16:07,850 --> 00:16:13,690
+And this is all it takes to use X-post and set up promises for your HTP requests.
+
+240
+00:16:13,700 --> 00:16:19,370
+Now one reason people love promises over traditional callbacks is that instead of nesting you can simply
+
+241
+00:16:19,370 --> 00:16:19,930
+chain.
+
+242
+00:16:20,090 --> 00:16:23,830
+So your code doesn't get indented to crazy levels as we saw in app.
+
+243
+00:16:23,900 --> 00:16:29,810
+Yes we went a few indentation levels deep just to add to calls together if we needed to add a third.
+
+244
+00:16:29,810 --> 00:16:35,060
+It would have gotten even worse with promises we can keep everything at the same level keeping our code
+
+245
+00:16:35,090 --> 00:16:37,430
+a lot easier to maintain.
+
+246
+00:16:37,520 --> 00:16:42,030
+And now that you know a little bit about promises we are done with the async section.
+
+247
+00:16:42,110 --> 00:16:47,630
+Obviously we're not done with a sync every single thing we do throughout the rest of the sections in
+
+248
+00:16:47,630 --> 00:16:52,460
+this course is going to be a sink in the next section we're going to start creating web servers which
+
+249
+00:16:52,460 --> 00:16:59,240
+will be a saying will make API which will be a sink and will create real time socket apps which will
+
+250
+00:16:59,240 --> 00:17:00,360
+be a sync.
+
+251
+00:17:00,410 --> 00:17:02,210
+It is a critical part to node.
+
+252
+00:17:02,290 --> 00:17:07,940
+J.S. all we've done here is we've gone over the very basics of callbacks and promises we've gone through
+
+253
+00:17:07,940 --> 00:17:13,070
+a few examples creating a pretty cool weather app but now it's time to move on to creating node apps
+
+254
+00:17:13,070 --> 00:17:19,220
+that we deploy to servers and those servers are accessible via anybody with a web connection that is
+
+255
+00:17:19,220 --> 00:17:20,570
+coming up in the next section.
+
+256
+00:17:20,600 --> 00:17:23,230
+I am super super excited to get there.
+
+257
+00:17:23,270 --> 00:17:24,410
+So stay tuned.
+
+258
+00:17:24,440 --> 00:17:25,960
+I will see you then.
+

@@ -1,0 +1,60 @@
+﻿1
+00:00:00,680 --> 00:00:04,210
+Hello and welcome to section for a asynchronous node.
+
+2
+00:00:04,350 --> 00:00:05,020
+Yes.
+
+3
+00:00:05,060 --> 00:00:10,910
+Now if you've read just one article about Noad you probably come across four terms a synchronous nonblocking
+
+4
+00:00:10,970 --> 00:00:13,240
+event based and single threaded.
+
+5
+00:00:13,370 --> 00:00:16,390
+All of those are accurate terms to describe node.
+
+6
+00:00:16,400 --> 00:00:18,370
+The problem is it usually stops there.
+
+7
+00:00:18,380 --> 00:00:19,800
+It's really abstract.
+
+8
+00:00:19,850 --> 00:00:26,870
+The goal in this section is to make that super practical by putting it all to use in our weather application.
+
+9
+00:00:26,900 --> 00:00:30,240
+That's the project we're going to be building in this section and to get it done.
+
+10
+00:00:30,260 --> 00:00:33,570
+We're going to need to make asynchronous HTP requests.
+
+11
+00:00:33,710 --> 00:00:36,000
+We're going to want to fetch from two API.
+
+12
+00:00:36,020 --> 00:00:43,160
+We'll be using Google's geo location API and we'll be using the dark sky API to take location information
+
+13
+00:00:43,370 --> 00:00:47,970
+like a zip code and turn that into real world current weather information.
+
+14
+00:00:47,990 --> 00:00:53,910
+Now in order to do all that we're going to look at callbacks promises HTP requests and more.
+
+15
+00:00:53,930 --> 00:00:59,360
+Let's go ahead and dive right in looking at the very basics of async programming in node
+

@@ -1,0 +1,880 @@
+﻿1
+00:00:00,910 --> 00:00:07,390
+Now that you know how to parse command line arguments using process are vi and yards you solve the first
+
+2
+00:00:07,390 --> 00:00:08,290
+piece of the puzzle.
+
+3
+00:00:08,290 --> 00:00:12,430
+For the notes application how do we get that unique input from the user.
+
+4
+00:00:12,430 --> 00:00:15,730
+The second piece of the puzzle is how do we store this information.
+
+5
+00:00:15,730 --> 00:00:20,720
+When someone adds a new note we want to save it somewhere preferably on the file system.
+
+6
+00:00:20,800 --> 00:00:27,710
+So the next time they try to fetch remove or read that note they actually get the note back to do this.
+
+7
+00:00:27,790 --> 00:00:30,550
+We're going to need to introduce something called Jason.
+
+8
+00:00:30,580 --> 00:00:35,640
+Now if you're already familiar with Jason you probably know it is super popular.
+
+9
+00:00:35,650 --> 00:00:42,160
+It stands for javascript object notation and it's a way to represent javascript arrays and objects using
+
+10
+00:00:42,160 --> 00:00:43,360
+a string.
+
+11
+00:00:43,360 --> 00:00:44,900
+Now why would you ever want to do that.
+
+12
+00:00:45,040 --> 00:00:50,070
+Well you might want to do that because strings are just text and that's pretty much supported anyway.
+
+13
+00:00:50,260 --> 00:00:57,550
+I can save Jason to a text file and then I can read it later parse it back into a javascript array or
+
+14
+00:00:57,640 --> 00:00:59,600
+object and do something with it.
+
+15
+00:00:59,680 --> 00:01:05,240
+That's exactly what we're going to take a look at in this video to explore Jason and how it works.
+
+16
+00:01:05,260 --> 00:01:09,270
+Let's go ahead and make a new folder inside of our project called Playground
+
+17
+00:01:12,810 --> 00:01:13,800
+throughout the course.
+
+18
+00:01:13,800 --> 00:01:19,140
+I'm going to create playground folders in various projects which stores simple one off of files that
+
+19
+00:01:19,140 --> 00:01:21,200
+aren't a part of the bigger application.
+
+20
+00:01:21,240 --> 00:01:25,120
+They're just a way to explore a new feature or learn a new concept.
+
+21
+00:01:26,720 --> 00:01:31,170
+In the playground folder we're going to make a file called Jason dot Jay ass.
+
+22
+00:01:31,250 --> 00:01:35,280
+This is where we can explore how Jason works to get started.
+
+23
+00:01:35,390 --> 00:01:37,830
+Let's make a very simple object.
+
+24
+00:01:38,180 --> 00:01:43,540
+We're going to make a variable called J setting and equal to an object and on that object.
+
+25
+00:01:43,540 --> 00:01:49,780
+For the moment we're just going to define one property name like it's equal to your first name.
+
+26
+00:01:49,790 --> 00:01:52,420
+I'm going to go ahead and set this one equal to Andrew.
+
+27
+00:01:52,720 --> 00:01:55,970
+Now let's assume we want to take this object and do something with it.
+
+28
+00:01:56,000 --> 00:01:59,300
+We want to do something like send it between servers as a string.
+
+29
+00:01:59,300 --> 00:02:02,660
+Save it to a text file or anything else to do that.
+
+30
+00:02:02,690 --> 00:02:04,030
+We're going to need to call one.
+
+31
+00:02:04,040 --> 00:02:09,660
+Jason Methot Let's take a moment to define a variable to store the result string.
+
+32
+00:02:09,790 --> 00:02:14,300
+Oh B.J. and we're going to set it equal to in uppercase.
+
+33
+00:02:14,330 --> 00:02:20,160
+Jason dot string ify s t r i n g f y.
+
+34
+00:02:20,570 --> 00:02:27,080
+Jason douching if I takes your object in this case the object variable and returns the Jasen string
+
+35
+00:02:27,080 --> 00:02:28,350
+of fied version.
+
+36
+00:02:28,490 --> 00:02:32,890
+That means the result stored in a string object is actually a string.
+
+37
+00:02:32,900 --> 00:02:34,450
+It's no longer an object.
+
+38
+00:02:34,460 --> 00:02:37,620
+We can take a look at that using Konsole that lock.
+
+39
+00:02:37,850 --> 00:02:40,340
+I'm going to use cancel that log twice.
+
+40
+00:02:40,370 --> 00:02:46,100
+First up we're going to use the type of operator to print the type of the string object to make sure
+
+41
+00:02:46,100 --> 00:02:50,960
+it actually is a string type of is an operator.
+
+42
+00:02:50,980 --> 00:02:53,020
+It gets typed like this in lowercase.
+
+43
+00:02:53,050 --> 00:02:54,390
+There is no camel casing.
+
+44
+00:02:54,490 --> 00:02:58,300
+Then you pass in the variable whose type you want to check.
+
+45
+00:02:58,310 --> 00:03:03,730
+Next up we can use council dot like to print out the contents of the string itself console.
+
+46
+00:03:03,790 --> 00:03:07,860
+Lague printing out the string Oby J var..
+
+47
+00:03:08,060 --> 00:03:09,040
+Perfect.
+
+48
+00:03:09,050 --> 00:03:13,400
+What we've done is we've taken an object converted into adjacent string and we're printing it out to
+
+49
+00:03:13,400 --> 00:03:15,710
+the screen over in the terminal.
+
+50
+00:03:15,710 --> 00:03:19,070
+I'm going to navigate into that playground folder for the moment.
+
+51
+00:03:19,070 --> 00:03:23,180
+It doesn't matter where you run the command but in the future it is going to matter that we are in the
+
+52
+00:03:23,180 --> 00:03:24,160
+playground folder.
+
+53
+00:03:24,230 --> 00:03:31,580
+So take a moment to navigate into it then we can use node to run our Jason J us file when we run the
+
+54
+00:03:31,580 --> 00:03:31,850
+file.
+
+55
+00:03:31,850 --> 00:03:33,080
+We see two things.
+
+56
+00:03:33,090 --> 00:03:38,660
+First we get our type which is a string and this is great because remember Jason is a string.
+
+57
+00:03:38,690 --> 00:03:44,360
+Next we get our object and it looks pretty similar to a javascript object but there are a few differences.
+
+58
+00:03:44,360 --> 00:03:50,480
+First up your Jason is going to have its attribute names automatically wrapped in double quotes.
+
+59
+00:03:50,480 --> 00:03:53,210
+This is a requirement of the adjacent syntax.
+
+60
+00:03:53,210 --> 00:03:58,790
+Next up you'll notice your strings are also wrapped in double quotes as opposed to single quotes.
+
+61
+00:03:58,790 --> 00:04:01,470
+Now Jason doesn't just support string values.
+
+62
+00:04:01,520 --> 00:04:02,750
+I could use an array.
+
+63
+00:04:02,840 --> 00:04:05,650
+I could have a boolean a number or anything else.
+
+64
+00:04:05,720 --> 00:04:08,960
+All of those types are perfectly valid inside of your jason.
+
+65
+00:04:09,200 --> 00:04:14,770
+In this case we have a very simple example where we have a name property and it's set to change.
+
+66
+00:04:15,230 --> 00:04:19,220
+Now this is the process of taking an object and converting it into a string.
+
+67
+00:04:19,220 --> 00:04:22,700
+Next up we're going to define a string and convert that into an object.
+
+68
+00:04:22,700 --> 00:04:26,620
+We can actually use in our app.
+
+69
+00:04:26,800 --> 00:04:31,630
+Let's get started by making a variable called Person string.
+
+70
+00:04:31,960 --> 00:04:35,080
+And we're going to set it equal to a string using a single quotes.
+
+71
+00:04:35,170 --> 00:04:41,130
+Since Jason uses double quotes inside of itself then we're going to define our Jason right here.
+
+72
+00:04:41,180 --> 00:04:44,420
+We're going to start by opening and closing some curly braces.
+
+73
+00:04:44,480 --> 00:04:48,820
+We're going to use double quotes to create our first attribute which will call name.
+
+74
+00:04:49,070 --> 00:04:52,740
+And we're going to set that attribute equal to Andrew.
+
+75
+00:04:52,760 --> 00:04:57,500
+That means after the closing quote We're going to add the colon then we're going to open and close double
+
+76
+00:04:57,500 --> 00:04:59,380
+quotes again and type the value.
+
+77
+00:04:59,380 --> 00:05:04,670
+Andrew Next up we can add another property after the value.
+
+78
+00:05:04,790 --> 00:05:11,590
+Andrew I'm going to create another property after the comma called age the age property is going to
+
+79
+00:05:11,590 --> 00:05:16,420
+get set equal to a number I can use my colon and then define the number without the quotes.
+
+80
+00:05:16,420 --> 00:05:21,080
+In this case 25 go ahead and define your Jason to look just like this.
+
+81
+00:05:21,100 --> 00:05:26,560
+You can go ahead and use your name and your age obviously but make sure the rest looks identical.
+
+82
+00:05:26,560 --> 00:05:31,750
+Now let's say we get this Jason from a server or we grab it from a text file.
+
+83
+00:05:31,750 --> 00:05:36,670
+Currently it's useless if we want to get the name value there is no good way to do that because we're
+
+84
+00:05:36,670 --> 00:05:37,470
+using a string.
+
+85
+00:05:37,480 --> 00:05:38,860
+So a person string
+
+86
+00:05:41,520 --> 00:05:43,050
+name doesn't exist.
+
+87
+00:05:43,230 --> 00:05:48,110
+We need to do is take this string and convert it back into an object to do this.
+
+88
+00:05:48,150 --> 00:05:53,770
+We're going to use the opposite of adjacent string of phi which is Jason dot parse.
+
+89
+00:05:53,820 --> 00:05:56,000
+Let's make a variable to store the result.
+
+90
+00:05:56,100 --> 00:06:03,720
+I'm going to create a person variable and it's going to get set equal to Jason dot parse passing in
+
+91
+00:06:03,960 --> 00:06:06,690
+as the one and only argument the string you want to parse.
+
+92
+00:06:06,690 --> 00:06:10,680
+In this case the person string which we defined up above.
+
+93
+00:06:10,680 --> 00:06:15,480
+Now what this does is it takes your Jason and it converts it from a string back into its original form
+
+94
+00:06:15,720 --> 00:06:18,120
+which could be an array or it could be an object.
+
+95
+00:06:18,150 --> 00:06:23,550
+In our case it converts it back into an object and we have the person object right here and we can prove
+
+96
+00:06:23,550 --> 00:06:27,570
+it's an object by using the type of operator.
+
+97
+00:06:27,810 --> 00:06:29,880
+I'm going to use counsel that Lague twice.
+
+98
+00:06:29,880 --> 00:06:31,500
+Just like we did above.
+
+99
+00:06:31,530 --> 00:06:35,580
+First up we're going to print the type of person.
+
+100
+00:06:35,620 --> 00:06:36,070
+Whoops.
+
+101
+00:06:36,120 --> 00:06:38,980
+That's type of not just type and sucking up.
+
+102
+00:06:38,980 --> 00:06:41,460
+We're going to print the actual person variable.
+
+103
+00:06:41,550 --> 00:06:44,160
+Cancel that log person.
+
+104
+00:06:44,420 --> 00:06:48,810
+Perfect with this in place we can now rerun the command.
+
+105
+00:06:49,280 --> 00:06:54,700
+I'm actually going to start gnomon I'm going to pass in Jason J.
+
+106
+00:06:54,750 --> 00:07:00,910
+Yes and right here you see we're working with an object which is great and we have our regular object
+
+107
+00:07:00,910 --> 00:07:01,570
+below.
+
+108
+00:07:01,750 --> 00:07:04,540
+We know it's an object because it's not wrapped in double quotes.
+
+109
+00:07:04,540 --> 00:07:09,940
+The values don't have any quotes and we use single quotes for Andrew which is valid in javascript but
+
+110
+00:07:09,940 --> 00:07:16,120
+it's not valid in Jason and thus the entire process of taking an object converting it to a string and
+
+111
+00:07:16,120 --> 00:07:19,180
+then taking the string and converting it back into the object.
+
+112
+00:07:19,210 --> 00:07:21,920
+And this is exactly what we're going to be doing in the Notes app.
+
+113
+00:07:21,940 --> 00:07:27,160
+The only difference is we're going to be taking this string and storing it in a file then later on we're
+
+114
+00:07:27,160 --> 00:07:33,340
+going to be reading that string from the file using Jason parse to convert it back to an object with
+
+115
+00:07:33,340 --> 00:07:34,330
+the basics in place.
+
+116
+00:07:34,330 --> 00:07:37,080
+Let's go ahead and take it just one step further.
+
+117
+00:07:37,090 --> 00:07:40,100
+What I'd like to do is actually store the string in a file.
+
+118
+00:07:40,150 --> 00:07:46,060
+Then I want to read the contents of that file back using the FS module and printing some properties
+
+119
+00:07:46,120 --> 00:07:46,720
+from it.
+
+120
+00:07:46,720 --> 00:07:51,010
+That means we're going to need to convert the string which we get back from FS dot.
+
+121
+00:07:51,040 --> 00:07:55,620
+Read files sink into an object using Jason Dopp parts.
+
+122
+00:07:55,630 --> 00:07:59,640
+Let's go ahead and comment on all the code we have so far and start with a clean slate.
+
+123
+00:07:59,650 --> 00:08:03,940
+I am going to leave it up there though as a reminder of the various methods we've introduced throughout
+
+124
+00:08:03,940 --> 00:08:05,240
+this video.
+
+125
+00:08:05,260 --> 00:08:08,690
+First up let's go ahead and load an FS.
+
+126
+00:08:08,830 --> 00:08:15,750
+The Konst FS is going to get set equal to require And we're going to require the FS module which we've
+
+127
+00:08:15,760 --> 00:08:17,470
+used in the past.
+
+128
+00:08:17,470 --> 00:08:19,960
+The next thing we're going to do is define that object.
+
+129
+00:08:19,960 --> 00:08:25,570
+This is the one that's going to be stored inside of our file and this one is going to be read back and
+
+130
+00:08:25,570 --> 00:08:26,990
+parsed.
+
+131
+00:08:27,040 --> 00:08:33,900
+This is going to be a variable called original note and I'm calling it original note because later on
+
+132
+00:08:33,900 --> 00:08:36,610
+we're going to load it back in and we'll call that variable.
+
+133
+00:08:36,640 --> 00:08:41,650
+Note Now the original note is going to be a regular javascript object with two properties.
+
+134
+00:08:41,650 --> 00:08:47,340
+We're going to have that title property which will set equal to some title and we're going to have that
+
+135
+00:08:47,340 --> 00:08:52,230
+body property which will set equal to some bàn.
+
+136
+00:08:52,370 --> 00:08:57,860
+The next step that you are going to need to do is take original note and create a variable called Original
+
+137
+00:08:58,490 --> 00:09:04,420
+no string and set that variable equal to the adjacent value of the object we defined above.
+
+138
+00:09:04,430 --> 00:09:08,780
+That means that you're going to need to use one of the two adjacent methods we used previously in this
+
+139
+00:09:08,780 --> 00:09:09,820
+video.
+
+140
+00:09:09,820 --> 00:09:14,900
+Now once you have that original note string variable we can go ahead and write a file to the file system
+
+141
+00:09:14,900 --> 00:09:22,530
+and I'll write that line for you fs dot or write file sync write file sync which we used before.
+
+142
+00:09:22,580 --> 00:09:24,170
+Takes two arguments.
+
+143
+00:09:24,170 --> 00:09:26,010
+The first one is going to be the file name.
+
+144
+00:09:26,150 --> 00:09:30,750
+And since we're using Jason it's important to use the Jasen file extension.
+
+145
+00:09:30,770 --> 00:09:33,170
+I'm going to call this one notes.
+
+146
+00:09:33,230 --> 00:09:42,240
+Jason and the text content is going to be that original note string which is not yet defined but will
+
+147
+00:09:42,240 --> 00:09:47,370
+be defined once you fill this line out and this is the first step to the process this is how we're going
+
+148
+00:09:47,370 --> 00:09:50,890
+to write that file into the playground fold.
+
+149
+00:09:51,000 --> 00:09:56,400
+The next step to the process is going to be to read out the contents parse it using the Jason method
+
+150
+00:09:56,400 --> 00:10:00,420
+above and print one of the properties to the screen to make sure it's an object.
+
+151
+00:10:00,420 --> 00:10:02,930
+In this case we're going to print the title.
+
+152
+00:10:03,240 --> 00:10:06,380
+The first step is going to be to use a method we haven't used yet.
+
+153
+00:10:06,660 --> 00:10:12,330
+We're going to use the read method available on the file system module to read the contents.
+
+154
+00:10:12,330 --> 00:10:19,940
+Let's make a variable called note string the note string is going to get set equal to FS.
+
+155
+00:10:20,140 --> 00:10:22,690
+Read file sync.
+
+156
+00:10:22,770 --> 00:10:25,340
+Now read file saying is similar to write file S..
+
+157
+00:10:25,350 --> 00:10:30,240
+Except it doesn't take the text content since it's getting the text content back for you.
+
+158
+00:10:30,300 --> 00:10:34,050
+In this case we just specified the first argument which is the file name.
+
+159
+00:10:34,140 --> 00:10:36,390
+Notes dot Jason.
+
+160
+00:10:36,660 --> 00:10:40,170
+Now that we have the string it's going to be your job to take that string.
+
+161
+00:10:40,200 --> 00:10:43,650
+Use one of the methods above and convert it back into an object.
+
+162
+00:10:43,650 --> 00:10:45,270
+You can call that variable.
+
+163
+00:10:45,370 --> 00:10:47,970
+Note Next up down below.
+
+164
+00:10:48,090 --> 00:10:52,350
+The only thing left to do is test that things are working as expected.
+
+165
+00:10:52,650 --> 00:10:56,490
+By printing using council Lague the type of note
+
+166
+00:10:59,810 --> 00:11:07,270
+then below that will use council that log to print the title note dot title.
+
+167
+00:11:07,540 --> 00:11:13,480
+Your job for this video is going to be to make these two things work by filling out these two lines.
+
+168
+00:11:13,480 --> 00:11:18,440
+Both original note string you have to make that bearable and the note variable.
+
+169
+00:11:18,490 --> 00:11:22,350
+Both are going to require a call to a Jasen method.
+
+170
+00:11:22,420 --> 00:11:26,350
+Now over in the terminal you can see I saved the file in a broken state and it crashed.
+
+171
+00:11:26,350 --> 00:11:29,050
+That's expected when you're using node mon.
+
+172
+00:11:29,110 --> 00:11:30,750
+So take a moment pause the video.
+
+173
+00:11:30,750 --> 00:11:32,480
+Knock this out and click play.
+
+174
+00:11:32,620 --> 00:11:37,870
+If you've done things correctly you should be able to see that the type of is an object and that note
+
+175
+00:11:37,870 --> 00:11:40,180
+title equals some title.
+
+176
+00:11:40,180 --> 00:11:42,760
+You should also see a brand new file on the playground folder.
+
+177
+00:11:42,760 --> 00:11:45,490
+Go ahead and open it up and take a look at what you got.
+
+178
+00:11:45,490 --> 00:11:47,870
+Knock it out then go ahead and click play.
+
+179
+00:11:51,650 --> 00:11:56,010
+The first thing I'm going to do is fill out this original note string.
+
+180
+00:11:56,330 --> 00:12:03,440
+It's going to be a variable called the original note string and we're going to set it equal to the return
+
+181
+00:12:03,440 --> 00:12:08,140
+value from Jason docstring ify.
+
+182
+00:12:08,150 --> 00:12:13,100
+Now we know Jason docstring a fight takes our regular object and it converts it into a string.
+
+183
+00:12:13,100 --> 00:12:18,880
+In this case we're going to take the original note object and convert that into a string.
+
+184
+00:12:18,920 --> 00:12:24,040
+The next line which we already have filled out is going to save that Jason value into the file notes.
+
+185
+00:12:24,110 --> 00:12:30,620
+Jason then we read that value out and the next step is going to be to create the note variable var.
+
+186
+00:12:30,620 --> 00:12:37,410
+Note will get set equal to Jason dot parce.
+
+187
+00:12:37,580 --> 00:12:44,840
+Jason parce takes the string Jason and converts it back into a regular javascript object or array depending
+
+188
+00:12:44,840 --> 00:12:46,280
+on whatever you save.
+
+189
+00:12:46,280 --> 00:12:51,320
+Here we're going to pass in a note string which we're getting from the file with this in place we are
+
+190
+00:12:51,320 --> 00:12:52,150
+now done.
+
+191
+00:12:52,340 --> 00:12:57,480
+When I save the file gnomon is going to automatically restart and we would expect to not see an error.
+
+192
+00:12:57,580 --> 00:13:03,590
+Instead we're expecting that we're going to see the object type as well as the note title.
+
+193
+00:13:03,820 --> 00:13:06,570
+And here we go right over here inside of the terminal.
+
+194
+00:13:06,580 --> 00:13:10,540
+We have an object and some title printing to the screen.
+
+195
+00:13:10,540 --> 00:13:12,510
+With this in place we are now done.
+
+196
+00:13:12,510 --> 00:13:14,880
+We successfully completed the challenge.
+
+197
+00:13:14,890 --> 00:13:19,520
+This is exactly how we are going to save our notes when someone adds a new note.
+
+198
+00:13:19,570 --> 00:13:23,430
+We're going to use this code to save it when someone wants to read their note.
+
+199
+00:13:23,440 --> 00:13:26,050
+We're going to use this code to read it.
+
+200
+00:13:26,050 --> 00:13:31,750
+Now what if someone wants to add and no that's going to require us to first read all of the notes then
+
+201
+00:13:31,870 --> 00:13:34,450
+we're going to modify the notes array.
+
+202
+00:13:34,450 --> 00:13:39,980
+Then we're going to use the code above to save the new array back into the file system.
+
+203
+00:13:40,000 --> 00:13:46,240
+If you open up that notes Jason file you can see right here we have our Jason code inside of the file
+
+204
+00:13:46,630 --> 00:13:50,660
+and Jason is actually a file format that supported by most text editors.
+
+205
+00:13:50,710 --> 00:13:54,500
+So I actually already have some nice syntax highlighting built in.
+
+206
+00:13:54,640 --> 00:14:00,250
+Now in the next video we're going to be filling out the ad note function using the exact same logic
+
+207
+00:14:00,250 --> 00:14:02,200
+that we'd just use inside of this video.
+
+208
+00:14:02,320 --> 00:14:04,840
+So let's take a quick second to recap.
+
+209
+00:14:04,990 --> 00:14:10,630
+First up Jason is nothing more than a string that kind of looks like a javascript object with the notable
+
+210
+00:14:10,630 --> 00:14:15,730
+differences being that it uses double quotes instead of single quotes and all of your property names
+
+211
+00:14:16,000 --> 00:14:20,490
+like in name and age in this case require quotes around them.
+
+212
+00:14:20,530 --> 00:14:25,660
+Now when you want to create some Jason you can do that using a regular javascript object passing it
+
+213
+00:14:25,660 --> 00:14:31,270
+into the Jason docstring a Find method that takes your object and converts it to Jason string.
+
+214
+00:14:31,270 --> 00:14:35,800
+When you have adjacent string and you want to convert it back into an object you simply take that string
+
+215
+00:14:35,950 --> 00:14:37,820
+and you pass it into Jason dot.
+
+216
+00:14:37,880 --> 00:14:41,940
+Parse this returns an object whose properties you can access.
+
+217
+00:14:42,070 --> 00:14:46,810
+With this in place we are now ready to move on to the next video and start really filling out the functionality
+
+218
+00:14:46,810 --> 00:14:47,880
+for the Notes app.
+
+219
+00:14:47,890 --> 00:14:50,460
+I am super excited to get started so stay tuned.
+
+220
+00:14:50,470 --> 00:14:52,210
+I will see you next time.
+

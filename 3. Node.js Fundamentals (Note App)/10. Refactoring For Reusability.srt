@@ -1,0 +1,616 @@
+﻿1
+00:00:00,230 --> 00:00:05,220
+It in the last video you created the ad no function which works well.
+
+2
+00:00:05,310 --> 00:00:07,730
+It starts by creating some static variables.
+
+3
+00:00:07,800 --> 00:00:09,830
+Then we fetch any existing notes.
+
+4
+00:00:09,960 --> 00:00:12,150
+We check for duplicates if there are none.
+
+5
+00:00:12,150 --> 00:00:16,890
+We push it onto the list then we save the data back into the file system.
+
+6
+00:00:16,950 --> 00:00:18,080
+And this is great.
+
+7
+00:00:18,090 --> 00:00:22,020
+The only problem is that we're going to be doing a lot of these steps over and over again for every
+
+8
+00:00:22,020 --> 00:00:28,560
+method that down below for example get all the ideas to fetch all of the notes send them back to app
+
+9
+00:00:28,610 --> 00:00:29,290
+dot J.
+
+10
+00:00:29,340 --> 00:00:32,050
+So we can print them to the screen for the user.
+
+11
+00:00:32,070 --> 00:00:36,060
+The first thing we're going to do inside of here is have the same exact code we're going to have our
+
+12
+00:00:36,060 --> 00:00:39,300
+try catch block to fetch the existing notes.
+
+13
+00:00:39,300 --> 00:00:43,370
+Now this is a problem because we're going to be repeating code throughout the application.
+
+14
+00:00:43,370 --> 00:00:48,960
+It's going to be best to break out the fetching of notes and the saving of notes down below into separate
+
+15
+00:00:48,960 --> 00:00:51,890
+functions that we can call in multiple locations.
+
+16
+00:00:52,860 --> 00:00:56,150
+Up above I'd like to get started by creating two new functions.
+
+17
+00:00:56,260 --> 00:00:59,560
+The first one is going to be called fetch notes.
+
+18
+00:00:59,640 --> 00:01:04,260
+It's going to be an arrow function and it's not going to take any arguments since it's going to be fetching
+
+19
+00:01:04,290 --> 00:01:06,160
+notes from the file system.
+
+20
+00:01:06,240 --> 00:01:07,860
+We'll fill that out in just a second.
+
+21
+00:01:08,010 --> 00:01:14,050
+The second function we're going to create is called Save Notes know save notes is going to need to take
+
+22
+00:01:14,050 --> 00:01:16,600
+an argument it's going to need to take that notes array.
+
+23
+00:01:16,600 --> 00:01:18,830
+You want to save the file system.
+
+24
+00:01:18,940 --> 00:01:21,120
+We're gonna set it equal to an arrow function.
+
+25
+00:01:21,920 --> 00:01:25,240
+Then we're going to go ahead and provide our argument which I will name.
+
+26
+00:01:25,430 --> 00:01:26,150
+Notes.
+
+27
+00:01:26,330 --> 00:01:27,530
+Excellent.
+
+28
+00:01:27,530 --> 00:01:31,790
+Now that we have these two functions we can go ahead and start moving some of the functionality from
+
+29
+00:01:31,850 --> 00:01:34,760
+AD note up into the individual functions.
+
+30
+00:01:34,760 --> 00:01:40,430
+First up let's do notes fetch notes is going to need this try catch block I'm actually going to cut
+
+31
+00:01:40,430 --> 00:01:43,070
+it out of add no and paste it up above.
+
+32
+00:01:43,370 --> 00:01:47,830
+Now this alone is not enough because currently we don't return anything from the function.
+
+33
+00:01:47,930 --> 00:01:50,600
+We want to do is return the notes.
+
+34
+00:01:50,660 --> 00:01:56,300
+That means instead of saving the result from Jason parse onto the notes variable which we haven't defined
+
+35
+00:01:56,570 --> 00:02:00,260
+We're going to go ahead and simply return it to the calling function.
+
+36
+00:02:00,260 --> 00:02:04,490
+So if I call fetch nodes down below I will get the notes array.
+
+37
+00:02:04,520 --> 00:02:06,490
+Because of this line.
+
+38
+00:02:06,500 --> 00:02:12,540
+Now if there are no notes maybe there is no file at all or there is a file but the data isn't Jason.
+
+39
+00:02:12,590 --> 00:02:16,880
+We can go ahead and return an empty array and we're going to do that inside of catch because remember
+
+40
+00:02:16,970 --> 00:02:21,160
+catch runs if anything inside of try fails.
+
+41
+00:02:21,170 --> 00:02:27,800
+Now this lets us simplify and note even further we can remove the empty space and we can take the array
+
+42
+00:02:28,130 --> 00:02:34,820
+that we set on the notes variable and remove it and instead call fetch notes with this in place.
+
+43
+00:02:34,920 --> 00:02:39,990
+We now have the exact same functionality we had before but we have a reusable function fetch notes which
+
+44
+00:02:39,990 --> 00:02:44,300
+we can use down below to handle the other commands that our app is going to support.
+
+45
+00:02:44,460 --> 00:02:45,930
+And this is awesome.
+
+46
+00:02:45,960 --> 00:02:51,360
+Instead of copying code and having it in multiple places in your file we've broken it into one place.
+
+47
+00:02:51,510 --> 00:02:56,220
+If we ever want to change how this functionality works whether we want to change the file name or some
+
+48
+00:02:56,220 --> 00:03:01,400
+of the logic like the try catch block we can change once instead of having to change every function
+
+49
+00:03:01,470 --> 00:03:02,740
+down below.
+
+50
+00:03:02,790 --> 00:03:07,470
+Now the same thing is going to go for save notes save notes is going to take the notes variable and
+
+51
+00:03:07,470 --> 00:03:10,770
+it's going to say that using FS to write files sync.
+
+52
+00:03:11,010 --> 00:03:16,360
+I'm going to cut out the line down below in AD note that does this and paste it up above.
+
+53
+00:03:16,380 --> 00:03:19,130
+Now save notes doesn't need to return anything.
+
+54
+00:03:19,170 --> 00:03:24,500
+In this case we're going to copy the line in there and then call save notes down below.
+
+55
+00:03:24,900 --> 00:03:26,310
+This might seem like overkill.
+
+56
+00:03:26,310 --> 00:03:31,200
+We've essentially taken one line and replaced it with a different line but it is a good idea to start
+
+57
+00:03:31,200 --> 00:03:36,720
+getting in the habit of creating reusable functions now calling save notes with no data is not going
+
+58
+00:03:36,720 --> 00:03:37,270
+to work.
+
+59
+00:03:37,290 --> 00:03:42,550
+We want to pass in the notes variable which is our notes array defined up above.
+
+60
+00:03:42,570 --> 00:03:48,000
+With this in place the ADD note function should now work as it did before we did any of our refactoring
+
+61
+00:03:48,530 --> 00:03:49,980
+going to remove that line there.
+
+62
+00:03:50,010 --> 00:03:55,190
+Putting all the variable declarations next to each other next step and the process is going to be to
+
+63
+00:03:55,190 --> 00:04:01,610
+test this out by creating a new note we already have two notes with the title of secret and a title
+
+64
+00:04:01,670 --> 00:04:03,110
+of secret too.
+
+65
+00:04:03,200 --> 00:04:06,460
+Let's go ahead and make a third one using Knode apt.
+
+66
+00:04:06,490 --> 00:04:07,830
+Yes.
+
+67
+00:04:07,850 --> 00:04:18,070
+We're going to use the ad command and we're going to pass in a title of two by and a body of food.
+
+68
+00:04:18,150 --> 00:04:18,840
+Awesome.
+
+69
+00:04:19,110 --> 00:04:20,640
+This should create a new note.
+
+70
+00:04:20,760 --> 00:04:24,190
+And if I run the command you can see we don't have any obvious errors.
+
+71
+00:04:24,360 --> 00:04:29,280
+And over inside of our file if I scroll to the right we have our brand new note with a title of two
+
+72
+00:04:29,280 --> 00:04:30,950
+by and a body of food.
+
+73
+00:04:31,110 --> 00:04:35,580
+So everything is working as expected even though we've refactored the code.
+
+74
+00:04:35,670 --> 00:04:41,160
+Now the next thing I want to do inside of ad note is take a moment to return the note that's getting
+
+75
+00:04:41,210 --> 00:04:45,240
+added and that's going to happen right after save notes comes back.
+
+76
+00:04:45,240 --> 00:04:50,830
+We're going to return note this note is going to get returned to whoever called the function.
+
+77
+00:04:50,880 --> 00:04:56,340
+And in that case it's going to get returned to app dot J.S. where we call it right here.
+
+78
+00:04:56,460 --> 00:05:00,810
+We can make a variable to store this result and we can call it note.
+
+79
+00:05:00,840 --> 00:05:03,740
+Now your challenge for this video is going to be to print a message.
+
+80
+00:05:03,960 --> 00:05:07,350
+If no it exists then we know the note was created.
+
+81
+00:05:07,380 --> 00:05:13,260
+That means we can go ahead and print a message like No created and we can print out the note title and
+
+82
+00:05:13,290 --> 00:05:14,850
+the note body.
+
+83
+00:05:14,850 --> 00:05:21,900
+Now if note does not exist if it's undefined that means there was a duplicate and that note title already
+
+84
+00:05:21,900 --> 00:05:22,740
+exists.
+
+85
+00:05:22,740 --> 00:05:28,170
+If that's the case I want you to print an error message like no title already in use.
+
+86
+00:05:28,240 --> 00:05:30,060
+There's a ton of different ways you could do this.
+
+87
+00:05:30,060 --> 00:05:33,780
+You can use an IF statement to check what the note variable equals.
+
+88
+00:05:33,780 --> 00:05:38,940
+You could use a library like low dash to do your type checking for you wherever you happen to get it
+
+89
+00:05:38,940 --> 00:05:39,870
+done works.
+
+90
+00:05:39,960 --> 00:05:45,400
+The goal though is to print two different messages depending on whether or not a note was returned.
+
+91
+00:05:45,720 --> 00:05:51,540
+Now inside of our note if this statement never runs we don't have an explicit call to return.
+
+92
+00:05:51,540 --> 00:05:57,140
+But as you know in javascript if you don't call return undefined automatically gets returned.
+
+93
+00:05:57,150 --> 00:06:01,890
+That means if duplicate notes that length is not equal to zero.
+
+94
+00:06:02,100 --> 00:06:06,790
+Undefined is gonna get return and we can use that as the condition for our state.
+
+95
+00:06:06,960 --> 00:06:08,640
+So take a moment to knock this out.
+
+96
+00:06:08,700 --> 00:06:10,370
+Feel free to use stack overflow.
+
+97
+00:06:10,380 --> 00:06:13,680
+Google around do whatever you need to do to get it done.
+
+98
+00:06:13,680 --> 00:06:19,200
+The goal though is to have a message print if things went well or if things went bad you still want
+
+99
+00:06:19,200 --> 00:06:20,450
+to print that message.
+
+100
+00:06:20,550 --> 00:06:25,140
+Once you're done go ahead and test it out in the terminal by creating a new note without a duplicate
+
+101
+00:06:25,140 --> 00:06:28,140
+title and a note with a duplicate title when you're done.
+
+102
+00:06:28,140 --> 00:06:33,060
+You can go ahead and click play.
+
+103
+00:06:33,100 --> 00:06:33,970
+How'd you do.
+
+104
+00:06:34,090 --> 00:06:37,870
+Hopefully you were able to knock that out without too much trouble.
+
+105
+00:06:38,880 --> 00:06:43,140
+The first thing I'm going to do is create an if statement if Note
+
+106
+00:06:46,400 --> 00:06:51,560
+this is going to be an object if things went well it's going to be undefined if things went poorly.
+
+107
+00:06:51,640 --> 00:06:54,700
+This code in here is only ever going to run if it's an object.
+
+108
+00:06:54,700 --> 00:06:58,510
+Undefined is going to fail the condition inside of javascript.
+
+109
+00:06:58,510 --> 00:07:02,920
+Now if the note did get created successfully what we're going to do is print a little message to the
+
+110
+00:07:02,920 --> 00:07:05,760
+screen console log.
+
+111
+00:07:06,220 --> 00:07:14,390
+Note created if things went poorly inside of the else clause we can call console log and we can print
+
+112
+00:07:14,510 --> 00:07:15,110
+something like.
+
+113
+00:07:15,110 --> 00:07:18,020
+Note title taken.
+
+114
+00:07:18,020 --> 00:07:18,830
+Awesome.
+
+115
+00:07:19,280 --> 00:07:23,840
+Now the other thing we want to do if things went well is print out the notes content.
+
+116
+00:07:24,140 --> 00:07:30,130
+I'm going to do this by first using console that log to print a couple of hyphens.
+
+117
+00:07:30,150 --> 00:07:36,920
+This is going to create a little space above my note then I can use council dot like twice the first
+
+118
+00:07:36,920 --> 00:07:39,470
+time we're going to print the title.
+
+119
+00:07:39,470 --> 00:07:44,020
+I'm going to add title as a string to show you what exactly you're seeing.
+
+120
+00:07:44,080 --> 00:07:49,250
+And then I can concatenate the title which we have access to in note dot title.
+
+121
+00:07:49,250 --> 00:07:55,760
+Now this uses an S-5 syntax we can swap this out with an S 6 syntax using what we already talked about
+
+122
+00:07:55,760 --> 00:08:02,720
+template strings title colon space then we can use our dollar sign with our curly braces to inject the
+
+123
+00:08:02,930 --> 00:08:05,540
+note title variable.
+
+124
+00:08:05,540 --> 00:08:10,630
+I'm going to copy this line and paste it down below to print out the body of the note.
+
+125
+00:08:10,760 --> 00:08:17,660
+I'm going to replace title with uppercase B body and I'm going to reference the body attribute on the
+
+126
+00:08:17,660 --> 00:08:18,790
+note object.
+
+127
+00:08:18,890 --> 00:08:19,690
+Excellent.
+
+128
+00:08:19,700 --> 00:08:24,340
+Now with this in place we should be able to run our app and see both of these notes printing.
+
+129
+00:08:24,500 --> 00:08:25,930
+I'm going to go ahead and rerun it.
+
+130
+00:08:25,940 --> 00:08:29,190
+This is going to try to create a note with two by which already exists.
+
+131
+00:08:29,210 --> 00:08:33,720
+So we should get an error message and right here you can see note title taken.
+
+132
+00:08:33,770 --> 00:08:35,460
+Now we can rerun the command.
+
+133
+00:08:35,480 --> 00:08:40,080
+Changing the title to something else like to buy from store.
+
+134
+00:08:40,160 --> 00:08:41,650
+This is a unique note title.
+
+135
+00:08:41,750 --> 00:08:44,620
+So the note should get created without any problems.
+
+136
+00:08:44,750 --> 00:08:47,300
+And right here you can see we get just that.
+
+137
+00:08:47,300 --> 00:08:49,160
+We have our note created message.
+
+138
+00:08:49,220 --> 00:08:52,870
+We have our little spacer and we have our title along with the body.
+
+139
+00:08:52,880 --> 00:08:54,690
+This is fantastic.
+
+140
+00:08:54,770 --> 00:08:57,600
+The ad note command is now complete.
+
+141
+00:08:57,650 --> 00:09:02,960
+We have an output when the command actually finishes and we have all the code that runs behind the scenes
+
+142
+00:09:03,170 --> 00:09:07,220
+to add the note to the data that gets stored in our file.
+
+143
+00:09:07,220 --> 00:09:10,070
+Now this code right here is going to get simplified a little later.
+
+144
+00:09:10,070 --> 00:09:14,430
+For the moment we're going to leave it like it is though and that is it for this one.
+
+145
+00:09:14,480 --> 00:09:19,110
+In this video we pulled out a lot of the code from AD note into separate functions.
+
+146
+00:09:19,130 --> 00:09:24,630
+Fetch notes and save notes which are now separate and they're able to be reused throughout the code.
+
+147
+00:09:24,650 --> 00:09:29,540
+So down below when we start filling out the other methods we can simply call fetch notes and save notes
+
+148
+00:09:29,780 --> 00:09:35,150
+instead of having to copy the contents over and over again to every new method.
+
+149
+00:09:35,150 --> 00:09:40,340
+We also inside of apt out J has added a little bit of output after the command runs.
+
+150
+00:09:40,400 --> 00:09:45,260
+We print a nice message if the note gets added successfully and if things go wrong we just tell them
+
+151
+00:09:45,260 --> 00:09:48,540
+the note title is already taken so they can adjust the command.
+
+152
+00:09:48,560 --> 00:09:49,460
+They ran.
+
+153
+00:09:49,730 --> 00:09:50,760
+That is it for this one.
+
+154
+00:09:50,760 --> 00:09:56,560
+I will see you next time as we start adding support for all the other commands inside of the notes application
+

@@ -1,0 +1,800 @@
+﻿1
+00:00:00,390 --> 00:00:05,050
+In the last video you learn how to use require to load in modules that come with notes.
+
+2
+00:00:05,150 --> 00:00:05,720
+Yes.
+
+3
+00:00:05,790 --> 00:00:10,710
+In this video you are going to learn how to use required to load and other files that you created inside
+
+4
+00:00:10,710 --> 00:00:11,720
+of your project.
+
+5
+00:00:11,730 --> 00:00:17,580
+This is going to let you move functions outside of apps that drive us into more specific files which
+
+6
+00:00:17,580 --> 00:00:22,150
+is going to make your application easier to scale easier to task and easier to update.
+
+7
+00:00:23,050 --> 00:00:26,860
+To get started the first thing we're going to do is make that new file.
+
+8
+00:00:26,980 --> 00:00:31,960
+Now in the context of our notes app the new file is going to store various functions for writing and
+
+9
+00:00:31,960 --> 00:00:34,030
+reading notes for the moment.
+
+10
+00:00:34,030 --> 00:00:37,900
+We're not going to be worrying about that functionality but we are going to create the file where it
+
+11
+00:00:37,900 --> 00:00:39,270
+will eventually live.
+
+12
+00:00:39,280 --> 00:00:44,740
+This file is going to be notes dodgiest and we're going to save it inside of the root of our application
+
+13
+00:00:44,920 --> 00:00:46,070
+right alongside apt.
+
+14
+00:00:46,080 --> 00:00:48,880
+Jay Yes and greetings Don TXI T.
+
+15
+00:00:49,150 --> 00:00:55,150
+For the moment all we're going to do inside of notes is use console dialog to print a little log showing
+
+16
+00:00:55,150 --> 00:01:02,600
+the file has been executed starting notes Dhananjay us perfect.
+
+17
+00:01:02,630 --> 00:01:06,240
+Now we have a log on the top of notes and one on the top of app.
+
+18
+00:01:06,290 --> 00:01:07,690
+I'm going to change that to app.
+
+19
+00:01:08,030 --> 00:01:08,730
+Yes.
+
+20
+00:01:08,780 --> 00:01:09,370
+Awesome.
+
+21
+00:01:10,180 --> 00:01:13,390
+With this in place we can now require the notes file.
+
+22
+00:01:13,420 --> 00:01:18,560
+It doesn't export any functionality but that's fine by the way when I say export.
+
+23
+00:01:18,730 --> 00:01:20,840
+I mean the notes file.
+
+24
+00:01:20,950 --> 00:01:25,320
+It doesn't have any functions or properties that another file can take advantage of.
+
+25
+00:01:25,360 --> 00:01:28,690
+We'll look at how to export stuff in just a second.
+
+26
+00:01:28,690 --> 00:01:34,820
+For now though we're going to load our module in much the same way we loaded in the built in node modules.
+
+27
+00:01:34,840 --> 00:01:37,260
+Let's go ahead and make a contest.
+
+28
+00:01:37,310 --> 00:01:42,330
+I'm going to call this one it notes and we're going to set it equal to the return result from require
+
+29
+00:01:42,360 --> 00:01:44,950
+just like we've done up above inside of here.
+
+30
+00:01:45,020 --> 00:01:47,740
+We are going to pass in one argument that's going to be a string.
+
+31
+00:01:47,870 --> 00:01:50,300
+But it is going to be a little different in the past.
+
+32
+00:01:50,300 --> 00:01:55,530
+We typed in the module name of what we have here is not a module we have a file notes.
+
+33
+00:01:55,670 --> 00:02:00,830
+Yes but we need to do is tell a node where that file lives using a relative path.
+
+34
+00:02:00,920 --> 00:02:06,320
+Now relative paths start with a dot forward slash which points to the current directory that the file
+
+35
+00:02:06,320 --> 00:02:07,020
+is in.
+
+36
+00:02:07,040 --> 00:02:12,340
+In this case this points us to the app JSE directory which is the root of our project from here.
+
+37
+00:02:12,440 --> 00:02:15,300
+We don't have to go into any other folders to access notes.
+
+38
+00:02:15,340 --> 00:02:17,360
+J.S. it's sitting right here.
+
+39
+00:02:17,480 --> 00:02:21,570
+So you can type its name with this in place we can now save apt.
+
+40
+00:02:21,610 --> 00:02:25,120
+Yes and see what happens when we run our application.
+
+41
+00:02:25,240 --> 00:02:32,530
+I'm going to go ahead and run the app using node app Jap's and right here you see we get our two locks.
+
+42
+00:02:32,540 --> 00:02:34,520
+First we get starting apparat.
+
+43
+00:02:34,590 --> 00:02:36,570
+And then we get starting notes.
+
+44
+00:02:36,660 --> 00:02:43,430
+Yes now starting notes that J.S. comes from here and it only runs because we required the file inside
+
+45
+00:02:43,430 --> 00:02:44,060
+of Aptor.
+
+46
+00:02:44,150 --> 00:02:45,080
+Yes.
+
+47
+00:02:45,080 --> 00:02:51,080
+If I comment out this line save the file and rerun it from the terminal you can see the notes file never
+
+48
+00:02:51,080 --> 00:02:54,170
+executes because we never explicitly touch it.
+
+49
+00:02:54,170 --> 00:02:59,330
+We never call it inside of the terminal like we do here and we never require.
+
+50
+00:02:59,420 --> 00:03:01,720
+For now though we are going to be requiring it.
+
+51
+00:03:02,090 --> 00:03:06,080
+So I'm going to comment that line by the way I'm using command.
+
+52
+00:03:06,080 --> 00:03:09,900
+Forward slash to comment and and comment lines quickly.
+
+53
+00:03:09,920 --> 00:03:13,690
+This is a keyboard shortcut available in most text editors.
+
+54
+00:03:13,700 --> 00:03:16,100
+If you're on Windows or Linux it might not be command.
+
+55
+00:03:16,100 --> 00:03:18,010
+It might be control or something else.
+
+56
+00:03:18,080 --> 00:03:22,670
+Go ahead and just click around on there and try to find the one that works with forward slash just to
+
+57
+00:03:22,670 --> 00:03:27,800
+the left of the shift key to comment and on comment lines that's going to save you a lot of time down
+
+58
+00:03:27,800 --> 00:03:28,340
+the line.
+
+59
+00:03:28,340 --> 00:03:33,260
+I'm a big fan of keyboard shortcuts and I'll try to explain as many of them as I can if I'm using one
+
+60
+00:03:33,260 --> 00:03:34,280
+that I haven't explained.
+
+61
+00:03:34,280 --> 00:03:35,240
+And you're curious.
+
+62
+00:03:35,240 --> 00:03:37,050
+Please just ask in the Q&amp;A.
+
+63
+00:03:37,100 --> 00:03:39,610
+I'd be happy to tell you exactly how it's done.
+
+64
+00:03:40,500 --> 00:03:46,090
+For now though the focus is going to be to export something from notes dodgiest that we can use in app.
+
+65
+00:03:46,140 --> 00:03:49,060
+J.S. inside of notes.
+
+66
+00:03:49,160 --> 00:03:49,660
+Yes.
+
+67
+00:03:49,890 --> 00:03:56,740
+Actually inside of all of our node files we have access to a variable called module I'm going to use
+
+68
+00:03:56,740 --> 00:04:02,980
+console log to print it to the screen so we can explore it over in the terminal module just like this
+
+69
+00:04:02,980 --> 00:04:05,640
+is available in all of our files.
+
+70
+00:04:05,650 --> 00:04:08,710
+Let's go ahead and rerun the file to explore it right here.
+
+71
+00:04:08,740 --> 00:04:11,130
+We got a pretty big object now.
+
+72
+00:04:11,170 --> 00:04:13,740
+Truth be told we're not going to be using most of these properties.
+
+73
+00:04:13,750 --> 00:04:19,540
+We have things like ID exports parent file name and a bunch more if the only one we're ever going to
+
+74
+00:04:19,540 --> 00:04:21,810
+use in this course is exports.
+
+75
+00:04:21,820 --> 00:04:24,560
+This is pretty much the only useful one here.
+
+76
+00:04:24,760 --> 00:04:26,530
+Exports is fantastic.
+
+77
+00:04:26,560 --> 00:04:30,760
+It's an object on the module property and everything on this object.
+
+78
+00:04:30,790 --> 00:04:36,740
+This gets exported this object gets set as the variable right here.
+
+79
+00:04:36,860 --> 00:04:42,250
+Notice that means we can set properties on it and those will get set on notes and we can use them inside
+
+80
+00:04:42,250 --> 00:04:42,880
+of apps.
+
+81
+00:04:42,940 --> 00:04:46,040
+Yes let's take a quick look at how that works.
+
+82
+00:04:47,290 --> 00:04:54,380
+Well we're going to do is define an age property using module dot exports the object we just explored
+
+83
+00:04:54,390 --> 00:04:55,570
+over in the terminal.
+
+84
+00:04:55,770 --> 00:04:58,290
+And we know it's an object because we can see it right here.
+
+85
+00:04:58,500 --> 00:05:05,190
+Which means I can at a property age and set it equal to my age which is 25 then I can go ahead and save
+
+86
+00:05:05,190 --> 00:05:09,420
+this file and move into Aptos to take advantage of this new age property.
+
+87
+00:05:10,400 --> 00:05:16,960
+Notes is going to be storing all of my exports in this case just age right here after the greeting.
+
+88
+00:05:17,180 --> 00:05:23,940
+I'm going to say you are followed by the age inside of template strings we use dollar with curly braces
+
+89
+00:05:25,320 --> 00:05:29,630
+notes dot age and I'll put a period at the end.
+
+90
+00:05:29,700 --> 00:05:32,130
+And now our greeting should say Hello Andrew.
+
+91
+00:05:32,130 --> 00:05:34,010
+You are twenty five.
+
+92
+00:05:34,200 --> 00:05:38,200
+It's getting the 25 from our separate file which is fantastic.
+
+93
+00:05:38,200 --> 00:05:40,240
+Let's take a quick moment to rerun the program.
+
+94
+00:05:40,240 --> 00:05:45,970
+Over inside of the terminal using the up arrow key and the Enter key back inside of the app we can open.
+
+95
+00:05:45,970 --> 00:05:47,300
+Greetings don t s t.
+
+96
+00:05:47,380 --> 00:05:49,410
+And sitting right here you see we have hello.
+
+97
+00:05:49,410 --> 00:05:52,650
+Andrew you are 25 which is awesome.
+
+98
+00:05:52,840 --> 00:05:58,570
+Using require we were able to require a file that we created and this file stored some properties that
+
+99
+00:05:58,570 --> 00:06:00,880
+were advantageous to the rest of the project.
+
+100
+00:06:00,880 --> 00:06:04,270
+Now obviously this is a pretty contrived example.
+
+101
+00:06:04,270 --> 00:06:06,570
+We're not going to be exporting static numbers.
+
+102
+00:06:06,580 --> 00:06:11,920
+The real goal of exports is to be able to export functions that get used inside of app.
+
+103
+00:06:12,090 --> 00:06:14,190
+Yes let's take a quick moment.
+
+104
+00:06:14,200 --> 00:06:15,760
+Export two functions
+
+105
+00:06:18,650 --> 00:06:20,990
+right here I'm going to set module.
+
+106
+00:06:21,080 --> 00:06:23,180
+Exports dot add.
+
+107
+00:06:23,210 --> 00:06:27,730
+Note equal to a function function.
+
+108
+00:06:28,740 --> 00:06:33,100
+Followed by opening and closing parentheses followed by the curly braces.
+
+109
+00:06:33,120 --> 00:06:38,460
+Now throughout the course I'm going to be using aero functions where I can like right here to convert
+
+110
+00:06:38,490 --> 00:06:41,320
+a regular S-5 function into an era function.
+
+111
+00:06:41,340 --> 00:06:49,620
+All you do is you remove the function keyword and replace it with a equals greater then sign right between
+
+112
+00:06:49,620 --> 00:06:52,620
+the parentheses end of the opening curly braces.
+
+113
+00:06:52,620 --> 00:06:56,610
+Now there are some more subtleties to aero functions we'll be talking about throughout the course but
+
+114
+00:06:56,610 --> 00:07:01,110
+if you have an anonymous function you can swap it to an arrow function without any problems.
+
+115
+00:07:01,110 --> 00:07:06,650
+The big difference is that the function is not going to bind the this keyword or the arguments array
+
+116
+00:07:06,840 --> 00:07:08,560
+which will be exploring throughout the course.
+
+117
+00:07:08,580 --> 00:07:13,900
+So if you do get some errors it's good to know that the error function could be the cause.
+
+118
+00:07:13,950 --> 00:07:18,390
+For now though we're going to keep things really simple using console log to print add.
+
+119
+00:07:18,390 --> 00:07:19,180
+Note.
+
+120
+00:07:19,470 --> 00:07:24,570
+This is going to let us know that the ADD note function was called and we're going to go ahead and return
+
+121
+00:07:25,470 --> 00:07:29,630
+some string like new note.
+
+122
+00:07:29,650 --> 00:07:34,000
+Now this function is going to find in notes dodgiest but we can take advantage of it over inside of
+
+123
+00:07:34,030 --> 00:07:34,670
+app.
+
+124
+00:07:34,800 --> 00:07:41,740
+Yes let's take a quick second to comment out both the append file and the user line.
+
+125
+00:07:41,800 --> 00:07:44,650
+I can highlight both and use that keyboard shortcut.
+
+126
+00:07:44,650 --> 00:07:48,210
+We talked about to comment both of them out and right here.
+
+127
+00:07:48,430 --> 00:07:55,390
+All I'm going to do is make a variable call the result or yes for short and set it equal to the return
+
+128
+00:07:55,390 --> 00:07:57,560
+result from notes dot.
+
+129
+00:07:57,610 --> 00:08:02,270
+Add note now the add function is a dummy function for the moment.
+
+130
+00:08:02,320 --> 00:08:05,650
+It doesn't take any arguments and it doesn't actually do anything.
+
+131
+00:08:05,830 --> 00:08:07,690
+So we can call it without any arguments.
+
+132
+00:08:07,690 --> 00:08:14,620
+Then we're going to print the result variable like this and we would expect the result variable to be
+
+133
+00:08:14,620 --> 00:08:15,530
+equal to that string.
+
+134
+00:08:15,550 --> 00:08:16,240
+New in.
+
+135
+00:08:16,480 --> 00:08:22,720
+If I save both of my files and rerun things from the terminal right here you can see new note prints
+
+136
+00:08:22,720 --> 00:08:26,430
+to the screen at the very end and just before it add no prints.
+
+137
+00:08:26,440 --> 00:08:29,520
+This means that we required successfully our notes file.
+
+138
+00:08:29,590 --> 00:08:33,830
+We called add no and its return result was successfully returned to app..
+
+139
+00:08:33,870 --> 00:08:34,410
+J.S..
+
+140
+00:08:34,510 --> 00:08:36,140
+Which is fantastic.
+
+141
+00:08:36,220 --> 00:08:40,690
+Using this exact pattern we're going to be able to define our functions for adding and removing notes
+
+142
+00:08:40,720 --> 00:08:47,020
+over here in our notes file but we'll be able to call them anywhere inside of our app including in app
+
+143
+00:08:47,050 --> 00:08:50,140
+dot J as.
+
+144
+00:08:50,260 --> 00:08:52,790
+Now it's time for a quick challenge.
+
+145
+00:08:52,810 --> 00:08:55,480
+What I'd like you to do is make a new function in notes.
+
+146
+00:08:55,530 --> 00:09:02,440
+J.S. called add this add function is going to get set on the exports object and remember it's an object
+
+147
+00:09:02,440 --> 00:09:04,690
+so you can set multiple properties.
+
+148
+00:09:04,690 --> 00:09:08,160
+This add function is going to take two arguments A and B.
+
+149
+00:09:08,260 --> 00:09:10,970
+It's going to add them together and return the result.
+
+150
+00:09:11,080 --> 00:09:12,670
+Then over inside of x.
+
+151
+00:09:12,770 --> 00:09:17,380
+Yes I'd like you to call that notes add function passing in two numbers whatever you like.
+
+152
+00:09:17,380 --> 00:09:19,420
+Like 9 Ninan negative 2.
+
+153
+00:09:19,540 --> 00:09:23,390
+Then print the result to the screen and make sure it works correctly.
+
+154
+00:09:23,740 --> 00:09:28,430
+I can get started by removing the call to add notes since this is not going to be needed for the challenge.
+
+155
+00:09:28,480 --> 00:09:31,920
+So take a moment create that add function inside of notes.
+
+156
+00:09:32,050 --> 00:09:32,670
+J.
+
+157
+00:09:32,760 --> 00:09:37,600
+Call it inside of apt g s and make sure the proper result prints to the screen.
+
+158
+00:09:37,600 --> 00:09:38,770
+Take a moment pause the video.
+
+159
+00:09:38,770 --> 00:09:40,920
+Knock that out and when you're done click play
+
+160
+00:09:44,090 --> 00:09:44,900
+how'd it go.
+
+161
+00:09:45,100 --> 00:09:48,660
+Hopefully you were able to make that function and call it from app dot.
+
+162
+00:09:48,720 --> 00:09:53,190
+Yes the first step in the process is going to be to define the new function.
+
+163
+00:09:53,530 --> 00:09:59,450
+Right here I'm going to set module dot exports dot add equal to that function.
+
+164
+00:10:00,680 --> 00:10:02,870
+Let's set it equal to an arrow function.
+
+165
+00:10:02,900 --> 00:10:08,540
+If you used a regular function that is perfectly fine I just prefer using the arrow function when I
+
+166
+00:10:08,540 --> 00:10:12,800
+can and inside of here we are going to be getting into arguments.
+
+167
+00:10:12,890 --> 00:10:15,920
+Going to be getting a and b.
+
+168
+00:10:15,920 --> 00:10:19,100
+All we need to do is return the result really simple.
+
+169
+00:10:19,160 --> 00:10:23,480
+We're going to return a plus b just like this.
+
+170
+00:10:23,480 --> 00:10:25,010
+Now this was the first part of your challenge.
+
+171
+00:10:25,040 --> 00:10:31,460
+Defining a utility function in notes dodgiest the second part was to actually use it over an app.
+
+172
+00:10:31,640 --> 00:10:37,400
+Yes right here we can use our function by printing Konsole dot log.
+
+173
+00:10:38,560 --> 00:10:41,170
+Result with the colon.
+
+174
+00:10:41,260 --> 00:10:44,710
+And this is just for formatting and that's the second argument we're going to print.
+
+175
+00:10:44,710 --> 00:10:48,860
+The actual result notes dot add.
+
+176
+00:10:49,090 --> 00:10:50,950
+And we're going to add up to numbers.
+
+177
+00:10:50,950 --> 00:10:55,150
+Let's go ahead and add 9 and negative to the result.
+
+178
+00:10:55,150 --> 00:10:56,540
+Here should be 7.
+
+179
+00:10:56,560 --> 00:11:03,600
+If we go ahead and run the program you can see we get just that 7 prints to the screen.
+
+180
+00:11:03,600 --> 00:11:08,670
+If you are able to get this Congratulations you successfully completed one of your first challenges.
+
+181
+00:11:08,670 --> 00:11:13,290
+These are going to be sprinkled throughout the course and they're going to get progressively more complex
+
+182
+00:11:13,590 --> 00:11:14,390
+in the beginning.
+
+183
+00:11:14,400 --> 00:11:19,350
+I'm going to lead you through the process not leaving too much open ended later in the course though
+
+184
+00:11:19,380 --> 00:11:25,110
+it's going to be really important to your own learning to have a lot of time to explore different ways
+
+185
+00:11:25,110 --> 00:11:25,680
+to do things.
+
+186
+00:11:25,680 --> 00:11:30,340
+This means the problems will be a little more open ended as will the solutions.
+
+187
+00:11:30,360 --> 00:11:33,670
+Don't worry for now we're going to keep the challenges pretty explicit.
+
+188
+00:11:33,690 --> 00:11:37,120
+I'll tell you exactly what I want and exactly how I want it done.
+
+189
+00:11:37,410 --> 00:11:39,900
+Now you can go ahead and play around with different ways to do it.
+
+190
+00:11:39,900 --> 00:11:41,370
+That is perfectly fine.
+
+191
+00:11:41,370 --> 00:11:46,470
+The real goal is to just get you writing code independent of following someone else's lead.
+
+192
+00:11:46,480 --> 00:11:50,080
+That is where the real learning happens and that is it for this one.
+
+193
+00:11:50,100 --> 00:11:56,220
+We now know how to require other files that we created and we know how to export things like properties
+
+194
+00:11:56,250 --> 00:11:58,410
+and functions from those files.
+
+195
+00:11:58,410 --> 00:12:02,650
+This makes the module system inside of node super useful.
+
+196
+00:12:02,670 --> 00:12:05,240
+Now there really is only one more piece to the puzzle.
+
+197
+00:12:05,250 --> 00:12:11,540
+We explored how to use built in modules we explored how to use modules we have to find in the next video
+
+198
+00:12:11,550 --> 00:12:15,220
+we are going to explore how to use third party modules from there.
+
+199
+00:12:15,310 --> 00:12:19,050
+We're going to start building the notes application so stay tuned.
+
+200
+00:12:19,140 --> 00:12:20,840
+I will see you next time.
+

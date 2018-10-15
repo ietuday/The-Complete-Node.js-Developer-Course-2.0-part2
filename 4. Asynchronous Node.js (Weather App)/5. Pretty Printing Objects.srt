@@ -1,0 +1,172 @@
+﻿1
+00:00:00,580 --> 00:00:07,090
+It before we continue on learning about HTP and what exactly is in sign of error response and body.
+
+2
+00:00:07,090 --> 00:00:12,310
+I want to take a quick moment to talk about how we can pretty print and object to the screen as we saw
+
+3
+00:00:12,430 --> 00:00:16,080
+in the last video when we ran our app with node apps.
+
+4
+00:00:16,150 --> 00:00:18,590
+Yes the body prints to the screen.
+
+5
+00:00:18,670 --> 00:00:23,570
+But since there is a lot of objects nested inside of each other javascript starts clipping them.
+
+6
+00:00:23,590 --> 00:00:27,670
+It tells us an object is here but we don't get to see exactly what their properties are.
+
+7
+00:00:27,670 --> 00:00:31,040
+This takes place for address components geometry and types.
+
+8
+00:00:31,150 --> 00:00:33,080
+Obviously this is not useful.
+
+9
+00:00:33,140 --> 00:00:37,470
+We want to do is see exactly what's in the object to explore all of the properties.
+
+10
+00:00:37,570 --> 00:00:40,380
+We're going to look at a way to pretty print are objects.
+
+11
+00:00:40,390 --> 00:00:45,300
+This is going to require a really simple function call to a function We've actually already used.
+
+12
+00:00:45,320 --> 00:00:50,310
+Jason docstring define Jason dot string of phi.
+
+13
+00:00:50,540 --> 00:00:56,840
+This is the function that takes your javascript objects which body is remember we use Jason true to
+
+14
+00:00:56,840 --> 00:01:02,830
+tell request to take the Jason and convert it into an object right here.
+
+15
+00:01:02,840 --> 00:01:07,390
+We're taking that object passing it in and providing the arguments.
+
+16
+00:01:07,400 --> 00:01:12,110
+Now this is how we've usually used Jason docstring if to find the past we provided just one argument
+
+17
+00:01:12,140 --> 00:01:17,150
+the object we want to string if I in this case we're going to provide a couple of other arguments.
+
+18
+00:01:17,150 --> 00:01:20,240
+The next argument is used to filter out properties.
+
+19
+00:01:20,360 --> 00:01:21,230
+We don't want to use that.
+
+20
+00:01:21,230 --> 00:01:22,570
+I've actually never used it.
+
+21
+00:01:22,580 --> 00:01:24,210
+It's usually useless.
+
+22
+00:01:24,290 --> 00:01:26,580
+So I'm going to leave it as undefined for the moment.
+
+23
+00:01:26,810 --> 00:01:32,210
+The reason we need to provide that is because the third argument is the thing we want the third argument
+
+24
+00:01:32,420 --> 00:01:38,000
+is going to format the Jason and you're going to specify exactly how many spaces you want to use per
+
+25
+00:01:38,000 --> 00:01:38,980
+indentation.
+
+26
+00:01:39,110 --> 00:01:42,370
+You could go with two or four depending on your preference.
+
+27
+00:01:42,380 --> 00:01:48,180
+I'm going to go ahead and pick to save the file and rerun it from the terminal when we string a fire
+
+28
+00:01:48,200 --> 00:01:52,220
+Jason and print it to the screen as you're going to see it when you rerun the app.
+
+29
+00:01:52,250 --> 00:01:54,890
+We get the entire object showing up.
+
+30
+00:01:54,890 --> 00:01:57,030
+None of the properties are clipped off.
+
+31
+00:01:57,050 --> 00:02:01,240
+Here we can see the entire address components array everything shows up.
+
+32
+00:02:01,250 --> 00:02:05,610
+No matter how complex it is down below we have our geometry object.
+
+33
+00:02:05,750 --> 00:02:08,460
+This is where our latitude and longitude are stored.
+
+34
+00:02:08,480 --> 00:02:15,710
+And you can see them right here also down below that we have our types which was cut off before even
+
+35
+00:02:15,710 --> 00:02:18,920
+though it was an array with one item which is a string.
+
+36
+00:02:18,940 --> 00:02:23,600
+Now that you know had a pretty print your objects that's going to be a lot easier to scan data inside
+
+37
+00:02:23,600 --> 00:02:24,470
+of the council.
+
+38
+00:02:24,490 --> 00:02:28,730
+None of your properties are going to get clipped and it's formatted in a way that makes the data a lot
+
+39
+00:02:28,790 --> 00:02:30,030
+more readable.
+
+40
+00:02:30,030 --> 00:02:31,140
+And that is it for this one.
+
+41
+00:02:31,160 --> 00:02:36,030
+Just a quick tip on how you can format objects when you want to print them to the con..
+
+42
+00:02:36,110 --> 00:02:36,680
+Stay tuned.
+
+43
+00:02:36,710 --> 00:02:41,600
+We'll see you next time as we start diving into HTP and all of the arguments in our Colbeck
+

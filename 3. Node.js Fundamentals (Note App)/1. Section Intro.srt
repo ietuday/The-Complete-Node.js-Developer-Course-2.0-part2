@@ -1,0 +1,64 @@
+﻿1
+00:00:00,950 --> 00:00:06,920
+Hello and welcome to Section 3 node fundamentals in this section you're going to be learning a ton about
+
+2
+00:00:06,920 --> 00:00:11,780
+building node applications and you're going to actually build your first one a note application.
+
+3
+00:00:11,810 --> 00:00:14,000
+This is where all the really fun stuff is going to start.
+
+4
+00:00:14,000 --> 00:00:18,510
+We're going to kick things off by learning about all of the modules that come built into node.
+
+5
+00:00:18,620 --> 00:00:22,130
+These are objects and functions and let you do stuff with javascript.
+
+6
+00:00:22,130 --> 00:00:23,840
+You've never been able to do before.
+
+7
+00:00:23,870 --> 00:00:27,860
+We're going to learn how to do things like read and write from the file system which we'll be using
+
+8
+00:00:27,890 --> 00:00:31,460
+in the Notes application to persist our data.
+
+9
+00:00:31,460 --> 00:00:34,960
+Now we're also going to be looking at third party NPM modules.
+
+10
+00:00:35,030 --> 00:00:38,400
+This is a big part of the reason that node became so popular.
+
+11
+00:00:38,480 --> 00:00:44,180
+NPM gives you a great collection of third party libraries you can use and they'll solve really common
+
+12
+00:00:44,180 --> 00:00:48,490
+problems so you don't have to rewrite that boilerplate code over and over again.
+
+13
+00:00:48,680 --> 00:00:54,800
+We're going to be using a third party module in this section to help with fetching input from that user.
+
+14
+00:00:54,800 --> 00:00:58,180
+Now aside from all of that we're going to be looking at debugging broken apps.
+
+15
+00:00:58,190 --> 00:01:00,620
+We'll look at some new iOS 6 features.
+
+16
+00:01:00,650 --> 00:01:06,020
+It's all coming up now but we're going to kick things off talking about something called require
+

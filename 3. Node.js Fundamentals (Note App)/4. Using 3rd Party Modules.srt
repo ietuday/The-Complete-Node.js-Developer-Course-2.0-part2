@@ -1,0 +1,892 @@
+﻿1
+00:00:00,520 --> 00:00:05,620
+You know two out of the three ways to use require And in this one we're going to explore the last way
+
+2
+00:00:05,890 --> 00:00:11,440
+which is to require a package that you've installed from and pm as I mentioned in the first section
+
+3
+00:00:11,660 --> 00:00:15,730
+and is a big part of what makes a node so fantastic.
+
+4
+00:00:15,820 --> 00:00:22,030
+There is a huge community of developers that have created thousands of packages that already solve some
+
+5
+00:00:22,030 --> 00:00:25,300
+of the most common problems in node applications.
+
+6
+00:00:25,330 --> 00:00:31,600
+We are going to be taking advantage of quite a few packages throughout the course now in these packages.
+
+7
+00:00:31,600 --> 00:00:36,680
+There's nothing magical it's regular node code that aims to solve a specific problem.
+
+8
+00:00:36,820 --> 00:00:41,470
+The reason you'd want to use it is so you don't have to spend all your time writing these utility functions
+
+9
+00:00:41,710 --> 00:00:43,220
+that already exist.
+
+10
+00:00:43,240 --> 00:00:44,220
+Not only do they exist.
+
+11
+00:00:44,230 --> 00:00:45,040
+They've been tested.
+
+12
+00:00:45,040 --> 00:00:46,510
+They've been proven to work.
+
+13
+00:00:46,510 --> 00:00:49,460
+Others have used them and documented them.
+
+14
+00:00:49,960 --> 00:00:52,360
+Now with all that said how do we get started.
+
+15
+00:00:52,600 --> 00:00:57,370
+Well to get started we actually have to run a command from the terminal to tell our application we want
+
+16
+00:00:57,370 --> 00:01:01,910
+to use NPM modules that command is going to get run over in the terminal.
+
+17
+00:01:01,930 --> 00:01:07,360
+Make sure you've navigated inside of your project folder right here and you can see an inside of the
+
+18
+00:01:07,360 --> 00:01:09,860
+notes node directory.
+
+19
+00:01:09,880 --> 00:01:15,940
+Now when you installed node you also install something called NPM which at one point stood for node
+
+20
+00:01:15,940 --> 00:01:21,610
+package manager but there's now an on running joke because there is plenty of things on NPM that are
+
+21
+00:01:21,610 --> 00:01:27,790
+not specific to node A lot of front end frameworks like Jay queery and re-act now live on NPM as well.
+
+22
+00:01:27,790 --> 00:01:32,080
+So that pretty much ditched the node package manager explanation.
+
+23
+00:01:32,080 --> 00:01:37,520
+And now on their site they cycle between a bunch of hilarious things that happen to match up with NPM.
+
+24
+00:01:37,780 --> 00:01:42,880
+Regardless though we are going to be running some NPM commands and you can test that you have it installed
+
+25
+00:01:42,880 --> 00:01:50,350
+by running and P.M. space hyphen VI were running NPM with the V flag which should print the version
+
+26
+00:01:50,620 --> 00:01:56,560
+and right here you can see I'm on version three point nine point five it's OK if your version is slightly
+
+27
+00:01:56,560 --> 00:02:02,030
+different that's not important what is important is that you have NPM installed from here.
+
+28
+00:02:02,070 --> 00:02:09,210
+We're going to run a command called NPM in it and it is going to prompt you to fill out a few questions
+
+29
+00:02:09,210 --> 00:02:12,010
+about your NPM project.
+
+30
+00:02:12,210 --> 00:02:17,070
+We can go ahead and run the command and we can cycle through the questions up above is a quick description
+
+31
+00:02:17,070 --> 00:02:18,860
+of what's happening and down below.
+
+32
+00:02:18,930 --> 00:02:20,730
+It's going to start asking you a few questions.
+
+33
+00:02:20,730 --> 00:02:25,780
+First up is the name now your name can't have uppercase characters or spaces nodes.
+
+34
+00:02:25,800 --> 00:02:32,990
+Node works great like I hit enter to use the default value which is in parentheses for the version point
+
+35
+00:02:33,000 --> 00:02:35,240
+zero point zero works fine too.
+
+36
+00:02:35,340 --> 00:02:38,440
+We are going to leave most of these at their default value.
+
+37
+00:02:38,440 --> 00:02:40,200
+We can leave the description empty.
+
+38
+00:02:40,420 --> 00:02:42,320
+The entry point is going to be apt.
+
+39
+00:02:42,360 --> 00:02:42,780
+J.S..
+
+40
+00:02:42,790 --> 00:02:44,800
+Make sure that shows up right here.
+
+41
+00:02:45,780 --> 00:02:47,690
+Next up we have a test command.
+
+42
+00:02:47,790 --> 00:02:49,650
+We're going to explore testing later in the course.
+
+43
+00:02:49,650 --> 00:02:52,300
+So for now we can leave this empty.
+
+44
+00:02:52,470 --> 00:02:55,380
+After that we have a good repository section.
+
+45
+00:02:55,380 --> 00:02:57,930
+We're going to leave that empty for now as well.
+
+46
+00:02:57,960 --> 00:03:01,170
+We have some keywords which are used for searching for modules.
+
+47
+00:03:01,170 --> 00:03:04,680
+We're not going to be publishing this module so we can leave those empty.
+
+48
+00:03:04,680 --> 00:03:06,100
+Lastly we have an author.
+
+49
+00:03:06,150 --> 00:03:13,440
+You might as well go ahead and type your name wups and hit enter for the license we're going to stick
+
+50
+00:03:13,440 --> 00:03:14,010
+with us.
+
+51
+00:03:14,040 --> 00:03:17,930
+See at the moment since we're not publishing it it doesn't really matter.
+
+52
+00:03:18,210 --> 00:03:23,490
+Now I want to dispel that this command is doing anything magical oldest commands doing is it's creating
+
+53
+00:03:23,490 --> 00:03:26,280
+a single file inside of your project.
+
+54
+00:03:26,370 --> 00:03:30,660
+It's going to be in the root of the project and it's called package dot Jason and the file is going
+
+55
+00:03:30,660 --> 00:03:32,830
+to look exactly like this.
+
+56
+00:03:32,910 --> 00:03:37,980
+Down below you can hit enter or type yes to confirm that this is what you want to do.
+
+57
+00:03:38,700 --> 00:03:43,330
+Now that we have the file created we can actually view it inside of our project right here.
+
+58
+00:03:43,340 --> 00:03:48,250
+We have the package and Jason File and this is all it is.
+
+59
+00:03:48,300 --> 00:03:50,660
+It's a simple description of your application.
+
+60
+00:03:50,700 --> 00:03:54,970
+Now as I mentioned we're not going to be publishing our app to NPM.
+
+61
+00:03:55,110 --> 00:03:58,190
+So a lot of this information really isn't important to us.
+
+62
+00:03:58,230 --> 00:04:03,480
+What is important though is that packaged out Jason is where we define the third party modules we want
+
+63
+00:04:03,480 --> 00:04:08,030
+to install in our application and to install a module in the app.
+
+64
+00:04:08,070 --> 00:04:13,050
+We are going to run a command over in the terminal in this section we're going to be installing a module
+
+65
+00:04:13,050 --> 00:04:19,590
+called Low dash low dash comes with a ton of utility methods and functions that make developing inside
+
+66
+00:04:19,590 --> 00:04:25,490
+of node or javascript a heck of a lot easier to take a look at what exactly we're getting into.
+
+67
+00:04:25,590 --> 00:04:27,310
+Let's go ahead and move into the browser.
+
+68
+00:04:28,950 --> 00:04:31,920
+We're going to go to NPM J.S. dot com.
+
+69
+00:04:34,780 --> 00:04:40,300
+Then we're going to search for the package low dash and you can see it comes up right here.
+
+70
+00:04:41,920 --> 00:04:45,910
+When you click it you should be taken to the package page and the package page is going to show you
+
+71
+00:04:45,910 --> 00:04:49,660
+a lot of statistics about the module and the documentation.
+
+72
+00:04:49,660 --> 00:04:54,790
+Now if I use this package page when I'm looking for new modules I'd like to see how many downloads it
+
+73
+00:04:54,790 --> 00:04:59,740
+has and when it was last updated here you can see it was updated recently which is great.
+
+74
+00:04:59,740 --> 00:05:04,440
+It means the package is most likely compatible with the latest versions of Node.
+
+75
+00:05:04,570 --> 00:05:10,150
+And down below you can see this is actually one of the most popular NPM packages with over a million
+
+76
+00:05:10,240 --> 00:05:11,540
+downloads a day.
+
+77
+00:05:14,360 --> 00:05:20,400
+We are going to be using this module to explore how to install NPM modules and how to actually use them
+
+78
+00:05:20,400 --> 00:05:22,200
+in the project.
+
+79
+00:05:22,200 --> 00:05:25,510
+The first thing you need to grab is just the module name which has low dash.
+
+80
+00:05:25,560 --> 00:05:27,940
+Once you have that information you're ready to install it.
+
+81
+00:05:29,140 --> 00:05:35,330
+Back in the terminal we're going to run NPM install after install.
+
+82
+00:05:35,340 --> 00:05:40,490
+We're going to specify the module load dash just like this.
+
+83
+00:05:40,510 --> 00:05:42,610
+Now this command alone would work.
+
+84
+00:05:42,810 --> 00:05:46,630
+What we're also going to do though is provide the save flank.
+
+85
+00:05:46,770 --> 00:05:51,750
+This command is going to install the module and we'll explore exactly what that means in a second.
+
+86
+00:05:51,750 --> 00:05:58,020
+And the save flag two hyphens followed by the word save is going to update the contents of the package.
+
+87
+00:05:58,050 --> 00:05:59,270
+Jason 5.
+
+88
+00:05:59,700 --> 00:06:02,080
+Let's go ahead and run this command.
+
+89
+00:06:02,130 --> 00:06:06,890
+This command is going to go off to the NPM servers and fetch the code and install inside of your project.
+
+90
+00:06:06,990 --> 00:06:14,070
+And any time you install an NPM module it's going to live in your project in a node modules folder.
+
+91
+00:06:14,070 --> 00:06:18,730
+Now if you open that node modules folder you're going to see the low dash folder right here.
+
+92
+00:06:18,750 --> 00:06:24,230
+This is the module that we just installed and you can see over and packaged out Jason.
+
+93
+00:06:24,240 --> 00:06:27,330
+We've also had some updates automatically take place.
+
+94
+00:06:27,420 --> 00:06:33,870
+There's a new dependencies attribute that has an object with key value pairs where the key is the module
+
+95
+00:06:33,870 --> 00:06:37,150
+we want to use in our project and the value is the version number.
+
+96
+00:06:37,260 --> 00:06:42,700
+In this case the most recent version version four point one three point one.
+
+97
+00:06:42,900 --> 00:06:49,970
+With this in place we can now require our module inside of the project over inside of us.
+
+98
+00:06:50,250 --> 00:06:55,770
+We can take advantage of everything that comes in low Dasch by going through the same process of acquiring
+
+99
+00:06:55,760 --> 00:06:55,990
+it.
+
+100
+00:06:56,970 --> 00:07:02,840
+We're going to make it Konst we're going to name that Konst underscore which is a common name for the
+
+101
+00:07:02,840 --> 00:07:04,610
+low dash utility library.
+
+102
+00:07:04,700 --> 00:07:11,560
+And we're going to set it equal to require just like this inside of here.
+
+103
+00:07:11,600 --> 00:07:16,410
+We're going to pass in the module name exactly as it appears in the package that Jason File.
+
+104
+00:07:16,550 --> 00:07:21,290
+This is the same module name you used when you ran install right here.
+
+105
+00:07:21,380 --> 00:07:24,550
+We're going to type load dash and that is it.
+
+106
+00:07:24,560 --> 00:07:30,140
+This is all it takes to include a third party module in your project.
+
+107
+00:07:30,140 --> 00:07:33,100
+Now the order of operations is pretty important here.
+
+108
+00:07:33,160 --> 00:07:37,190
+Notice first going to look for a core module with the name low dash.
+
+109
+00:07:37,340 --> 00:07:40,250
+It's not going to find one because there is no core module.
+
+110
+00:07:40,280 --> 00:07:43,540
+So the next place is going to look is the node modules folder.
+
+111
+00:07:43,850 --> 00:07:49,100
+Right here it is going to find low dash and it's going to go ahead and load that module returning any
+
+112
+00:07:49,100 --> 00:07:51,350
+of the exports it provides.
+
+113
+00:07:51,410 --> 00:07:56,150
+With this in place we can now take advantage of some of the utilities that come with low dash.
+
+114
+00:07:56,150 --> 00:08:00,980
+We're going to explore too quickly in this video and we'll be exploring more throughout the course since
+
+115
+00:08:00,980 --> 00:08:05,380
+Lo dash is basically just a set of really handy utilities.
+
+116
+00:08:05,570 --> 00:08:09,950
+Before we do we should take a look at the documentation so we know exactly what we're getting into.
+
+117
+00:08:09,950 --> 00:08:14,760
+This is a really common step when you're using an NPM module first you install it second.
+
+118
+00:08:14,780 --> 00:08:20,420
+You got to look at those docs and make sure that you can get done what you want to get done down below.
+
+119
+00:08:20,420 --> 00:08:25,020
+There really isn't a lot that don't go through the API that lives on a separate web site.
+
+120
+00:08:25,100 --> 00:08:32,510
+If you click the link or go to low dash dot com and you click the API documentation page you can view
+
+121
+00:08:32,570 --> 00:08:35,630
+all of the various methods you have available to you.
+
+122
+00:08:36,020 --> 00:08:45,840
+In this case we're going to be using command F to search for underscore dot is string.
+
+123
+00:08:46,010 --> 00:08:48,090
+Then in the docs I can go ahead and click it.
+
+124
+00:08:48,200 --> 00:08:55,070
+Opening it up in the main page is string is a utility that comes with low dash and it returns true if
+
+125
+00:08:55,070 --> 00:09:01,340
+the variable you pass in is a string and it returns false if the value you pass in is not a string.
+
+126
+00:09:01,430 --> 00:09:04,530
+And we can prove that using it over inside of atom.
+
+127
+00:09:04,550 --> 00:09:06,590
+Let's go ahead and use this.
+
+128
+00:09:06,650 --> 00:09:08,000
+I'm going to cancel that log.
+
+129
+00:09:08,000 --> 00:09:16,310
+The result to the screen and we're going to use underscore dot is string passing in a couple of values.
+
+130
+00:09:16,320 --> 00:09:23,370
+Let's go ahead and pass in true first then we can duplicate this line and we're going to pass in a string
+
+131
+00:09:23,760 --> 00:09:26,970
+like Andrew with this in place.
+
+132
+00:09:27,040 --> 00:09:31,870
+We now have our low dash module included and we're taking advantage of some of the functions it provides
+
+133
+00:09:32,230 --> 00:09:37,480
+we can run our project over inside of the terminal using the same command we've used in the past node
+
+134
+00:09:37,750 --> 00:09:41,500
+space app Dhananjay ass to run our file when we run the file.
+
+135
+00:09:41,500 --> 00:09:47,470
+We get our two prompts that we've started both files and we get false and then true false comes because
+
+136
+00:09:47,740 --> 00:09:49,380
+the Boolean is not a string.
+
+137
+00:09:49,600 --> 00:09:55,720
+And true comes up because Andrew is indeed a string so it passes the test of is string.
+
+138
+00:09:55,720 --> 00:10:00,640
+This is one of the many utility functions that comes bundled with low dash no load.
+
+139
+00:10:00,640 --> 00:10:03,060
+ASH can do a lot more than simple type checking.
+
+140
+00:10:03,060 --> 00:10:06,640
+It comes with a bunch of other utility methods we can take advantage of.
+
+141
+00:10:06,790 --> 00:10:08,530
+Let's go ahead and explore one more.
+
+142
+00:10:08,530 --> 00:10:14,980
+Before we wrap this video up back inside of the browser we can use Command F again to search for this
+
+143
+00:10:14,980 --> 00:10:15,710
+new one.
+
+144
+00:10:15,730 --> 00:10:22,480
+It is underscore dot you n i q now right here this is not the one you want so I'm going to click through
+
+145
+00:10:22,480 --> 00:10:26,700
+a few times until we get to the one I want over here in the Table of Contents.
+
+146
+00:10:26,710 --> 00:10:29,060
+We have underscored dot you and I q.
+
+147
+00:10:29,140 --> 00:10:30,440
+This is the one we want.
+
+148
+00:10:31,320 --> 00:10:37,310
+This unique method all it takes is an array and it returns that array with all duplicates removed.
+
+149
+00:10:37,320 --> 00:10:42,750
+That means if I had the same number a few times or the same string is going to go ahead and remove any
+
+150
+00:10:42,780 --> 00:10:43,680
+duplicates.
+
+151
+00:10:43,800 --> 00:10:46,990
+Let's go ahead and run this one to wrap this up.
+
+152
+00:10:47,220 --> 00:10:50,700
+Back inside out if we can add to this into our project.
+
+153
+00:10:50,880 --> 00:10:59,040
+I'm going to comment out our is string calls and replace it with a call to console log above the call
+
+154
+00:10:59,040 --> 00:11:00,270
+to cancel that log.
+
+155
+00:11:00,270 --> 00:11:05,730
+We're going to make a variable called filtered array.
+
+156
+00:11:05,740 --> 00:11:08,390
+This is going to be the array without the duplicate.
+
+157
+00:11:08,740 --> 00:11:13,280
+And what we're going to do is call after the equal sign underscore.
+
+158
+00:11:13,360 --> 00:11:14,270
+You and I.
+
+159
+00:11:14,270 --> 00:11:18,030
+Q Now as we know this takes an array.
+
+160
+00:11:18,160 --> 00:11:23,260
+And since we're trying to use the unique function we're going to pass in an array with some duplicates.
+
+161
+00:11:23,500 --> 00:11:25,930
+Go ahead and use your name twice as a string.
+
+162
+00:11:26,260 --> 00:11:31,280
+I'm going to use my name once followed by the number 1 followed by my name again.
+
+163
+00:11:31,450 --> 00:11:37,330
+Then I can use one two three and four.
+
+164
+00:11:37,360 --> 00:11:41,440
+Now if things go as planned we should get an array with all the duplicates removed which means we'll
+
+165
+00:11:41,440 --> 00:11:47,920
+have one instance of Andrew one instance of 1 and 2 3 4 which don't have duplicates.
+
+166
+00:11:47,920 --> 00:11:53,050
+The last thing to do is to print that using console dialog so we can view it inside of the terminal
+
+167
+00:11:53,290 --> 00:11:53,920
+right here.
+
+168
+00:11:53,980 --> 00:11:58,760
+I'm going to pass in the filtered array variable to our consul that lock statement.
+
+169
+00:11:59,110 --> 00:12:02,430
+From here we can go ahead and run our project inside of Node.
+
+170
+00:12:02,650 --> 00:12:05,540
+I'm going to use the up arrow key to run the last command.
+
+171
+00:12:05,540 --> 00:12:08,680
+Then I can press the enter key and right here.
+
+172
+00:12:08,710 --> 00:12:12,040
+You see we get our array with all duplicated removed.
+
+173
+00:12:12,040 --> 00:12:13,450
+We have one instance of the string.
+
+174
+00:12:13,450 --> 00:12:17,400
+Andrew one instance of the number one and then we have two three four.
+
+175
+00:12:17,470 --> 00:12:19,300
+Exactly what we expected.
+
+176
+00:12:19,360 --> 00:12:22,030
+The low dash utility really is endless.
+
+177
+00:12:22,030 --> 00:12:27,670
+There are so many functions that can be kind of overwhelming to explore at first but as you start creating
+
+178
+00:12:27,670 --> 00:12:32,350
+more Javascript and node projects you're going to find yourself solving a lot of the same problems over
+
+179
+00:12:32,350 --> 00:12:36,590
+and over again when it comes to sorting filtering or type checking.
+
+180
+00:12:36,730 --> 00:12:42,550
+And in that case it's best to use a utility like low dash to get that lifting done load ash is great
+
+181
+00:12:42,550 --> 00:12:48,550
+because one you don't have to keep rewriting your methods and to it is well-tested and it has been tried
+
+182
+00:12:48,550 --> 00:12:49,540
+in production.
+
+183
+00:12:49,600 --> 00:12:52,890
+If there are any issues they have been sorted out by now.
+
+184
+00:12:53,410 --> 00:12:57,570
+Now that you know how to use a third party module there is one more thing I want to discuss.
+
+185
+00:12:57,670 --> 00:13:00,560
+That is the node modules folder in general.
+
+186
+00:13:00,910 --> 00:13:05,620
+When you take your node project and you put it on get hub like we'll be doing later or you're copying
+
+187
+00:13:05,620 --> 00:13:07,530
+it around or sending it to a friend.
+
+188
+00:13:07,600 --> 00:13:10,880
+The node modules folder really shouldn't be taken with you.
+
+189
+00:13:10,900 --> 00:13:13,940
+The node modules folder contains generated code.
+
+190
+00:13:13,960 --> 00:13:15,310
+This is not code you've written.
+
+191
+00:13:15,310 --> 00:13:20,710
+And you should never make any updates to the files inside of node modules because there's a pretty good
+
+192
+00:13:20,710 --> 00:13:24,650
+chance they're going to get overwritten next time you install some modules.
+
+193
+00:13:24,820 --> 00:13:29,410
+In our case we've already defined the modules and the versions inside a package.
+
+194
+00:13:29,440 --> 00:13:36,010
+Jason because we use that handy safe flag this actually means we can delete the node modules folder
+
+195
+00:13:36,010 --> 00:13:38,350
+completely.
+
+196
+00:13:38,370 --> 00:13:41,160
+Now we can copy the folder and give it to a friend.
+
+197
+00:13:41,250 --> 00:13:46,560
+We can put it on get hub whatever we want to do when we want to get that node modules folder back.
+
+198
+00:13:46,560 --> 00:13:54,270
+All we have to do inside of the terminal is run NPM install without any module names or any flags NPM
+
+199
+00:13:54,270 --> 00:14:00,210
+install when ran without any names or flags is going to load in your package that Jason File grab all
+
+200
+00:14:00,210 --> 00:14:05,340
+of the dependencies and install them after running this command the node modules folder is going to
+
+201
+00:14:05,340 --> 00:14:09,370
+look exactly as it looked before we deleted it.
+
+202
+00:14:09,390 --> 00:14:13,980
+Now when you are using get and get hub instead of deleting the node modules folder you're just going
+
+203
+00:14:13,980 --> 00:14:15,900
+to ignore it from your repository.
+
+204
+00:14:15,900 --> 00:14:17,890
+If that means nothing to you that's fine.
+
+205
+00:14:17,910 --> 00:14:22,710
+We will be exploring the basics of get later but for now I wanted to let you know this because when
+
+206
+00:14:22,710 --> 00:14:28,680
+I add the lecture files to you to me I am not going to be including the node modules folder because
+
+207
+00:14:28,680 --> 00:14:31,680
+it takes up a lot of space and it's a pain to download.
+
+208
+00:14:31,680 --> 00:14:35,760
+It also gets generated differently depending on the version of NPM you install.
+
+209
+00:14:35,760 --> 00:14:40,370
+So it's best to always generate the node modules folder on your local machine.
+
+210
+00:14:40,410 --> 00:14:45,210
+That means when you download a zip from the lecture files you're going to on zip it navigate into the
+
+211
+00:14:45,210 --> 00:14:46,940
+project run NPM install.
+
+212
+00:14:46,950 --> 00:14:50,770
+Then you can run the code that you download it with that in place.
+
+213
+00:14:50,790 --> 00:14:51,980
+We are done.
+
+214
+00:14:52,020 --> 00:14:57,990
+We've explored a little bit about NPM how we can use NPM in it to generate a package that Jason File
+
+215
+00:14:58,200 --> 00:15:01,970
+and how we can install and use third party modules.
+
+216
+00:15:01,980 --> 00:15:05,980
+Now this is a process we're going to be going through a lot more throughout the course.
+
+217
+00:15:06,030 --> 00:15:10,650
+So if it still seems foreign or you're not quite sure why it's even useful I promise it will become
+
+218
+00:15:10,650 --> 00:15:17,190
+clear as we do more with our third party modules rather than just type checking or looking for unique
+
+219
+00:15:17,220 --> 00:15:18,450
+items in an array.
+
+220
+00:15:18,500 --> 00:15:23,100
+There's a ton of power behind the NPM community and we're going to be harnessing that to our fullest
+
+221
+00:15:23,310 --> 00:15:25,350
+as we make real world apps.
+
+222
+00:15:25,350 --> 00:15:26,670
+For now though that is it.
+
+223
+00:15:26,670 --> 00:15:28,960
+So stay tuned and I will see you next time.
+

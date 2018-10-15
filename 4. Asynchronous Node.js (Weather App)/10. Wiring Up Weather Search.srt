@@ -1,0 +1,888 @@
+﻿1
+00:00:00,360 --> 00:00:05,160
+In this video you're going to make your very first request to the weather API and we're going to do
+
+2
+00:00:05,160 --> 00:00:09,810
+this in a static way at first meaning that it's not going to use the actual latitude and longitude for
+
+3
+00:00:09,810 --> 00:00:11,280
+the address you passed in.
+
+4
+00:00:11,310 --> 00:00:12,920
+We'll simply have a static you r l.
+
+5
+00:00:12,930 --> 00:00:17,700
+We'll make that request and we will explore what data we get back in the body and before we can add
+
+6
+00:00:17,730 --> 00:00:22,590
+anything to Adam I want to go ahead and explore this API so we can see how it works in the browser.
+
+7
+00:00:22,590 --> 00:00:27,240
+This is going to give us a better idea about what weather data we get back when we pass a latitude and
+
+8
+00:00:27,240 --> 00:00:30,180
+longitude to the API to do this.
+
+9
+00:00:30,180 --> 00:00:33,070
+We're going to head over to the browser and we're going to visit a couple of you ourselves.
+
+10
+00:00:33,150 --> 00:00:35,460
+First up let's go to forecast.
+
+11
+00:00:35,560 --> 00:00:39,700
+Io forecast out IOE is our regular weather Web site.
+
+12
+00:00:39,720 --> 00:00:43,110
+You type in your location and you get all the weather information you expect.
+
+13
+00:00:43,140 --> 00:00:44,580
+There's warnings there's radar.
+
+14
+00:00:44,580 --> 00:00:48,470
+There's the current weather and we have the weekly forecast down below.
+
+15
+00:00:48,480 --> 00:00:50,080
+This is similar to weather com.
+
+16
+00:00:50,100 --> 00:00:55,860
+But the one cool thing about forecasts daddio is that the API that powers this Web site it's actually
+
+17
+00:00:55,860 --> 00:00:57,940
+available to you as a developer.
+
+18
+00:00:58,020 --> 00:01:02,860
+You can make a request to you R-AL and you can fetch the exact same weather information.
+
+19
+00:01:03,140 --> 00:01:09,680
+That is exactly what we're going to do when we can explore the API by going to developer forecast.
+
+20
+00:01:09,790 --> 00:01:15,960
+Scott I go here we can sign up for a free developer account in order to get started making those weather
+
+21
+00:01:15,960 --> 00:01:16,970
+requests.
+
+22
+00:01:17,010 --> 00:01:19,140
+The dark sky forecast API.
+
+23
+00:01:19,260 --> 00:01:25,800
+It gives you 1000 free requests a day and I do not see us going over that limit after the 1000 requests
+
+24
+00:01:26,130 --> 00:01:29,120
+each costs a one one thousandth of a penny.
+
+25
+00:01:29,160 --> 00:01:32,190
+So you get 1000 requests for every penny you spend.
+
+26
+00:01:32,190 --> 00:01:35,150
+We're never going to go over that limit so don't even worry about it.
+
+27
+00:01:35,160 --> 00:01:37,730
+There is no credit card required to get started.
+
+28
+00:01:37,800 --> 00:01:42,180
+You'll simply get cut off after you make a thousand requests to get started.
+
+29
+00:01:42,210 --> 00:01:44,070
+You're going to need to register for a free account.
+
+30
+00:01:44,070 --> 00:01:44,940
+It's really simple.
+
+31
+00:01:44,940 --> 00:01:46,740
+You just need an e-mail and a password.
+
+32
+00:01:46,920 --> 00:01:51,780
+I already have an account so I'm going to log in take a moment to keep watching the video while I pull
+
+33
+00:01:51,780 --> 00:01:52,980
+up the dashboard.
+
+34
+00:01:52,980 --> 00:01:57,120
+Now I'd like you to pause the video go back and register your account.
+
+35
+00:01:57,120 --> 00:02:01,560
+And when you get to this screen once you have your account created and you're logged in you can go ahead
+
+36
+00:02:01,560 --> 00:02:04,170
+and click play and we'll pick up where we left off.
+
+37
+00:02:04,200 --> 00:02:05,570
+Take a moment to pause the video.
+
+38
+00:02:05,610 --> 00:02:10,620
+When you're done click play.
+
+39
+00:02:10,620 --> 00:02:11,280
+All right.
+
+40
+00:02:11,280 --> 00:02:15,630
+I'm going to assume that you've created an account and that you're looking at the dashboard that I see
+
+41
+00:02:16,140 --> 00:02:21,710
+the only piece of information we need from this page is our API key the API key is like a password.
+
+42
+00:02:21,810 --> 00:02:25,520
+It's going to be part of the you are as we request and it's going to help forecast out.
+
+43
+00:02:25,540 --> 00:02:28,380
+So keep track of how many requests we make a day.
+
+44
+00:02:28,440 --> 00:02:30,560
+You can see I've used 10 of my requests.
+
+45
+00:02:30,600 --> 00:02:35,000
+I still have nine hundred and ninety you left for today which is fantastic.
+
+46
+00:02:35,040 --> 00:02:40,140
+Now I'm going to take this API key and paste it inside of atoms so I have it accessible a little later
+
+47
+00:02:40,140 --> 00:02:40,630
+on.
+
+48
+00:02:40,920 --> 00:02:42,270
+Excellent.
+
+49
+00:02:42,270 --> 00:02:47,610
+The next thing we're going to do is explore the documentation the actual real structure we need to provide
+
+50
+00:02:47,790 --> 00:02:50,780
+in order to fetch the weather for a given latitude and longitude.
+
+51
+00:02:51,000 --> 00:02:55,680
+We can get that by scrolling up to the top and going to the API docs link.
+
+52
+00:02:55,770 --> 00:03:01,080
+Here we have a u r l this u r l is exactly what we need to make a request to in order to fetch that
+
+53
+00:03:01,080 --> 00:03:05,730
+data before we add this you are all into our app and use the request library.
+
+54
+00:03:05,730 --> 00:03:09,450
+I simply want to copy it and paste it into a new tab.
+
+55
+00:03:09,480 --> 00:03:13,730
+I'm not going to enter just yet because we do need to swap out some of this information.
+
+56
+00:03:13,770 --> 00:03:17,130
+For example we have our API key that needs to get replaced.
+
+57
+00:03:17,130 --> 00:03:21,670
+We also have latitude and longitude of both of those need to get replaced with real data.
+
+58
+00:03:21,930 --> 00:03:26,530
+Let's get started with that API key first since we already copy and paste the inside of atom.
+
+59
+00:03:26,760 --> 00:03:33,770
+I'm going to grab the API key copy it and replace the letters API key with the actual value.
+
+60
+00:03:33,780 --> 00:03:37,740
+Next up I can grab a set of long new tude and latitude coordinates.
+
+61
+00:03:37,740 --> 00:03:43,190
+I'm going to do that over inside the terminal by running our app node opt out.
+
+62
+00:03:43,230 --> 00:03:44,050
+Yes.
+
+63
+00:03:44,400 --> 00:03:48,170
+And for the address I'm going to use my zip 1 9 1 4 6.
+
+64
+00:03:48,240 --> 00:03:53,670
+Go ahead and use your current location so you can fetch the latitude and longitude coordinates.
+
+65
+00:03:53,670 --> 00:03:57,980
+Next up I'm going to start copying these over into the U R L where they belong.
+
+66
+00:03:58,050 --> 00:04:01,090
+The latitude goes between the forward slash and the comma.
+
+67
+00:04:02,480 --> 00:04:09,110
+Next up is the long itude and that is going to go after the comma minus 75 with a bunch of nines sets
+
+68
+00:04:09,140 --> 00:04:10,610
+right here.
+
+69
+00:04:10,610 --> 00:04:16,340
+Once you have a real u r l with all of those three pieces of info swapped out for actual info you can
+
+70
+00:04:16,340 --> 00:04:20,350
+make the request and what you can get back is the forecast information.
+
+71
+00:04:20,360 --> 00:04:24,350
+Now remember I'm using Jason view which is why mine might look a little different from yours.
+
+72
+00:04:24,350 --> 00:04:26,810
+I highly recommend installing it.
+
+73
+00:04:26,810 --> 00:04:29,490
+Now the data we get back it is overwhelming.
+
+74
+00:04:29,510 --> 00:04:33,180
+If you start scrolling down there is essentially an infinite amount of data.
+
+75
+00:04:33,200 --> 00:04:38,980
+We have a forecast by the minute we have forecasts by the hour by the week by the day all sorts of information.
+
+76
+00:04:38,980 --> 00:04:43,240
+It's really useful but it's also super overwhelming in this section.
+
+77
+00:04:43,280 --> 00:04:48,710
+We're just going to be using this first object currently this stores all of the current weather information
+
+78
+00:04:48,950 --> 00:04:54,650
+things like the current summary which has clear the temperature the precipitation probability the humidity
+
+79
+00:04:54,830 --> 00:04:58,160
+a lot of really useful information is sitting right in here.
+
+80
+00:04:58,280 --> 00:05:01,010
+In this case what we really care about is the temperature.
+
+81
+00:05:01,010 --> 00:05:05,770
+The current temperature in Philadelphia this morning is eighty four point nine five degrees.
+
+82
+00:05:05,780 --> 00:05:08,760
+It's going to get up to 100 so it's definitely going to be a hot one.
+
+83
+00:05:08,810 --> 00:05:10,790
+It already feels like 90.
+
+84
+00:05:10,790 --> 00:05:15,290
+This is the kind of information we want to use inside of our application when someone searches for the
+
+85
+00:05:15,290 --> 00:05:17,660
+weather in a given location.
+
+86
+00:05:17,660 --> 00:05:22,250
+Now in order to play around with this we're going to take this exact same you are Al a static you are
+
+87
+00:05:22,250 --> 00:05:24,860
+l and we're going to make a request over an X.
+
+88
+00:05:24,960 --> 00:05:25,430
+Yes.
+
+89
+00:05:25,520 --> 00:05:28,390
+And that's actually going to be your challenge for the video.
+
+90
+00:05:28,400 --> 00:05:32,960
+What I want you to do first is do a little setup work inside of app.
+
+91
+00:05:33,100 --> 00:05:39,800
+Yes I'm going to comment out everything we have so far and what you're going to do down below our API
+
+92
+00:05:39,800 --> 00:05:46,250
+key is make a call to request requesting this exact you are out just like we did for the geocoder API
+
+93
+00:05:46,250 --> 00:05:48,350
+in the beginning before we made it dynamic.
+
+94
+00:05:48,350 --> 00:05:50,800
+Then you're going to print out the body.
+
+95
+00:05:50,870 --> 00:05:53,590
+Currently temperature property to the screen.
+
+96
+00:05:53,660 --> 00:05:58,250
+So when I run the app I'll see the current temperature for whatever latitude and longitude that used
+
+97
+00:05:58,520 --> 00:05:59,020
+in this case.
+
+98
+00:05:59,030 --> 00:06:02,810
+It's a static latitude and longitude representing Philadelphia.
+
+99
+00:06:02,840 --> 00:06:08,210
+So take a moment to import request in this file make the request and print the current temperature to
+
+100
+00:06:08,210 --> 00:06:08,940
+the screen.
+
+101
+00:06:09,050 --> 00:06:13,790
+Once you have that temperature printing test it make sure it actually prints make sure the number looks
+
+102
+00:06:13,790 --> 00:06:19,860
+right and then you can go ahead and click play.
+
+103
+00:06:19,860 --> 00:06:20,400
+All right.
+
+104
+00:06:20,400 --> 00:06:21,170
+How'd you do.
+
+105
+00:06:21,330 --> 00:06:26,070
+Hopefully you were able to make that request and get the temperature showing up to the screen in order
+
+106
+00:06:26,070 --> 00:06:26,730
+to get started.
+
+107
+00:06:26,730 --> 00:06:28,200
+I'm going to in request.
+
+108
+00:06:28,200 --> 00:06:32,620
+Now we had it in this file before and then we removed it but we're going to add it back once again.
+
+109
+00:06:32,940 --> 00:06:33,910
+I'm going to add it right here.
+
+110
+00:06:33,930 --> 00:06:41,350
+By creating a contest called request and loading it in concert request equals require request.
+
+111
+00:06:41,700 --> 00:06:42,620
+Perfect.
+
+112
+00:06:42,630 --> 00:06:48,300
+Now we can go ahead and make the actual request just like we did for the geocoder API by calling request.
+
+113
+00:06:48,300 --> 00:06:50,170
+It's a function just like this.
+
+114
+00:06:50,460 --> 00:06:53,820
+We have to pass in our two arguments which you need to add for the challenge.
+
+115
+00:06:53,880 --> 00:06:58,310
+The options object is the first one and the second one is the arrow function.
+
+116
+00:06:58,320 --> 00:07:04,260
+This is our callback function that gets fired once the HTP request finishes before we fill out the actual
+
+117
+00:07:04,260 --> 00:07:04,960
+function.
+
+118
+00:07:04,980 --> 00:07:06,900
+I want to go ahead and set up our options.
+
+119
+00:07:06,900 --> 00:07:07,630
+There's two.
+
+120
+00:07:07,740 --> 00:07:09,320
+You are al and Jason.
+
+121
+00:07:09,450 --> 00:07:15,480
+I'm going to set you are Al equal to a static string the exact you are we have over in the browser.
+
+122
+00:07:15,480 --> 00:07:20,100
+I'm going to copy and paste it right inside of quotes.
+
+123
+00:07:20,240 --> 00:07:25,490
+Then on the next line after my comma I can go ahead and set Jason equal to true telling the request
+
+124
+00:07:25,490 --> 00:07:29,510
+library to go ahead and parse that body as Jason which it is.
+
+125
+00:07:29,720 --> 00:07:33,700
+From here we can go ahead and add our callback arguments error.
+
+126
+00:07:35,440 --> 00:07:38,540
+Response and body.
+
+127
+00:07:38,620 --> 00:07:43,470
+These are the exact same three arguments we have over here for the geocoding request.
+
+128
+00:07:43,630 --> 00:07:47,350
+Now that you had this in place the last thing you needed to do was print the current temperature which
+
+129
+00:07:47,350 --> 00:07:49,640
+is available on the body using console.
+
+130
+00:07:49,660 --> 00:08:01,410
+Not like I'm going to use counseled that loud to print body dot currently dot temperature.
+
+131
+00:08:01,570 --> 00:08:02,370
+Excellent.
+
+132
+00:08:02,410 --> 00:08:06,910
+Now that I have the temperature printing I need to test it by running it from the terminal from the
+
+133
+00:08:06,910 --> 00:08:07,440
+terminal.
+
+134
+00:08:07,480 --> 00:08:09,190
+I'm going to rerun the previous command.
+
+135
+00:08:09,190 --> 00:08:13,230
+The address is not actually being used here since we commented out that code.
+
+136
+00:08:13,450 --> 00:08:16,360
+And what I get is eighty five point two seven.
+
+137
+00:08:16,360 --> 00:08:17,290
+Perfect.
+
+138
+00:08:17,290 --> 00:08:20,590
+Now eighty five point to seven is different from what we got over in the browser.
+
+139
+00:08:20,600 --> 00:08:25,360
+We have eighty four point nine five but it is the morning here and the temperature is skyrocketing as
+
+140
+00:08:25,360 --> 00:08:26,770
+the sun starts coming up.
+
+141
+00:08:26,830 --> 00:08:31,980
+Here you can see it's already gone up a fraction of a percent since I ran that previous request.
+
+142
+00:08:31,990 --> 00:08:33,770
+Everything looks fantastic.
+
+143
+00:08:33,790 --> 00:08:38,110
+We have our weather API call working inside of the application.
+
+144
+00:08:38,380 --> 00:08:41,190
+Now in the next few videos we're going to start putting this together.
+
+145
+00:08:41,260 --> 00:08:45,550
+We're going to add our request inside of the callback for geocoder address.
+
+146
+00:08:45,550 --> 00:08:50,980
+This is going to let us take that dynamic set of latitude and longitude coordinates the lat long for
+
+147
+00:08:50,980 --> 00:08:55,890
+the address used in the arguments list and fetcher the weather for that location.
+
+148
+00:08:55,990 --> 00:09:01,290
+That is going to create a dynamic weather application as opposed to the static one we have right now.
+
+149
+00:09:02,180 --> 00:09:07,150
+Before we wrap this video up I do want to add a little air handling inside of our callback function.
+
+150
+00:09:07,160 --> 00:09:11,420
+We're going to handle errors on the air object and we'll also handle errors that come back from the
+
+151
+00:09:11,420 --> 00:09:13,020
+forecast that IO servers.
+
+152
+00:09:13,160 --> 00:09:20,090
+First up just like we did for the geocoder API we're going to check if air exists if it does that means
+
+153
+00:09:20,090 --> 00:09:24,350
+that we were unable to connect to the servers so we can print a message that relays that message to
+
+154
+00:09:24,350 --> 00:09:26,940
+the user console that.
+
+155
+00:09:27,090 --> 00:09:36,990
+Something like unable to connect to forecast IO servers excellence.
+
+156
+00:09:37,090 --> 00:09:42,250
+Now that we've handled the general errors we can move on to a specific area that the forecast IO API
+
+157
+00:09:42,250 --> 00:09:43,120
+throws.
+
+158
+00:09:43,120 --> 00:09:47,990
+This happens when the format of the U r l the latitude and longitude is not correct.
+
+159
+00:09:48,010 --> 00:09:54,150
+For example if I go ahead and I delete some numbers including the comma and I hit Enter we're going
+
+160
+00:09:54,150 --> 00:09:56,730
+to get a 400 back a bad request.
+
+161
+00:09:56,730 --> 00:09:59,680
+This is the actual HTP status code.
+
+162
+00:09:59,700 --> 00:10:02,190
+This is Andrew with a quick update on the status code.
+
+163
+00:10:02,190 --> 00:10:03,950
+You should see now is a 4.
+
+164
+00:10:03,960 --> 00:10:05,740
+0 4 not a 400.
+
+165
+00:10:05,760 --> 00:10:08,210
+I'm going to address that in just a minute.
+
+166
+00:10:08,220 --> 00:10:14,280
+When we implement this into our code if you remember from the geolocation API we had a bodycam status
+
+167
+00:10:14,280 --> 00:10:17,160
+property that was either ok or zero results.
+
+168
+00:10:17,160 --> 00:10:23,670
+This is similar to that property only this uses the HTP mechanisms instead of some sort of custom solution
+
+169
+00:10:23,790 --> 00:10:24,930
+that Google used.
+
+170
+00:10:25,050 --> 00:10:28,960
+In our case we're going to want to check if the status code is 400.
+
+171
+00:10:28,980 --> 00:10:33,700
+Now if we have a bad API key I'm going to go ahead and add a couple of E's right here.
+
+172
+00:10:33,720 --> 00:10:35,330
+We're also going to get to 400.
+
+173
+00:10:35,340 --> 00:10:39,690
+So both of these errors can be handled using the same code back inside of atom.
+
+174
+00:10:39,720 --> 00:10:46,830
+We can handle this by checking the status code property after our IF statement closing curly brace.
+
+175
+00:10:46,830 --> 00:10:55,590
+I'm going to add LCF else if response dot status code this is the property we looked at when we looked
+
+176
+00:10:55,590 --> 00:11:01,320
+at the response argument in detail response that status code is going to be equal to 400 if something
+
+177
+00:11:01,320 --> 00:11:01,970
+went wrong.
+
+178
+00:11:02,040 --> 00:11:04,560
+And that's exactly what we're going to check for here.
+
+179
+00:11:04,770 --> 00:11:14,010
+If the status code is 400 we're going to print a message console log unable to fetch weather.
+
+180
+00:11:14,220 --> 00:11:15,440
+Awesome.
+
+181
+00:11:15,510 --> 00:11:19,460
+Now we've handled those two errors and we can move on to the success case.
+
+182
+00:11:19,560 --> 00:11:19,890
+If
+
+183
+00:11:22,530 --> 00:11:27,540
+response dot status code equals 200.
+
+184
+00:11:27,780 --> 00:11:31,330
+The status code is going to equal 200 if everything went well in that case.
+
+185
+00:11:31,350 --> 00:11:35,340
+We're going to print the current temperature to the screen I'm going to cut this line out and paste
+
+186
+00:11:35,340 --> 00:11:37,110
+it inside of the code block.
+
+187
+00:11:37,300 --> 00:11:39,320
+Awesome.
+
+188
+00:11:39,420 --> 00:11:43,380
+Andrew back again to finish off that update I alluded to earlier.
+
+189
+00:11:43,410 --> 00:11:48,000
+What I have here is an updated code snippet and you can actually replace everything we have in the current
+
+190
+00:11:48,000 --> 00:11:50,360
+callback function with this code.
+
+191
+00:11:50,370 --> 00:11:56,040
+Now the condition checks if there is no error and the response status code is 200.
+
+192
+00:11:56,070 --> 00:11:57,440
+If that's the case what do we do.
+
+193
+00:11:57,480 --> 00:12:03,670
+We simply print the temperature like we were doing last time that was in the if clause at the very bottom.
+
+194
+00:12:03,690 --> 00:12:05,190
+Now we have an ELSE case here.
+
+195
+00:12:05,190 --> 00:12:10,770
+So if there is an error or the status code is not at 200 we're going to go ahead and print this message
+
+196
+00:12:10,770 --> 00:12:11,650
+to the screen.
+
+197
+00:12:11,670 --> 00:12:17,370
+This is going to handle things like the server not having a network connection or 404 from an invalid
+
+198
+00:12:17,400 --> 00:12:18,040
+or broken.
+
+199
+00:12:18,060 --> 00:12:18,920
+You are out.
+
+200
+00:12:19,070 --> 00:12:19,640
+All right.
+
+201
+00:12:19,650 --> 00:12:24,870
+Use this code instead and everything should be working as expected with the latest version of the weather
+
+202
+00:12:25,020 --> 00:12:29,450
+API.
+
+203
+00:12:29,460 --> 00:12:33,690
+Now we have some error handling in place and we can go ahead and test that our app still works from
+
+204
+00:12:33,690 --> 00:12:34,490
+the terminal.
+
+205
+00:12:34,530 --> 00:12:41,010
+I'm going to rerun the previous command and I still get a temperature 85 point to it back inside of
+
+206
+00:12:41,010 --> 00:12:41,520
+atom.
+
+207
+00:12:41,580 --> 00:12:47,150
+I'm going to go ahead and trash some of the data by removing the comma saving the file and rewriting
+
+208
+00:12:47,150 --> 00:12:51,830
+it from the terminal this time we would expect unable to fetch it whether to print to the screen.
+
+209
+00:12:52,040 --> 00:12:55,010
+And when I rerun the app that is exactly what we get.
+
+210
+00:12:55,010 --> 00:12:56,470
+Everything looks great.
+
+211
+00:12:56,540 --> 00:13:00,190
+I'm going to add the comma back in and test our last part of the code.
+
+212
+00:13:00,500 --> 00:13:01,190
+Right here we have.
+
+213
+00:13:01,220 --> 00:13:05,830
+If error I can test that by removing something like the dot from forecast.
+
+214
+00:13:05,830 --> 00:13:10,930
+I know I can rerun the app and I see unable to connect to the forecast.
+
+215
+00:13:10,940 --> 00:13:13,800
+I O server all of our air handling works great.
+
+216
+00:13:13,850 --> 00:13:19,130
+And if there is no errors the proper temperature prints to the screen which is fantastic and that is
+
+217
+00:13:19,130 --> 00:13:25,640
+it for this video we now have a way to fetch the weather based off of that latitude longitude combination.
+
+218
+00:13:25,790 --> 00:13:30,140
+And the next video we're going to start integrating this into our app using the latitude and longitude
+
+219
+00:13:30,140 --> 00:13:32,200
+that comes back from the geocoder API.
+
+220
+00:13:32,290 --> 00:13:34,300
+I am super excited to continue on.
+
+221
+00:13:34,310 --> 00:13:35,610
+So stay tuned.
+
+222
+00:13:35,630 --> 00:13:37,280
+I will see you next time.
+

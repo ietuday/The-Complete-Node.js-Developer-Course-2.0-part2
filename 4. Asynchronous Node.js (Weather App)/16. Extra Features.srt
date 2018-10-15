@@ -1,0 +1,76 @@
+﻿1
+00:00:00,480 --> 00:00:07,080
+This brings us to the end of our asynchronous node section but that does not mean you have to stop building
+
+2
+00:00:07,080 --> 00:00:08,420
+out the weather app.
+
+3
+00:00:08,460 --> 00:00:10,050
+Students love adding new features.
+
+4
+00:00:10,050 --> 00:00:13,830
+They've said they've learned a lot doing it so I'm going to give you a couple of ideas as to what you
+
+5
+00:00:13,830 --> 00:00:16,040
+could do to continue on with this project.
+
+6
+00:00:16,050 --> 00:00:18,510
+First up you could load in more information.
+
+7
+00:00:18,510 --> 00:00:23,730
+The response we get back from the weather API contains a ton of stuff besides just the current temperature
+
+8
+00:00:23,730 --> 00:00:24,840
+which is what we use.
+
+9
+00:00:24,840 --> 00:00:27,180
+I like to incorporate some of that stuff in there.
+
+10
+00:00:27,270 --> 00:00:30,780
+Whether it's high low temperatures or chance of precipitation.
+
+11
+00:00:30,780 --> 00:00:34,420
+Next up would be really cool to have a default location ability.
+
+12
+00:00:34,470 --> 00:00:39,360
+There would be a command that lets me set a default location and then I could run the weather map with
+
+13
+00:00:39,360 --> 00:00:41,850
+no location argument to use that default.
+
+14
+00:00:41,850 --> 00:00:47,160
+I could always specify a location argument to search for whether somewhere else this would be an awesome
+
+15
+00:00:47,160 --> 00:00:52,650
+feature and it would work kind of similar to the Notes app where we save data to the file system.
+
+16
+00:00:52,650 --> 00:00:57,620
+If you do end up implementing any of these posts in the Q&A send a link to the project.
+
+17
+00:00:57,630 --> 00:00:59,750
+I would love to see what you built.
+
+18
+00:00:59,790 --> 00:01:00,570
+That's all for now.
+
+19
+00:01:00,570 --> 00:01:02,510
+I'll see you in the next section.
+

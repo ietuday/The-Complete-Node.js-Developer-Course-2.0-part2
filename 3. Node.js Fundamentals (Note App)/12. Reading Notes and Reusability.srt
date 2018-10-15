@@ -1,0 +1,664 @@
+﻿1
+00:00:00,630 --> 00:00:05,970
+In this video you are going to be responsible for filling out the rest of the read command.
+
+2
+00:00:06,000 --> 00:00:12,180
+Now the read command does have an ELSE IF block defined below where we call get note and get note is
+
+3
+00:00:12,180 --> 00:00:14,010
+defined over inside of notes.
+
+4
+00:00:14,130 --> 00:00:17,870
+Yes even though currently it just prints out some dummy text.
+
+5
+00:00:17,910 --> 00:00:20,960
+What you're going to need to do is wire both of these up.
+
+6
+00:00:21,040 --> 00:00:24,950
+Now before I set you free I'm going to tell you exactly what I'd like you to do.
+
+7
+00:00:25,140 --> 00:00:30,580
+First up you are going to need to do something with the return value from get note are getting that
+
+8
+00:00:30,600 --> 00:00:33,950
+function is going to return the note object if it finds it.
+
+9
+00:00:34,110 --> 00:00:36,080
+If it doesn't it'll return undefined.
+
+10
+00:00:36,150 --> 00:00:42,810
+Just like we do for ad note up above after you store that value you're going to do some printing using
+
+11
+00:00:42,810 --> 00:00:45,560
+cancel that log similar to what we have here.
+
+12
+00:00:45,640 --> 00:00:47,640
+Obviously note created will be something like.
+
+13
+00:00:47,640 --> 00:00:51,330
+Note read and note title taken will be something like.
+
+14
+00:00:51,330 --> 00:00:56,580
+Note not found but the general flow is going to be exactly the same.
+
+15
+00:00:56,580 --> 00:01:00,460
+Now once you have that wired up inside of apt at Jasin you can move on to notes.
+
+16
+00:01:00,460 --> 00:01:02,580
+Scott japes filling out the function.
+
+17
+00:01:02,580 --> 00:01:06,900
+Now the function inside of notes isn't going to be that complex.
+
+18
+00:01:06,900 --> 00:01:11,120
+All you need to do is fetch the notes like we've done in every single method so far.
+
+19
+00:01:11,220 --> 00:01:18,270
+Then you're going to use notes from filter which we explored to only return notes whose title matches
+
+20
+00:01:18,450 --> 00:01:20,610
+the title passed in as the argument.
+
+21
+00:01:20,610 --> 00:01:26,340
+Now in our case this is either going to be zero notes which means the note has not found or it's going
+
+22
+00:01:26,340 --> 00:01:32,430
+to be one note which means we've found the note that the person wants to return from here we do need
+
+23
+00:01:32,430 --> 00:01:33,910
+to return that note.
+
+24
+00:01:33,990 --> 00:01:39,000
+It's important to remember the return value from notes felt there is always going to be an array.
+
+25
+00:01:39,120 --> 00:01:45,150
+Even if that array only has one item what you're going to need to do is return the first item in the
+
+26
+00:01:45,150 --> 00:01:45,740
+array.
+
+27
+00:01:45,930 --> 00:01:51,380
+If that item doesn't exist that's fine it'll return undefined like we want if it does exist.
+
+28
+00:01:51,390 --> 00:01:52,050
+Great.
+
+29
+00:01:52,050 --> 00:01:53,750
+That means we found the note.
+
+30
+00:01:53,880 --> 00:01:59,940
+This method should only require three lines of code one for fetching one for filtering and the return
+
+31
+00:01:59,970 --> 00:02:01,230
+statement.
+
+32
+00:02:01,230 --> 00:02:03,890
+Now once you have all that done I do want you to test that out.
+
+33
+00:02:03,900 --> 00:02:06,460
+Try reading a note whose title does not exist.
+
+34
+00:02:06,570 --> 00:02:09,940
+Then try reading a note whose title exists inside of your notes.
+
+35
+00:02:09,940 --> 00:02:11,480
+Data Chaisson file.
+
+36
+00:02:11,490 --> 00:02:16,180
+In this case I could try to buy and I could also try to not buy.
+
+37
+00:02:16,290 --> 00:02:19,080
+And in that case to not buy should return the message.
+
+38
+00:02:19,080 --> 00:02:21,440
+Note not found.
+
+39
+00:02:21,480 --> 00:02:25,920
+Now if you do things slightly different than what I do later in this video that is fine as long as you
+
+40
+00:02:25,920 --> 00:02:28,170
+get the core functionality working.
+
+41
+00:02:28,230 --> 00:02:33,780
+So take a moment to pause the video try to knock this out and test it and when you're done go ahead
+
+42
+00:02:33,780 --> 00:02:34,780
+and click play
+
+43
+00:02:40,210 --> 00:02:41,000
+had to go.
+
+44
+00:02:41,190 --> 00:02:45,420
+Hopefully you didn't have too much trouble wiring up the read command.
+
+45
+00:02:45,450 --> 00:02:52,440
+Now the first thing I'm going to do is fill out right here inside of apt J s a variable called note
+
+46
+00:02:52,860 --> 00:02:55,640
+which is going to store the return value from it get.
+
+47
+00:02:55,670 --> 00:03:01,320
+Note Now this could be an individual note object or it could be undefined down below.
+
+48
+00:03:01,380 --> 00:03:07,180
+I can use an IF statement to print the message if it exists or if it does not exist.
+
+49
+00:03:07,230 --> 00:03:08,370
+I'm going to use if Note.
+
+50
+00:03:08,400 --> 00:03:12,310
+Just like I do above and I am going to attach an else clause.
+
+51
+00:03:12,420 --> 00:03:16,950
+This clause will be responsible for printing an error if the note is not found.
+
+52
+00:03:16,950 --> 00:03:19,660
+Let's get started with that first since it's pretty simple.
+
+53
+00:03:19,850 --> 00:03:21,280
+Console log.
+
+54
+00:03:22,350 --> 00:03:25,010
+Note not found.
+
+55
+00:03:25,290 --> 00:03:26,260
+Awesome.
+
+56
+00:03:26,370 --> 00:03:31,590
+Now that we have our else clause filled out we can go ahead and fill out the if statement up above.
+
+57
+00:03:31,590 --> 00:03:36,810
+The first thing I'm going to do is print a little message console that log something like note found
+
+58
+00:03:36,900 --> 00:03:38,140
+will get the job done.
+
+59
+00:03:38,310 --> 00:03:43,630
+Then we can move on to printing the actual note details and we already have that code in place.
+
+60
+00:03:43,710 --> 00:03:46,830
+Right up above we have our hyphenated spacer.
+
+61
+00:03:46,830 --> 00:03:50,800
+Then we have our new title and our note body for the moment.
+
+62
+00:03:50,880 --> 00:03:57,030
+I'm going to copy and paste this code down below though we will be moving this into a utility function
+
+63
+00:03:57,030 --> 00:03:59,420
+that we use in both places a little bit later.
+
+64
+00:03:59,460 --> 00:04:00,920
+That was not part of the challenge.
+
+65
+00:04:01,020 --> 00:04:02,990
+The challenge was just to get things working.
+
+66
+00:04:03,030 --> 00:04:06,330
+And this does indeed get things working.
+
+67
+00:04:06,330 --> 00:04:11,400
+Now that we're done over inside of abduct J s we can move into the notes japes file and fill out that
+
+68
+00:04:11,430 --> 00:04:17,300
+get note method because currently it doesn't do anything with a title that gets passed in over inside
+
+69
+00:04:17,310 --> 00:04:17,810
+of notes.
+
+70
+00:04:17,880 --> 00:04:20,530
+When you needed to do was fill out those three lines.
+
+71
+00:04:20,700 --> 00:04:23,430
+The first one is going to be responsible for fetching the notes.
+
+72
+00:04:23,550 --> 00:04:27,040
+We already have done that before with the fetch notes function.
+
+73
+00:04:28,010 --> 00:04:33,830
+Var notes equals fetch notes perfect.
+
+74
+00:04:33,970 --> 00:04:39,330
+And now that we have our notes in place we can call notes dot filter returning all of the notes.
+
+75
+00:04:39,520 --> 00:04:47,120
+I'm going to make a variable called filtered notes setting equal to notes and Dot filter and now we
+
+76
+00:04:47,120 --> 00:04:54,880
+know that the filter method takes a function I'm going to go ahead and define an arrow function just
+
+77
+00:04:54,880 --> 00:04:55,820
+like this.
+
+78
+00:04:55,960 --> 00:04:58,290
+Here we can pass in as many statements as we like.
+
+79
+00:04:58,300 --> 00:05:02,290
+We're going to be using one and then refactor it to use the expression version.
+
+80
+00:05:02,500 --> 00:05:07,300
+But I find it a lot easier to start with these statements of version first especially when you're new
+
+81
+00:05:07,300 --> 00:05:08,980
+to aero functions.
+
+82
+00:05:08,980 --> 00:05:16,340
+Right here we're going to get the individual note passed in and we're going to return true when the
+
+83
+00:05:16,370 --> 00:05:25,370
+note title the title of the note we found in our Jason File equals using triple equals title perfect.
+
+84
+00:05:25,370 --> 00:05:30,140
+This is going to return true when the note title matches and false if it doesn't.
+
+85
+00:05:30,170 --> 00:05:35,120
+Now since we are using era functions and we only have one line like this where we return something we
+
+86
+00:05:35,120 --> 00:05:41,810
+can cut out our condition remove the curly braces and simply paste that condition right here.
+
+87
+00:05:41,810 --> 00:05:46,910
+This has the exact same functionality only it's a lot shorter and easier to look at.
+
+88
+00:05:47,000 --> 00:05:50,990
+Now that we have all of the data all we need to do is return something and we're going to return the
+
+89
+00:05:50,990 --> 00:05:56,490
+first item in the filtered notes array filtered notes.
+
+90
+00:05:56,690 --> 00:06:01,370
+We're going to grab the first item which is the index of 0 and then we just need to return it using
+
+91
+00:06:01,370 --> 00:06:04,120
+the return keyword and there we go.
+
+92
+00:06:04,340 --> 00:06:08,690
+Now there is a chance that filtered notes the first item doesn't exist and that's fine it's going to
+
+93
+00:06:08,690 --> 00:06:13,440
+return undefined in which case or else clause will run printing No not found.
+
+94
+00:06:13,640 --> 00:06:14,530
+If there is a note.
+
+95
+00:06:14,540 --> 00:06:15,000
+Great.
+
+96
+00:06:15,080 --> 00:06:17,400
+That's the note we want to print and over in apt.
+
+97
+00:06:17,480 --> 00:06:19,510
+Yes we do just that.
+
+98
+00:06:19,850 --> 00:06:24,830
+Now that we had this in place we can go ahead and test out this brand new functionality over inside
+
+99
+00:06:24,830 --> 00:06:28,390
+of the terminal by running our app using node APTA.
+
+100
+00:06:28,430 --> 00:06:35,810
+Yes I'm going to use the read command and I'm going to pass in a title equal to some string that I know
+
+101
+00:06:35,810 --> 00:06:40,500
+does not exist inside of a title in the notes data Jason File.
+
+102
+00:06:41,520 --> 00:06:42,660
+Something here.
+
+103
+00:06:42,960 --> 00:06:45,300
+When I run the command we get right here.
+
+104
+00:06:45,340 --> 00:06:47,010
+No not found.
+
+105
+00:06:47,010 --> 00:06:49,050
+And this is exactly what we want.
+
+106
+00:06:49,200 --> 00:06:55,050
+Now if I do try to fetch a note where the title does exist I would expect that note to come back in
+
+107
+00:06:55,050 --> 00:06:55,740
+the data file.
+
+108
+00:06:55,740 --> 00:06:57,600
+I have a note with a title of two by.
+
+109
+00:06:57,630 --> 00:06:59,390
+Let's go ahead and try to fetch that one.
+
+110
+00:06:59,640 --> 00:07:04,770
+I'm going to use the up arrow key to populate the previous command and replace the title with to space
+
+111
+00:07:04,880 --> 00:07:07,210
+by and hit enter.
+
+112
+00:07:07,370 --> 00:07:11,540
+And this time around you can see note found prints to the screen which is fantastic.
+
+113
+00:07:11,550 --> 00:07:17,070
+Below that we have our spacers and below that we have the title which is to buy and the body which is
+
+114
+00:07:17,070 --> 00:07:20,860
+food exactly as it appears over inside of the data file.
+
+115
+00:07:20,880 --> 00:07:24,000
+With this in place we are done the read command.
+
+116
+00:07:24,060 --> 00:07:29,070
+Now as I talked about earlier there is one more thing I want to tackle before we wrap this video up
+
+117
+00:07:29,610 --> 00:07:30,920
+over inside of apprecate.
+
+118
+00:07:30,990 --> 00:07:31,620
+Ass.
+
+119
+00:07:31,770 --> 00:07:34,260
+We now have the same code in two places.
+
+120
+00:07:34,380 --> 00:07:39,250
+We have the spacer title body here and we have that exact same code here.
+
+121
+00:07:39,330 --> 00:07:44,430
+When you find yourself copying and pasting code it's probably best to break that out into a function
+
+122
+00:07:44,430 --> 00:07:46,340
+that both locations call.
+
+123
+00:07:46,360 --> 00:07:51,890
+This is the dry principle which stands for don't repeat yourself in this case we are repeating ourselves.
+
+124
+00:07:51,900 --> 00:07:57,480
+It would be best to break this out into a function that we can call from both places in order to do
+
+125
+00:07:57,480 --> 00:08:01,970
+this all we're going to do is make a function in notes that g s called log note.
+
+126
+00:08:02,040 --> 00:08:07,950
+Now this was not part of the challenge you did not need to do this but we are going to do it as an exercise
+
+127
+00:08:07,950 --> 00:08:10,980
+in refactoring down here below remove.
+
+128
+00:08:10,990 --> 00:08:14,950
+Note we can make that brand new function a variable called log.
+
+129
+00:08:14,970 --> 00:08:19,080
+Note this is going to be a function that takes one argument.
+
+130
+00:08:19,080 --> 00:08:24,450
+That argument is going to be the no object because we want to print both the title and the body right
+
+131
+00:08:24,450 --> 00:08:24,830
+here.
+
+132
+00:08:24,870 --> 00:08:27,300
+Well expect the note to get passed in.
+
+133
+00:08:27,660 --> 00:08:32,010
+Now filling out the log note function is going to be really simple especially when you're solving a
+
+134
+00:08:32,010 --> 00:08:38,610
+dry issue because you can simply take the code that's repeated cut it out and paste it right inside
+
+135
+00:08:38,610 --> 00:08:39,510
+of the function.
+
+136
+00:08:39,510 --> 00:08:42,020
+In this case the variable names line up already.
+
+137
+00:08:42,090 --> 00:08:44,920
+So there is no need to change anything.
+
+138
+00:08:45,090 --> 00:08:49,800
+Now that we have a log note function in place we can go ahead and change things over and APTA.
+
+139
+00:08:49,840 --> 00:08:53,220
+J.S. Right here where we remove the council lock statements.
+
+140
+00:08:53,220 --> 00:08:55,400
+We can call notes dot Lague.
+
+141
+00:08:55,410 --> 00:09:01,520
+Note passing in the note object just like this and we can do the same thing up above.
+
+142
+00:09:01,710 --> 00:09:09,330
+I can remove these three console log statements and call notes dot log and note passing in.
+
+143
+00:09:09,960 --> 00:09:11,070
+Awesome.
+
+144
+00:09:11,060 --> 00:09:16,980
+And now that we have this in place we can rerun our program and hopefully what we see is the exact same
+
+145
+00:09:17,040 --> 00:09:18,300
+functionality.
+
+146
+00:09:18,300 --> 00:09:25,450
+The last thing to do before we run the program is export the Lague note function down below logged note
+
+147
+00:09:25,540 --> 00:09:29,740
+it's going to get exported and we're using that yes six syntax to do that.
+
+148
+00:09:30,160 --> 00:09:35,770
+With this in place I can now rerun the previous command from the terminal using up and enter and right
+
+149
+00:09:35,770 --> 00:09:41,420
+here we get note found printing to the screen with a title and the body just like we had before.
+
+150
+00:09:41,440 --> 00:09:48,220
+I'm also going to test out the ad command to make sure that one's working node Apgar J.S. ad will use
+
+151
+00:09:48,220 --> 00:09:54,580
+a title of things to do and a body of
+
+152
+00:09:57,540 --> 00:10:01,510
+go to post office.
+
+153
+00:10:01,520 --> 00:10:06,320
+Now when I hit Enter we would expect the same log to print as it did before for the ad command and that's
+
+154
+00:10:06,320 --> 00:10:07,440
+exactly what we get.
+
+155
+00:10:07,580 --> 00:10:08,710
+No created prints.
+
+156
+00:10:08,720 --> 00:10:14,120
+We get our spacer and then we get our title and our body that is it for this video in this one we were
+
+157
+00:10:14,150 --> 00:10:19,250
+able to successfully fill out that read command and we also created a really cool utility function that
+
+158
+00:10:19,250 --> 00:10:21,490
+we can take advantage of in multiple places.
+
+159
+00:10:21,530 --> 00:10:28,520
+This keeps our code dry and prevents us from having the same code in multiple places inside of our application
+
+160
+00:10:29,180 --> 00:10:33,750
+in the next video we're going to cover one of the most important topics frankly in the entire course.
+
+161
+00:10:33,860 --> 00:10:39,980
+This is debugging knowing how to properly debug programs is going to save you literally hundreds of
+
+162
+00:10:39,980 --> 00:10:41,330
+hours over your node.
+
+163
+00:10:41,450 --> 00:10:47,180
+Yes career debugging can be really painful if you don't have the right tools but once you know how it's
+
+164
+00:10:47,180 --> 00:10:50,720
+done it really isn't that bad and it can save you a ton of time.
+
+165
+00:10:50,720 --> 00:10:51,610
+So stay tuned.
+
+166
+00:10:51,610 --> 00:10:53,140
+I will see you next time.
+

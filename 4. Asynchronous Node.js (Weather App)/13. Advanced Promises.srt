@@ -1,0 +1,1052 @@
+﻿1
+00:00:00,390 --> 00:00:05,370
+In this video you're going to explore two more ways to use promises will create functions that take
+
+2
+00:00:05,400 --> 00:00:11,130
+input and return a promise and will explore promise changing which is going to let you combine multiple
+
+3
+00:00:11,130 --> 00:00:12,560
+promises.
+
+4
+00:00:12,570 --> 00:00:17,400
+Now the problem with our example is that we have this promise but it doesn't take any input and that's
+
+5
+00:00:17,400 --> 00:00:21,090
+most likely never going to be the case when we're using real world promises.
+
+6
+00:00:21,090 --> 00:00:26,640
+We're going to want to provide some input like the idea of a user to fetch from the database a u r l
+
+7
+00:00:26,650 --> 00:00:31,600
+to request or a partial u r l for example just the address component.
+
+8
+00:00:31,620 --> 00:00:35,120
+Now in order to do that we're going to have to create a function for this example.
+
+9
+00:00:35,130 --> 00:00:40,980
+We're going to make a variable which will be a function called a sink and that's going to be a function
+
+10
+00:00:40,980 --> 00:00:44,090
+that simulates a sync functionality using set time out.
+
+11
+00:00:44,160 --> 00:00:46,920
+And in reality it's just going to add two numbers together.
+
+12
+00:00:46,920 --> 00:00:51,870
+But it is going to illustrate exactly what we need to do later in the section to get our weather app
+
+13
+00:00:51,900 --> 00:00:53,670
+using promises.
+
+14
+00:00:53,670 --> 00:01:00,240
+Now in here we are going to take two arguments A and B and what we're going to do is return a promise.
+
+15
+00:01:00,270 --> 00:01:06,300
+So whoever calls this method async and they can pass in input but they can also get the promise back
+
+16
+00:01:06,330 --> 00:01:10,050
+so they can use then to sync up and wait for it to complete.
+
+17
+00:01:10,050 --> 00:01:13,520
+Right here we're going to use Return to do just that.
+
+18
+00:01:13,560 --> 00:01:19,020
+We're going to return a new promise using the exact same new promise syntax we did when we created a
+
+19
+00:01:19,020 --> 00:01:20,960
+promise down low.
+
+20
+00:01:20,970 --> 00:01:26,640
+Now this is the same exact function so we do need to provide that constructor function that gets called
+
+21
+00:01:26,640 --> 00:01:33,410
+with both resolve and with reject just like this perfect.
+
+22
+00:01:33,450 --> 00:01:37,600
+Now we have an async function it takes two numbers and it returns a promise.
+
+23
+00:01:37,620 --> 00:01:43,920
+The only thing left to do inside of here is actually simulate that delay and make the call to resolve
+
+24
+00:01:44,340 --> 00:01:45,090
+right here.
+
+25
+00:01:45,090 --> 00:01:51,710
+I'm going to simulate that delay using set time out and then I'm going to go ahead and pass in my callback
+
+26
+00:01:51,710 --> 00:01:58,550
+function setting the delay to one and a half seconds or one thousand five hundred milliseconds in here.
+
+27
+00:01:58,670 --> 00:02:03,890
+Although I'm going to do is write a simple if else statement that's going to check if the type of both
+
+28
+00:02:03,890 --> 00:02:05,330
+of these is a number.
+
+29
+00:02:05,600 --> 00:02:08,790
+If it is great will resolve the value of the two numbers added.
+
+30
+00:02:08,810 --> 00:02:14,060
+If they're not numbers 1 or more then we're going to go ahead and reject to do that we'll use an if
+
+31
+00:02:14,060 --> 00:02:21,160
+statement with the type of operator if type of A is equal to number.
+
+32
+00:02:21,190 --> 00:02:25,060
+Here we're using typeof to get the string type for the variable.
+
+33
+00:02:25,060 --> 00:02:28,570
+And we're checking if it's equal to a number which is what's going to come back from type of when we
+
+34
+00:02:28,570 --> 00:02:29,730
+have a number.
+
+35
+00:02:29,740 --> 00:02:37,650
+Now if the type of A is a number and using double ends the type of B is also a number.
+
+36
+00:02:37,720 --> 00:02:44,360
+Then we're good to go we can go ahead and add the two up resolving the value inside of the code block
+
+37
+00:02:44,360 --> 00:02:45,330
+of the statement.
+
+38
+00:02:45,350 --> 00:02:47,010
+That's exactly what we're going to do.
+
+39
+00:02:47,030 --> 00:02:53,040
+We're going to resolve passing in a plus be perfect.
+
+40
+00:02:53,060 --> 00:02:57,530
+This is going to add the two numbers up passing in one argument to resolve.
+
+41
+00:02:57,530 --> 00:03:01,510
+Now this is the happy path when both A and B are indeed numbers.
+
+42
+00:03:01,610 --> 00:03:04,780
+If things don't go well we're going to want to go ahead and reject.
+
+43
+00:03:04,970 --> 00:03:06,780
+I'm going to use else to do that.
+
+44
+00:03:07,160 --> 00:03:17,650
+If this condition fails we're going to go ahead and reject by calling reject arguments must be numbers
+
+45
+00:03:19,080 --> 00:03:19,750
+awesome.
+
+46
+00:03:19,900 --> 00:03:25,400
+And now we have an async add function that takes two variables A and B returns a promise.
+
+47
+00:03:25,520 --> 00:03:32,670
+And anyone who happens to call async add can add a then call on to the return result to get that value.
+
+48
+00:03:32,670 --> 00:03:35,370
+Now what exactly is this going to look like to show you.
+
+49
+00:03:35,430 --> 00:03:40,860
+I want to comment out all of the code we have below and just below where we make a sink ad I'm going
+
+50
+00:03:40,860 --> 00:03:42,830
+to go ahead and actually call it.
+
+51
+00:03:43,200 --> 00:03:48,720
+We're going to call it like we would any other function a sink add passing in to values member this
+
+52
+00:03:48,720 --> 00:03:54,200
+could be a database ID or anything else for an async function in our case it's just two numbers.
+
+53
+00:03:54,290 --> 00:03:57,650
+I'm going to go with five and I'll go with 7.
+
+54
+00:03:57,690 --> 00:04:03,870
+Now the return value from the function it is a promise we could make a variable and call then on that
+
+55
+00:04:03,870 --> 00:04:09,030
+variable but we could also just tack then on right here and that's exactly what we're going to do when
+
+56
+00:04:09,030 --> 00:04:10,330
+we use promises.
+
+57
+00:04:10,440 --> 00:04:13,710
+We're going to tack on then passing in our callbacks.
+
+58
+00:04:13,710 --> 00:04:19,590
+The first one being the success case and the second one being the case here we're going to get our error
+
+59
+00:04:19,590 --> 00:04:30,830
+message which we can look to the screen using console dot Lague console dialog error message if one
+
+60
+00:04:30,830 --> 00:04:33,090
+or more of the numbers are not actually numbers.
+
+61
+00:04:33,110 --> 00:04:35,830
+The error function is going to fire because we called Project.
+
+62
+00:04:35,870 --> 00:04:43,240
+If both our numbers all we're going to do is get the result and print it to the screen console dialog.
+
+63
+00:04:43,350 --> 00:04:48,660
+I'll print the string results with a call in and then as the second argument I'll pass in the actual
+
+64
+00:04:48,660 --> 00:04:51,760
+number which is going to print it to the screen as well.
+
+65
+00:04:51,780 --> 00:04:54,840
+Now that we have our promise async add function in place.
+
+66
+00:04:54,840 --> 00:04:56,250
+Let's go ahead and test this out.
+
+67
+00:04:56,250 --> 00:05:03,860
+Over inside of the terminal I'm going to run gnomon to start up the app node gnomon playground forward
+
+68
+00:05:03,870 --> 00:05:04,890
+slash promise.
+
+69
+00:05:04,890 --> 00:05:07,950
+Scott Jap's perfect.
+
+70
+00:05:08,130 --> 00:05:11,960
+Now right away we do get that delay and the result 12 prints to the screen.
+
+71
+00:05:11,970 --> 00:05:13,870
+And this is fantastic.
+
+72
+00:05:13,920 --> 00:05:18,970
+We were able to create that function that takes that dynamic input but still returns a promise.
+
+73
+00:05:18,990 --> 00:05:24,540
+Now notice we've taken an async function that usually requires callbacks and we've wrapped it to use
+
+74
+00:05:24,540 --> 00:05:25,440
+promises.
+
+75
+00:05:25,440 --> 00:05:27,280
+This is a really really handy feature.
+
+76
+00:05:27,390 --> 00:05:31,950
+As you start using premises and node you're going to come to realize that some things do not support
+
+77
+00:05:31,950 --> 00:05:33,910
+promises and you'd like them to.
+
+78
+00:05:33,960 --> 00:05:40,420
+For example that request library we use to make our HTP requests that does not support promises natively
+
+79
+00:05:40,650 --> 00:05:45,690
+but you can wrap your request call inside of a promise which is what we're going to do later in the
+
+80
+00:05:45,690 --> 00:05:46,460
+video.
+
+81
+00:05:46,470 --> 00:05:50,330
+For now though we have a basic example illustrating how this works.
+
+82
+00:05:50,340 --> 00:05:53,750
+Now what I'd like to do is talk about promise chaining.
+
+83
+00:05:53,820 --> 00:05:57,460
+This is the idea of having multiple promises run in a sequence.
+
+84
+00:05:57,480 --> 00:06:02,520
+For example I want to take an address and convert that into coordinates and take those coordinates and
+
+85
+00:06:02,520 --> 00:06:05,010
+convert them into weather information.
+
+86
+00:06:05,010 --> 00:06:09,930
+That is an example of needing to synchronize two things and we can do that really easily using promise
+
+87
+00:06:09,990 --> 00:06:12,410
+chaining in order to chain your promises.
+
+88
+00:06:12,420 --> 00:06:17,440
+What you're going to do inside of your success call is return a new promise.
+
+89
+00:06:17,520 --> 00:06:22,370
+In our example we can return a new promise by calling a sink ad.
+
+90
+00:06:22,370 --> 00:06:29,250
+Again I'm going to call async add right here passing into arguments the result whatever the previous
+
+91
+00:06:29,250 --> 00:06:31,760
+promise returned and some sort of new number.
+
+92
+00:06:31,860 --> 00:06:34,180
+Let's go ahead and use 33.
+
+93
+00:06:34,200 --> 00:06:39,890
+Now what I'm doing is returning a promise so I can add my chaining onto it by calling then again that
+
+94
+00:06:39,970 --> 00:06:45,270
+then is going to get called after we close the closing parentheses for our previous then we're going
+
+95
+00:06:45,270 --> 00:06:47,100
+to tack it on right here.
+
+96
+00:06:47,430 --> 00:06:52,860
+And this is also going to take one or more arguments we can pass in a success handler which is going
+
+97
+00:06:52,860 --> 00:06:58,380
+to be a function and an error handler which will also be a function perfect.
+
+98
+00:06:58,460 --> 00:07:03,010
+And now that we have are then callbacks set up we can go ahead and actually fill them out.
+
+99
+00:07:03,200 --> 00:07:04,990
+Once again we are going to get a result here.
+
+100
+00:07:05,000 --> 00:07:11,810
+This is going to be the result of five plus seven which is 12 plus 33 which is going to be 45 right
+
+101
+00:07:11,810 --> 00:07:12,140
+here.
+
+102
+00:07:12,140 --> 00:07:21,850
+We can print console dialog should be 45 then we're going to go ahead and print the actual value from
+
+103
+00:07:21,850 --> 00:07:23,750
+the results variable.
+
+104
+00:07:23,770 --> 00:07:26,790
+Now our air handler is also going to be the same right here.
+
+105
+00:07:26,860 --> 00:07:33,600
+I'm going to have my error message and I'm going to print it to the screen using council log printing
+
+106
+00:07:33,720 --> 00:07:36,000
+error message.
+
+107
+00:07:36,010 --> 00:07:38,000
+Now what we have is some chaining.
+
+108
+00:07:38,050 --> 00:07:42,840
+These functions are going to fire based off the result of our first Eysenck and if it goes well the
+
+109
+00:07:42,840 --> 00:07:44,100
+first one will fire.
+
+110
+00:07:44,250 --> 00:07:49,560
+If it goes poorly the second function is going to fire our second call is going to be based off of the
+
+111
+00:07:49,620 --> 00:07:52,740
+async ad call where we add thirty three.
+
+112
+00:07:52,770 --> 00:07:57,650
+This is going to let us change the two results together and we should get 45 printing to the screen.
+
+113
+00:07:57,930 --> 00:08:03,000
+I'm going to go ahead and save this file which is going to restart things over inside of gnomon and
+
+114
+00:08:03,120 --> 00:08:07,830
+eventually we're going to get our two results the 12th and R should be 45.
+
+115
+00:08:07,830 --> 00:08:13,290
+Right here we get just that result 12 and should be 45 printing to the screen.
+
+116
+00:08:13,290 --> 00:08:15,750
+Now when it comes to error handling there are a few quirks.
+
+117
+00:08:15,750 --> 00:08:18,860
+So what I want to go ahead and do is simulate some errors.
+
+118
+00:08:18,900 --> 00:08:24,180
+First up let's go ahead and simulate an error right here with our second async add call and we know
+
+119
+00:08:24,180 --> 00:08:27,150
+we can do that by passing in a value that's not a number.
+
+120
+00:08:27,270 --> 00:08:31,100
+In this case I'm going to go ahead and wrap 33 inside of quotes.
+
+121
+00:08:31,140 --> 00:08:32,360
+This is going to be a string.
+
+122
+00:08:32,460 --> 00:08:35,090
+And our call should reject.
+
+123
+00:08:35,130 --> 00:08:37,960
+Now I can go ahead and save the file and we can see what happens.
+
+124
+00:08:37,980 --> 00:08:38,910
+Things restart.
+
+125
+00:08:39,000 --> 00:08:45,160
+We get our result 12 and then we get our error arguments must be numbers exactly as we expect.
+
+126
+00:08:45,180 --> 00:08:47,420
+This is printing right here.
+
+127
+00:08:47,700 --> 00:08:49,760
+Now this case works just as expected.
+
+128
+00:08:49,800 --> 00:08:55,200
+Instead of getting should be 45 we get our error message but things get a little trickier when something
+
+129
+00:08:55,230 --> 00:08:58,350
+earlier on in the promised chain and gets rejected.
+
+130
+00:08:58,350 --> 00:09:05,160
+Let's go ahead and swap 33 out for the number 33 then up here we're going to replace seven with the
+
+131
+00:09:05,160 --> 00:09:06,650
+strings 7.
+
+132
+00:09:06,660 --> 00:09:10,700
+This is going to cause our first promise to fail which means we'll never see the result.
+
+133
+00:09:10,740 --> 00:09:15,280
+We should see the error message printing to the screen but that's not what's going to happen when we
+
+134
+00:09:15,290 --> 00:09:15,690
+start.
+
+135
+00:09:15,690 --> 00:09:21,480
+We do indeed get the error message printing to the screen but then we get should be 45 is undefined.
+
+136
+00:09:21,480 --> 00:09:26,010
+This console dialog is running because the promised change things we've cleaned up the error because
+
+137
+00:09:26,010 --> 00:09:28,280
+we provided an error handler right here.
+
+138
+00:09:28,440 --> 00:09:29,850
+It's running the air handler.
+
+139
+00:09:29,850 --> 00:09:31,890
+Then it says OK things must be good.
+
+140
+00:09:31,890 --> 00:09:33,440
+Now we ran the air handler.
+
+141
+00:09:33,520 --> 00:09:37,910
+Let's go ahead and move on to the next then call calling the success case to fix this.
+
+142
+00:09:37,910 --> 00:09:43,880
+What we can do is actually remove both of our air handlers from both then calls and replace them with
+
+143
+00:09:43,880 --> 00:09:46,550
+a call at the very bottom to a different method.
+
+144
+00:09:46,680 --> 00:09:52,620
+Well we're going to do down here is call it dat catch the catch promise method is similar to then but
+
+145
+00:09:52,620 --> 00:09:56,630
+it just takes one function and this is the error handler right here.
+
+146
+00:09:56,640 --> 00:09:58,510
+We can specify one error handler.
+
+147
+00:09:58,530 --> 00:10:04,410
+If any of our promised calls fail we're going to take that error message and we're going to print it
+
+148
+00:10:04,410 --> 00:10:08,040
+to the screen using console dialog error.
+
+149
+00:10:08,960 --> 00:10:10,430
+Message.
+
+150
+00:10:10,490 --> 00:10:15,440
+Now I know promises can be pretty confusing at first especially when it comes to promise chaining.
+
+151
+00:10:15,500 --> 00:10:16,400
+I promise though.
+
+152
+00:10:16,430 --> 00:10:20,420
+No pun intended we are going to be using this throughout the course and things will be a lot clearer
+
+153
+00:10:20,420 --> 00:10:22,790
+as we start working with real world examples.
+
+154
+00:10:22,790 --> 00:10:25,280
+For now though if things are a little blurry that is O.
+
+155
+00:10:25,290 --> 00:10:30,680
+K. as long as you're starting to see exactly what we're doing we're taking the result from one promise
+
+156
+00:10:30,680 --> 00:10:32,930
+and we're passing it to a different one.
+
+157
+00:10:32,930 --> 00:10:36,060
+In this case the result works exactly as expected.
+
+158
+00:10:36,080 --> 00:10:37,340
+The first promise fails.
+
+159
+00:10:37,460 --> 00:10:42,080
+We get arguments must be numbers printed to the screen and we don't get that broken statement where
+
+160
+00:10:42,080 --> 00:10:48,230
+we try to print 45 but we get undefined instead using catch we can specify an error handler that's going
+
+161
+00:10:48,230 --> 00:10:50,390
+to fire for all of our previous failures.
+
+162
+00:10:50,390 --> 00:10:53,360
+And this is exactly what we want.
+
+163
+00:10:53,400 --> 00:10:57,440
+Now as I mentioned earlier some libraries support premises and others don't.
+
+164
+00:10:57,450 --> 00:10:59,330
+The request library does not.
+
+165
+00:10:59,340 --> 00:11:04,860
+Your challenge for this video is going to be to make a function that wraps request returning a promise
+
+166
+00:11:05,160 --> 00:11:09,930
+I'll give you a quick setup and then you're going to be responsible for actually filling it out in the
+
+167
+00:11:09,930 --> 00:11:10,790
+playground folder.
+
+168
+00:11:10,800 --> 00:11:17,250
+We can make a new file to store this called promise to promise haif into dot J.S. and what we're going
+
+169
+00:11:17,250 --> 00:11:26,500
+to do is make a function called geocoder address the geocoder address function is going to take the
+
+170
+00:11:26,500 --> 00:11:33,540
+plain text address and it's going to return a promise you'll be responsible for writing that code in
+
+171
+00:11:33,540 --> 00:11:34,390
+just a second.
+
+172
+00:11:34,620 --> 00:11:38,040
+I will show you how I'd like it to run by calling it down below.
+
+173
+00:11:38,040 --> 00:11:40,740
+Geocoder address is going to return a promise.
+
+174
+00:11:40,770 --> 00:11:47,040
+So if I pass in a zip code like 1 9 1 4 6 I would expect it promised to come back that I can attach
+
+175
+00:11:47,040 --> 00:11:48,440
+a then call to.
+
+176
+00:11:48,600 --> 00:11:52,160
+This is going to let me wait for that request to finish right here.
+
+177
+00:11:52,230 --> 00:11:55,920
+I'm going to tack on a call to then passing in my two functions.
+
+178
+00:11:55,920 --> 00:12:02,040
+The success handler when the promise is fulfilled and the air handler for when the promise is rejected.
+
+179
+00:12:02,040 --> 00:12:07,020
+Now when things go well I'm going to expect that location object with the address the latitude and the
+
+180
+00:12:07,020 --> 00:12:07,840
+long tattoo'd.
+
+181
+00:12:07,920 --> 00:12:14,130
+And when things go poorly I would expect that error message when the error message happens we'll just
+
+182
+00:12:14,130 --> 00:12:19,120
+print it to the screen using console log console that log error message.
+
+183
+00:12:19,380 --> 00:12:24,300
+And for now when things go well and the success case runs we're just going to print that entire object
+
+184
+00:12:24,330 --> 00:12:27,000
+using our pretty printing technique.
+
+185
+00:12:27,150 --> 00:12:31,290
+Dot law and then we'll call Jason docstring if I like.
+
+186
+00:12:31,290 --> 00:12:38,340
+We've done many times before passing into three arguments and the object undefined for the filter method
+
+187
+00:12:38,340 --> 00:12:40,010
+which we're never going to use in the course.
+
+188
+00:12:40,110 --> 00:12:44,930
+And the number two for the number of spaces we like to use as our indentation.
+
+189
+00:12:44,970 --> 00:12:51,080
+This is what I want you to create the function that lets this functionality work as expected.
+
+190
+00:12:51,270 --> 00:12:54,840
+Then call should work as typed here.
+
+191
+00:12:54,930 --> 00:12:57,490
+Now I'll give you a few hints on how I want you to do this.
+
+192
+00:12:57,510 --> 00:13:02,070
+The first thing you're going to need to do is load and request in this file since it's not here then
+
+193
+00:13:02,250 --> 00:13:03,890
+you're going to copy the G.O. code.
+
+194
+00:13:03,900 --> 00:13:09,900
+J.S. code from here take everything from the variable declaration all the way down through the closing
+
+195
+00:13:09,930 --> 00:13:12,790
+of the request callback parentheses.
+
+196
+00:13:12,840 --> 00:13:15,400
+Now inside of here you are going to have to make a few changes.
+
+197
+00:13:15,480 --> 00:13:20,010
+You're still going to get the address we specified that right here.
+
+198
+00:13:20,210 --> 00:13:22,700
+But you're no longer going to get that callback.
+
+199
+00:13:22,730 --> 00:13:28,160
+Instead what you're going to have is the promises resolve and reject functionality.
+
+200
+00:13:28,160 --> 00:13:33,050
+That means instead of calling the call back with one argument to trigger an error you'll carjacked and
+
+201
+00:13:33,050 --> 00:13:38,090
+instead of calling it with that second argument for the success case you're going to call resolve.
+
+202
+00:13:38,090 --> 00:13:43,940
+Now this also means that the request code needs to get put inside of the promise constructor function.
+
+203
+00:13:43,940 --> 00:13:48,770
+Kind of like we have here right here is where you're going to want to put request inside of the promise
+
+204
+00:13:48,830 --> 00:13:49,940
+you're returning.
+
+205
+00:13:49,940 --> 00:13:54,350
+Now I know this is a little open ended and I know it's a little difficult considering we just got started
+
+206
+00:13:54,350 --> 00:13:58,540
+with promises but they are a really important topic and I want to give you experience upfront.
+
+207
+00:13:58,550 --> 00:13:59,790
+Playing around with them.
+
+208
+00:13:59,810 --> 00:14:02,940
+So go ahead and try to knock this out if you don't get on your first try.
+
+209
+00:14:02,960 --> 00:14:09,020
+No problem as long as he gave an honest shot and you tried something out then that is considered a success.
+
+210
+00:14:09,020 --> 00:14:12,800
+You can always ask me in the queue area if you got stuck on this one.
+
+211
+00:14:13,010 --> 00:14:14,240
+Take a moment to pause the video.
+
+212
+00:14:14,240 --> 00:14:15,170
+Knock this out.
+
+213
+00:14:15,200 --> 00:14:18,190
+Run the code from the terminal exactly as I have here.
+
+214
+00:14:18,230 --> 00:14:23,820
+And when you're done click play.
+
+215
+00:14:23,860 --> 00:14:24,590
+How'd you do.
+
+216
+00:14:24,820 --> 00:14:30,190
+Hopefully you were able to add that call to request inside of geocoder address and you wrapped it in
+
+217
+00:14:30,190 --> 00:14:30,690
+a promise.
+
+218
+00:14:30,700 --> 00:14:33,970
+So the code down below worked to get started.
+
+219
+00:14:33,970 --> 00:14:40,090
+I'm going to go ahead and return that promise by calling return new promise passing in my constructor
+
+220
+00:14:40,090 --> 00:14:44,650
+function inside of here is where I'm going to add that call to request.
+
+221
+00:14:44,650 --> 00:14:49,750
+Let's go ahead and out on some missing semi-colons and then we can provide that the arguments resolve
+
+222
+00:14:50,440 --> 00:14:52,510
+and project.
+
+223
+00:14:52,510 --> 00:14:58,000
+Now that we have our promise set up we can go ahead and load in the request module up top creating a
+
+224
+00:14:58,000 --> 00:15:05,760
+constant called request and setting that equal to the return result from required request.
+
+225
+00:15:05,770 --> 00:15:12,130
+Next up in our list of things to do is going to be to move into the code J.S. file grab everything inside
+
+226
+00:15:12,130 --> 00:15:18,340
+of the function and move it over into the promise to file right here inside of the constructor.
+
+227
+00:15:18,340 --> 00:15:20,590
+Now from here we are mostly good to go.
+
+228
+00:15:20,590 --> 00:15:23,100
+We really only need to change a few things.
+
+229
+00:15:23,140 --> 00:15:26,360
+The first thing we need to do is replace our air handlers.
+
+230
+00:15:26,380 --> 00:15:29,500
+Right here we call our callback handler with one argument.
+
+231
+00:15:29,530 --> 00:15:35,550
+Instead what we're going to do is call reject because if this code runs we want to reject the promise.
+
+232
+00:15:35,620 --> 00:15:37,080
+We have the same thing right here.
+
+233
+00:15:37,120 --> 00:15:39,880
+We're going to call project if we get zero results.
+
+234
+00:15:39,880 --> 00:15:43,630
+That is indeed a failure and we do not want to pretend we succeeded.
+
+235
+00:15:43,630 --> 00:15:46,230
+Now down below this is where things did go well.
+
+236
+00:15:46,270 --> 00:15:51,960
+What we can do here is call resolve and we can also remove that first argument since as we know resolve
+
+237
+00:15:51,960 --> 00:15:54,200
+and reject they only take one argument.
+
+238
+00:15:54,340 --> 00:16:00,520
+We are able to specify multiple values though because we do resolve an object with properties on it.
+
+239
+00:16:00,850 --> 00:16:05,980
+Now that we have this in place we are done we can actually go ahead and save our file or rerun it over
+
+240
+00:16:05,980 --> 00:16:08,830
+inside of the terminal and test things out.
+
+241
+00:16:08,830 --> 00:16:14,320
+I'm going to save the file move into the terminal and shut down and gnomon for the promised japes file
+
+242
+00:16:14,590 --> 00:16:17,710
+and I'm going to run node for the promise to file.
+
+243
+00:16:17,730 --> 00:16:21,430
+It's in that playground folder and it's called promis hyphen to J.
+
+244
+00:16:22,420 --> 00:16:27,640
+Now when I run this program we're actually making that HTP request and right here you can see the data
+
+245
+00:16:27,640 --> 00:16:29,920
+comes back exactly as we expected.
+
+246
+00:16:29,920 --> 00:16:33,400
+We got our address we get our latitude and we get our long itude.
+
+247
+00:16:33,460 --> 00:16:35,260
+This is fantastic.
+
+248
+00:16:35,260 --> 00:16:40,360
+Now before we stop I do want to test out what happens when I pass in an invalid address something like
+
+249
+00:16:40,390 --> 00:16:43,530
+five zeros which we've used before to simulate an error.
+
+250
+00:16:43,780 --> 00:16:47,990
+I'm going to save the file rerun the program and right here.
+
+251
+00:16:48,020 --> 00:16:50,770
+Unable to find that address Prince to the screen.
+
+252
+00:16:50,960 --> 00:16:56,810
+And this only happens because we call project we call reject inside of the promised constructor function
+
+253
+00:16:56,990 --> 00:17:00,880
+down below we have our air handler which prints the message to the screen.
+
+254
+00:17:00,950 --> 00:17:06,680
+And this is an example of how to take a library that does not support promises and wrap it in a promise
+
+255
+00:17:06,800 --> 00:17:08,900
+creating a promise ready function.
+
+256
+00:17:08,930 --> 00:17:12,510
+In our case that function is code address.
+
+257
+00:17:12,730 --> 00:17:17,480
+Now in the next video we're going to take a look at a library similar to request called X-posts that
+
+258
+00:17:17,510 --> 00:17:19,930
+actually does support promises.
+
+259
+00:17:19,970 --> 00:17:24,100
+So there's no need to wrap our function calls inside of a promise.
+
+260
+00:17:24,140 --> 00:17:29,360
+This is going to let us simplify our code creating our promised calls really really easily.
+
+261
+00:17:29,420 --> 00:17:32,770
+We're going to actually rebuild the entire weather app in the next video.
+
+262
+00:17:32,810 --> 00:17:33,980
+So stay tuned.
+
+263
+00:17:34,040 --> 00:17:35,640
+I will see you then.
+

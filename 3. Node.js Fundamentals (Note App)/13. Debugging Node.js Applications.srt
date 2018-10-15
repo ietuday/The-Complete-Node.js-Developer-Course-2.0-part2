@@ -1,0 +1,1020 @@
+﻿1
+00:00:00,600 --> 00:00:03,840
+Before you get started this video and the next video.
+
+2
+00:00:03,840 --> 00:00:10,310
+It's a two part series on Node debugging and I just Aris filmed them for node version 8.
+
+3
+00:00:10,350 --> 00:00:16,230
+So in the past we had tools for debugging node VI 67 and others did indeed have debugging tools.
+
+4
+00:00:16,470 --> 00:00:19,590
+But some of the more experimental and subject to change.
+
+5
+00:00:19,620 --> 00:00:24,860
+Well they finally got finalized and we now have some new tools for debugging our node app.
+
+6
+00:00:24,900 --> 00:00:28,800
+So we're going to work through both of them in these two videos and this one we're going to learn how
+
+7
+00:00:28,800 --> 00:00:33,810
+to debug our node apps from the command line in the next one we're going to learn how we can debug our
+
+8
+00:00:33,810 --> 00:00:38,070
+node apps from the chrome developer tools now to kick this off.
+
+9
+00:00:38,070 --> 00:00:43,350
+What I'd like to do is create a separate file in the playground folder we're going to add a simple example
+
+10
+00:00:43,350 --> 00:00:49,240
+in there in a file called debugging Dhananjay us and then we'll be able to create this file.
+
+11
+00:00:49,290 --> 00:00:55,190
+We'll run it in normal mode and then we'll look at how we can it run it in a special debug mode.
+
+12
+00:00:55,410 --> 00:01:00,840
+So let's go ahead and create the world's most useless application will create a Person object and we
+
+13
+00:01:00,840 --> 00:01:03,410
+can give that person a name.
+
+14
+00:01:03,900 --> 00:01:12,810
+Then I can set person dot age equal to something like 25 and we'll set person dot name equal to the
+
+15
+00:01:12,810 --> 00:01:13,240
+string.
+
+16
+00:01:13,260 --> 00:01:18,060
+Mike now yeah I know I could have done all of this right here in the object but I am breaking this out
+
+17
+00:01:18,080 --> 00:01:21,230
+onto multiple statements which we'll look at in just a little bit.
+
+18
+00:01:21,240 --> 00:01:24,500
+We're going to look at how we can iterate over all of these in order.
+
+19
+00:01:24,510 --> 00:01:30,480
+So next up the last thing we're going to do is use council dialogue to log a person to the screen.
+
+20
+00:01:30,480 --> 00:01:34,500
+Now if we run this program like we've been running our program so far we can take a pretty good guess
+
+21
+00:01:34,500 --> 00:01:35,960
+at what's going to happen right here.
+
+22
+00:01:35,970 --> 00:01:41,700
+We're going to get an object printed to the screen with a name of Mike and an age of 25 if we do that
+
+23
+00:01:42,570 --> 00:01:49,650
+node playground forward slash debugging dot J s that does exactly what we get.
+
+24
+00:01:49,650 --> 00:01:54,120
+Now the goal when you're debugging is not to just run through your program because you do bugging for
+
+25
+00:01:54,120 --> 00:01:59,970
+a reason most likely something is going wrong at some point in your program you might have a typo causing
+
+26
+00:01:59,970 --> 00:02:02,430
+things to not work correctly.
+
+27
+00:02:02,430 --> 00:02:07,360
+So what we're going to do is run this exact same program in a special debug mode.
+
+28
+00:02:07,590 --> 00:02:11,320
+Now you do need to be on Node a V-8 in order for this to work.
+
+29
+00:02:11,430 --> 00:02:19,050
+So I'm going to run node with the flag here I'm on 8.1 point to make sure you're on 8 or greater if
+
+30
+00:02:19,050 --> 00:02:21,530
+you're on V-6 the 4 or 7.
+
+31
+00:02:21,540 --> 00:02:25,710
+You can indeed update and then you'll be able to continue on with this video.
+
+32
+00:02:26,040 --> 00:02:27,210
+Now what are we going to do from here.
+
+33
+00:02:27,210 --> 00:02:31,080
+We're going to run the program just like we have it here but we're going to insert something before
+
+34
+00:02:31,080 --> 00:02:32,340
+our file name.
+
+35
+00:02:32,340 --> 00:02:40,490
+So we start off with node then we type inspect followed by playground forward slash debugging dot J
+
+36
+00:02:40,500 --> 00:02:41,390
+S.
+
+37
+00:02:41,430 --> 00:02:46,110
+Now when we run the program like this it's going to look completely different from what we had up above.
+
+38
+00:02:46,110 --> 00:02:49,190
+You'll see a whole bunch of outputs go ahead and break this down.
+
+39
+00:02:49,350 --> 00:02:51,340
+The first three lines can be ignored.
+
+40
+00:02:51,360 --> 00:02:56,550
+This is just letting you know that the debugger was successfully set up and now you're now able to debug
+
+41
+00:02:56,670 --> 00:02:57,840
+from the command line.
+
+42
+00:02:57,840 --> 00:03:00,170
+There's also a link if you want to learn more about how to debug.
+
+43
+00:03:00,180 --> 00:03:01,830
+But we're going to go through that right now.
+
+44
+00:03:01,950 --> 00:03:06,930
+So these three lines aren't particularly important to the application we're currently debugging.
+
+45
+00:03:06,930 --> 00:03:10,360
+Down below though we are getting some important output right here.
+
+46
+00:03:10,410 --> 00:03:15,980
+Break on start in playground forward slash to bugging Dhananjay ass line 1.
+
+47
+00:03:16,260 --> 00:03:21,890
+So when we run our program in debug mode we don't just want to fly through the entire application.
+
+48
+00:03:21,990 --> 00:03:26,610
+We want to go through our application statement by statement figuring out exactly what the application
+
+49
+00:03:26,610 --> 00:03:29,070
+looks like at each point in time.
+
+50
+00:03:29,070 --> 00:03:32,720
+So when you run debug mode your app actually hasn't started at all.
+
+51
+00:03:32,730 --> 00:03:36,900
+Now you'll notice that we have some code here some code we did not write highlighted there and some
+
+52
+00:03:36,900 --> 00:03:39,670
+code we did write this stuff right here.
+
+53
+00:03:39,930 --> 00:03:43,600
+Let's go ahead and take a look at our first debug command.
+
+54
+00:03:43,680 --> 00:03:46,520
+That's going to allow us to explore exactly what's going on right here.
+
+55
+00:03:46,560 --> 00:03:52,440
+This one which you can run it from the debug mode is a function list and you pass in the number of lines
+
+56
+00:03:52,440 --> 00:03:53,670
+you want to view.
+
+57
+00:03:53,700 --> 00:03:59,970
+Now I just mentioned that when we run our app in debug mode it pauses it pauses before any of our code
+
+58
+00:03:59,970 --> 00:04:00,440
+runs.
+
+59
+00:04:00,440 --> 00:04:07,020
+So there's not even a person variable when we use a list 10 it prints the 10 lines above and below the
+
+60
+00:04:07,020 --> 00:04:08,330
+place we're paused.
+
+61
+00:04:08,370 --> 00:04:09,960
+We have nine line file.
+
+62
+00:04:09,960 --> 00:04:14,340
+So by running list 10 we should be able to see the entire contents and here we have it.
+
+63
+00:04:14,550 --> 00:04:15,770
+So what do we have here.
+
+64
+00:04:15,780 --> 00:04:19,380
+We have our code but it's sitting inside of this wrapper function.
+
+65
+00:04:19,380 --> 00:04:25,800
+This wrapper function is actually created by node AJ as an every single piece of node code you write.
+
+66
+00:04:25,800 --> 00:04:27,370
+It's wrapped in this function.
+
+67
+00:04:27,510 --> 00:04:32,520
+It gives us access to stuff we've seen before like require and others we have not seen before but will
+
+68
+00:04:32,520 --> 00:04:34,130
+explore later.
+
+69
+00:04:34,140 --> 00:04:39,930
+So when we use module that exports module is defined right here when we require a library like O S or
+
+70
+00:04:39,930 --> 00:04:43,140
+f s that comes from right here.
+
+71
+00:04:43,140 --> 00:04:47,240
+Now at this point we want to actually start moving through our application.
+
+72
+00:04:47,280 --> 00:04:51,630
+We don't just want to sit up here before any code runs we want to get say to the middle and figure out
+
+73
+00:04:51,630 --> 00:04:55,790
+exactly what person looks like as we run through the app when we're in debug mode.
+
+74
+00:04:55,800 --> 00:04:58,930
+We have a few commands we can use to get that done.
+
+75
+00:04:59,010 --> 00:05:06,140
+The first one n n which is short for next is going to move on to the very next statement.
+
+76
+00:05:06,180 --> 00:05:10,730
+In our case that's going to take us from this wrapper function into our actual code.
+
+77
+00:05:10,740 --> 00:05:16,590
+Now at this point we've paused right here and we're actually paused before this ever runs.
+
+78
+00:05:16,590 --> 00:05:19,140
+So there's still no person variable we can use.
+
+79
+00:05:19,140 --> 00:05:23,430
+And again though to continue through and now we're down here on line 5.
+
+80
+00:05:23,460 --> 00:05:26,560
+Now once again we've paused on line 5.
+
+81
+00:05:26,640 --> 00:05:28,710
+This line hasn't actually executed.
+
+82
+00:05:28,740 --> 00:05:35,590
+So person age is not equal to 25 Yet person is an object with a single property name which is set to
+
+83
+00:05:35,590 --> 00:05:36,350
+Andrew.
+
+84
+00:05:36,630 --> 00:05:43,500
+Now at some point we're going to be done going line by line when we are we can use C C which stands
+
+85
+00:05:43,500 --> 00:05:47,060
+for continue is going to continue on until your program completes.
+
+86
+00:05:47,070 --> 00:05:51,900
+So if I run C you can see that the other lines all run automatically.
+
+87
+00:05:51,900 --> 00:05:54,100
+So what runs the age gets at the 25.
+
+88
+00:05:54,100 --> 00:05:59,640
+The name gets set to Mike and we use cancel that log to log person out which we are seeing right here
+
+89
+00:05:59,820 --> 00:06:01,830
+and then tells us that we're all done.
+
+90
+00:06:01,860 --> 00:06:04,710
+Now we actually went through the entire program but we didn't do any debugging.
+
+91
+00:06:04,710 --> 00:06:09,770
+I just wanted to walk you through the basic navigation commands that is n and seat.
+
+92
+00:06:09,960 --> 00:06:15,510
+Let's go back through our program again in debug mode and look at how we can stop at various places
+
+93
+00:06:15,720 --> 00:06:18,710
+and see exactly what variable values are equal to.
+
+94
+00:06:18,870 --> 00:06:24,870
+To do that I'm going to shut down the debugger using Control C twice then I can clear the terminal output
+
+95
+00:06:24,870 --> 00:06:28,470
+to make this a little easier to view and we're going to rerun that command.
+
+96
+00:06:28,470 --> 00:06:32,280
+We just ran node inspect playground debugging dot J.
+
+97
+00:06:32,290 --> 00:06:38,190
+As I'm going to run the program and once again we have the same output we've seen before we have the
+
+98
+00:06:38,190 --> 00:06:40,830
+messages letting us know that everything started correctly.
+
+99
+00:06:40,880 --> 00:06:45,470
+It's saying that we've braked before our code ran and then we have the line that we are currently on.
+
+100
+00:06:45,510 --> 00:06:46,930
+Now what are we going to do from here.
+
+101
+00:06:46,950 --> 00:06:49,010
+Well we are going to use and a couple of times.
+
+102
+00:06:49,020 --> 00:06:56,040
+So let's use it just one time right here and now we're going to use it again and we will use it one
+
+103
+00:06:56,100 --> 00:06:56,930
+more time.
+
+104
+00:06:56,940 --> 00:06:59,360
+So we want to make sure we're paused right here on line 7.
+
+105
+00:06:59,640 --> 00:07:03,530
+So we're here on line 7 and we've paused right here which means the line hasn't executed.
+
+106
+00:07:03,530 --> 00:07:05,370
+So the person name is still Andrew.
+
+107
+00:07:05,490 --> 00:07:11,520
+But we're going to do is look at a tool inside of the debugger called R E P L which stands for read
+
+108
+00:07:11,530 --> 00:07:16,650
+evaluate print loop and you can think of this like the consul over in the chrome developer tools.
+
+109
+00:07:16,650 --> 00:07:20,400
+If you're familiar it's a place where you can explore variable values.
+
+110
+00:07:20,400 --> 00:07:23,070
+You can mess around with various Javascript functions.
+
+111
+00:07:23,130 --> 00:07:25,110
+You could take values and manipulate them.
+
+112
+00:07:25,110 --> 00:07:27,090
+You can do all sorts of cool things.
+
+113
+00:07:27,090 --> 00:07:34,060
+Now we need to leave debug mode and get into our EPL by typing R E P L when we hit enter.
+
+114
+00:07:34,140 --> 00:07:38,230
+You can see we're in a new mode B.L. and we can always leave using controls C..
+
+115
+00:07:38,250 --> 00:07:45,010
+So if I take control c I'm back in debug mode and I can just type r l to get back into R L mode.
+
+116
+00:07:45,070 --> 00:07:49,640
+Now when we're Inari APL we can access the application as it currently stands.
+
+117
+00:07:49,740 --> 00:07:51,030
+So we're right here.
+
+118
+00:07:51,030 --> 00:07:54,570
+We haven't executed this line and we haven't logged on anything to the screen but we do have a person
+
+119
+00:07:54,810 --> 00:07:55,290
+object.
+
+120
+00:07:55,310 --> 00:07:58,040
+So let's go ahead and look at it just by typing it person.
+
+121
+00:07:58,230 --> 00:08:00,870
+Right here we get our object back her name is Andrew.
+
+122
+00:08:00,870 --> 00:08:05,430
+And age is 25 exactly as we expected.
+
+123
+00:08:05,430 --> 00:08:10,590
+Now I could also go ahead and access person data age to get 25 back.
+
+124
+00:08:10,650 --> 00:08:13,890
+I could take person Dom age and I could add 100 to it.
+
+125
+00:08:13,980 --> 00:08:15,730
+Which would be 125.
+
+126
+00:08:15,750 --> 00:08:20,600
+I can write any sort of javascript statement I want right in here to play around with the application.
+
+127
+00:08:20,600 --> 00:08:24,990
+At this point in time which is really useful when you're debugging if something's going wrong you want
+
+128
+00:08:24,990 --> 00:08:27,410
+to use the debugger to figure out where it's going wrong.
+
+129
+00:08:27,420 --> 00:08:32,220
+At what point in the application do various variables look incorrect.
+
+130
+00:08:32,220 --> 00:08:34,420
+Now from here we could always manipulate the data.
+
+131
+00:08:34,560 --> 00:08:36,300
+Let's go ahead and set person.
+
+132
+00:08:36,390 --> 00:08:39,780
+Age equal to 100.
+
+133
+00:08:40,080 --> 00:08:41,530
+Then I'm going to go ahead and leave.
+
+134
+00:08:41,550 --> 00:08:42,560
+R E P L.
+
+135
+00:08:42,570 --> 00:08:44,840
+Using control-C.
+
+136
+00:08:44,880 --> 00:08:47,460
+Now we're back in debug mode in debug mode.
+
+137
+00:08:47,460 --> 00:08:50,240
+We can do all of those things we explored before I could run list.
+
+138
+00:08:50,250 --> 00:08:52,370
+I could use any to go to the next line.
+
+139
+00:08:52,530 --> 00:08:54,500
+I could use C to continue.
+
+140
+00:08:54,690 --> 00:08:56,880
+I'm going to go ahead and use C to continue.
+
+141
+00:08:56,880 --> 00:08:59,480
+It runs through the other two statements.
+
+142
+00:08:59,520 --> 00:09:04,520
+Those two statements change the name and print the person and right here we get our Person object named
+
+143
+00:09:04,520 --> 00:09:07,370
+Mike age one hundred.
+
+144
+00:09:07,410 --> 00:09:11,970
+So using these tools we're going to be able to easily get into our application and figure out what's
+
+145
+00:09:11,970 --> 00:09:12,620
+going wrong.
+
+146
+00:09:12,630 --> 00:09:14,330
+But we have a simple app right.
+
+147
+00:09:14,340 --> 00:09:15,860
+What about a more complex one.
+
+148
+00:09:15,870 --> 00:09:18,710
+I don't want to use and to get into the middle of the program.
+
+149
+00:09:18,870 --> 00:09:21,730
+Every single time that I want to do some debugging.
+
+150
+00:09:21,900 --> 00:09:23,600
+Well we actually have a better way.
+
+151
+00:09:23,860 --> 00:09:29,270
+But we can do is we can use the debugger statement we type debugger with the semi-colon at the end.
+
+152
+00:09:29,280 --> 00:09:36,240
+We save the file and this creates a special line break so the node Inspektor it's going to stop right
+
+153
+00:09:36,240 --> 00:09:36,850
+here.
+
+154
+00:09:36,870 --> 00:09:40,920
+It's going to stop here allowing us to view it and we're not going to need to use end to get to this
+
+155
+00:09:40,920 --> 00:09:41,580
+point.
+
+156
+00:09:41,610 --> 00:09:47,670
+We can use C to skip everything before it will stop here and we can you see again to run through to
+
+157
+00:09:47,670 --> 00:09:48,450
+the end.
+
+158
+00:09:48,450 --> 00:09:50,390
+This is the most common technique.
+
+159
+00:09:50,400 --> 00:09:55,940
+I never really use N to iterate through an entire program it takes a ton of time but using debugger
+
+160
+00:09:56,130 --> 00:09:59,340
+we can get to a specific place in our program really easily.
+
+161
+00:09:59,340 --> 00:10:04,840
+You just type this and here and you rerun the program I'm going to shut down the debugger clear the
+
+162
+00:10:04,840 --> 00:10:09,750
+output once again and we'll restart it this time around we're getting the same output.
+
+163
+00:10:09,790 --> 00:10:11,590
+We are not going to use end though.
+
+164
+00:10:11,590 --> 00:10:14,160
+We're going to go right to see that when we first did this.
+
+165
+00:10:14,160 --> 00:10:17,770
+He brought us to the very end of the program but we have a debugger in place.
+
+166
+00:10:17,770 --> 00:10:21,320
+We told the program to break on line 7 when I type C.
+
+167
+00:10:21,400 --> 00:10:23,770
+It does indeed break on line 7.
+
+168
+00:10:23,770 --> 00:10:29,740
+So at this point we have a person named Andrew and a person age 25 although the name hasn't been updated
+
+169
+00:10:29,740 --> 00:10:30,830
+to Mike just yet.
+
+170
+00:10:31,060 --> 00:10:36,580
+We can prove all of that by using R E P L we can dump person to the council and right here we get that
+
+171
+00:10:36,580 --> 00:10:38,110
+object name Andrew.
+
+172
+00:10:38,110 --> 00:10:39,680
+Age 25.
+
+173
+00:10:39,700 --> 00:10:47,140
+So when I am debugging I'm almost always using the debugger that allows me to quickly execute the debugger
+
+174
+00:10:47,140 --> 00:10:51,820
+and get to a specific place in my program where I can actually figure out what's happening now that
+
+175
+00:10:51,820 --> 00:10:56,560
+we've done a little bit of debugging in debugging Dhananjay s I want you to use the techniques that
+
+176
+00:10:56,560 --> 00:11:01,080
+you just learned here to debug the notes application.
+
+177
+00:11:01,210 --> 00:11:06,490
+So I'm going to shut down the debugger clear the terminal output and I'll tell you what I'd like you
+
+178
+00:11:06,490 --> 00:11:07,550
+to do for the challenge.
+
+179
+00:11:07,570 --> 00:11:14,110
+So over inside of notes what you're going to do is make a modification to the alog note function which
+
+180
+00:11:14,110 --> 00:11:15,370
+is sitting down here in notes.
+
+181
+00:11:15,380 --> 00:11:16,090
+Dot J.
+
+182
+00:11:16,090 --> 00:11:25,990
+S. What I'd like you to do is break on this line and use R E P L to output.
+
+183
+00:11:25,990 --> 00:11:26,830
+Note.
+
+184
+00:11:26,860 --> 00:11:31,660
+So what you're going to do is use debugger on this very line inside of the log note function.
+
+185
+00:11:31,810 --> 00:11:37,510
+You're then going to run our notes application like we've been doing from the command line but this
+
+186
+00:11:37,510 --> 00:11:44,020
+time around you're going to use inspect So node inspect followed by the file name followed by the various
+
+187
+00:11:44,080 --> 00:11:46,290
+arguments required to get a log.
+
+188
+00:11:46,450 --> 00:11:57,560
+Note to run in this case you're going to use the read command use a read command with title and you
+
+189
+00:11:57,560 --> 00:12:00,940
+can pick any note that you happen to have in the Notes database and file.
+
+190
+00:12:00,950 --> 00:12:02,380
+I've got a few sitting right here.
+
+191
+00:12:02,460 --> 00:12:05,810
+I'm going to eventually use to buy.
+
+192
+00:12:05,810 --> 00:12:06,920
+That is what I'm going to run.
+
+193
+00:12:06,920 --> 00:12:14,300
+So when I do use out in the debugger and I output the notes object what I expect I would expect that
+
+194
+00:12:14,300 --> 00:12:17,870
+data title of two by and a body of food.
+
+195
+00:12:17,900 --> 00:12:19,920
+So take some time to add the debugger right here.
+
+196
+00:12:19,940 --> 00:12:22,250
+Run the program in debug mode.
+
+197
+00:12:22,280 --> 00:12:24,580
+Then when you get to that break point.
+
+198
+00:12:24,650 --> 00:12:28,170
+Use our APL to dump note to the screen when you're done.
+
+199
+00:12:28,190 --> 00:12:32,020
+Go ahead and click play how that go.
+
+200
+00:12:32,020 --> 00:12:37,060
+Hopefully you were able to get that done but I'm going to start with is adding debuggers are right here.
+
+201
+00:12:37,060 --> 00:12:41,860
+We're going to add debugger and then we're going to go ahead and run the program using the read command
+
+202
+00:12:41,860 --> 00:12:46,290
+with a title that can allow us to actually run this function to find the notes dot.
+
+203
+00:12:46,330 --> 00:12:49,690
+S and ensure that note equals what we would expect.
+
+204
+00:12:49,690 --> 00:12:52,990
+Now I'm going to save notes Scott J S and we're going to run the program from the terminal.
+
+205
+00:12:53,110 --> 00:12:54,190
+We want to use node.
+
+206
+00:12:54,430 --> 00:12:58,070
+We want to use inspect to run our application in debug mode.
+
+207
+00:12:58,070 --> 00:13:00,610
+Then we want to provide the file name app dot J.
+
+208
+00:13:00,610 --> 00:13:05,100
+S. And we have to provide the other stuff necessary like list the list command.
+
+209
+00:13:05,200 --> 00:13:10,100
+Excuse me the read a command and the title argument.
+
+210
+00:13:10,120 --> 00:13:14,060
+Now I already picked a note out the title was to space by.
+
+211
+00:13:14,110 --> 00:13:14,470
+So that's it.
+
+212
+00:13:14,470 --> 00:13:19,660
+I'm going to search for and when I run the program what happens we see exactly what we saw before the
+
+213
+00:13:19,660 --> 00:13:21,850
+application is indeed up and running.
+
+214
+00:13:21,850 --> 00:13:24,280
+We are in the debugger but it hasn't started yet.
+
+215
+00:13:24,430 --> 00:13:28,200
+Now in the past we might have used n to just go through line by line.
+
+216
+00:13:28,270 --> 00:13:33,910
+Very tedious but we're going to do is use C to run the application until it hits this line.
+
+217
+00:13:33,910 --> 00:13:35,930
+Now if it doesn't have that line we're never gonna break.
+
+218
+00:13:35,950 --> 00:13:41,100
+But in this case we've used the correct command read log note should indeed print.
+
+219
+00:13:41,130 --> 00:13:42,300
+I'm going to use C..
+
+220
+00:13:42,700 --> 00:13:48,310
+It's going to continue to that break point and now from here I wanted you to use R E P L to dump the
+
+221
+00:13:48,310 --> 00:13:50,650
+contents of note to the screen.
+
+222
+00:13:50,650 --> 00:13:52,180
+I'm going to type note in right here.
+
+223
+00:13:52,180 --> 00:13:56,980
+I do have the correct data I have to buy and I have food for the body.
+
+224
+00:13:56,980 --> 00:14:02,950
+Now I can go ahead and leave our EPL with Control-C I can quit right from here or I could rerun the
+
+225
+00:14:02,950 --> 00:14:03,790
+rest of the program.
+
+226
+00:14:03,790 --> 00:14:06,800
+The choice really is yours and there we have it.
+
+227
+00:14:06,880 --> 00:14:10,720
+We just ran through the debugger for the notes application.
+
+228
+00:14:10,720 --> 00:14:15,100
+Now we can actually also run node mine with inspect.
+
+229
+00:14:15,130 --> 00:14:22,720
+So I can type in node Mohn inspect followed by our application Abhaya as we can use the read command
+
+230
+00:14:22,720 --> 00:14:29,310
+once again with a title to by so literally the only difference between this man and the one I just wrote
+
+231
+00:14:29,310 --> 00:14:31,350
+is gnomon got swapped out.
+
+232
+00:14:31,350 --> 00:14:33,370
+It was previously Noad.
+
+233
+00:14:33,390 --> 00:14:35,620
+Now when I run this it's going to start the debugger.
+
+234
+00:14:35,640 --> 00:14:40,320
+So we're seeing a combination of the gnomon output and the inspect output.
+
+235
+00:14:40,320 --> 00:14:44,550
+Now I could hit C and that would bring me to my break point and I could mess around with the data or
+
+236
+00:14:44,550 --> 00:14:50,280
+do whatever I needed to but I can also make changes to the program so I could change this to four hyphens
+
+237
+00:14:50,280 --> 00:14:51,160
+instead of two.
+
+238
+00:14:51,300 --> 00:14:55,680
+And when I save the file it's automatically going to restart the debugger which is super useful.
+
+239
+00:14:55,680 --> 00:14:59,900
+I can then see it to get back to that same point and I can see the changes I just made.
+
+240
+00:14:59,910 --> 00:15:03,690
+So typically when you are running your application here to bugging something you want to go through
+
+241
+00:15:03,690 --> 00:15:07,050
+multiple times making sure your changes are actually fixing that bug.
+
+242
+00:15:07,170 --> 00:15:11,360
+So I find it a whole lot easier to use Nordman than to just use knode.
+
+243
+00:15:11,460 --> 00:15:13,710
+Now we can go ahead and undo that change.
+
+244
+00:15:13,740 --> 00:15:19,220
+I am going to leave debugger in place for the moment and we'll be using it once again in the next video.
+
+245
+00:15:19,280 --> 00:15:24,060
+I'm going to go ahead and wrap things up by shutting down debug clearing the output.
+
+246
+00:15:24,060 --> 00:15:25,860
+And that is it for this one.
+
+247
+00:15:25,860 --> 00:15:28,060
+Now we know how to debug via the command line.
+
+248
+00:15:28,080 --> 00:15:33,900
+But as you just saw the interface while it works isn't necessarily the most ideal and the next video
+
+249
+00:15:33,960 --> 00:15:39,040
+you're going to learn how to use the chrome and developer tools to debug your node applications.
+
+250
+00:15:39,090 --> 00:15:43,410
+So you're gonna get a really nice gooey with all the features you'd expect if you've ever used those
+
+251
+00:15:43,410 --> 00:15:45,710
+dev tools to debug websites.
+
+252
+00:15:45,720 --> 00:15:47,280
+It's all coming up in the next video.
+
+253
+00:15:47,280 --> 00:15:48,790
+I'm real excited to get to it.
+
+254
+00:15:48,810 --> 00:15:49,820
+So stay tuned.
+
+255
+00:15:49,830 --> 00:15:50,860
+I'll see you next time.
+

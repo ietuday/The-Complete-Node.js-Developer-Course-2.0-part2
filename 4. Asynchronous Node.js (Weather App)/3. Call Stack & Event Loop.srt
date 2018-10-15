@@ -1,0 +1,804 @@
+﻿1
+00:00:01,030 --> 00:00:05,460
+In the last video you ended up creating your very first asynchronous application.
+
+2
+00:00:05,470 --> 00:00:09,690
+But unfortunately we ended up asking more questions than we got answers to.
+
+3
+00:00:09,910 --> 00:00:13,450
+We don't exactly know how async programming works even though we've used it.
+
+4
+00:00:13,450 --> 00:00:17,700
+My goal for you in this video is to understand why the program runs the way it does.
+
+5
+00:00:17,740 --> 00:00:22,350
+For example why does this two second delay not prevent the rest of the app from running.
+
+6
+00:00:22,420 --> 00:00:28,360
+And why does a zero second delay cause the function to be executed after finishing up prints to the
+
+7
+00:00:28,360 --> 00:00:28,950
+screen.
+
+8
+00:00:28,960 --> 00:00:31,770
+These are all questions we're going to answer in this video.
+
+9
+00:00:31,810 --> 00:00:36,760
+This video is going to take you behind the scenes into what happens in vitæ and Noad when an async program
+
+10
+00:00:36,760 --> 00:00:37,380
+runs.
+
+11
+00:00:37,390 --> 00:00:40,970
+It's a little complex which is why I recommend multiple viewings.
+
+12
+00:00:41,020 --> 00:00:42,100
+I would watch it once.
+
+13
+00:00:42,110 --> 00:00:45,790
+Now I'd work through the weather app and I would watch it once again.
+
+14
+00:00:45,880 --> 00:00:50,530
+When you come back to it after having played around with a lot of async programming it's going to make
+
+15
+00:00:50,530 --> 00:00:51,960
+a lot more sense.
+
+16
+00:00:52,060 --> 00:00:54,760
+Now let's dive right into how this program runs.
+
+17
+00:00:54,750 --> 00:00:59,950
+We're going to start with a basic example then we'll move on to figuring out exactly what happens here.
+
+18
+00:01:01,930 --> 00:01:04,600
+Here is example number one on the left.
+
+19
+00:01:04,600 --> 00:01:08,280
+We have the code in this case a really basic synchronous example.
+
+20
+00:01:08,350 --> 00:01:13,420
+And on the right we have everything that happens behind the scenes the call stack our node API is the
+
+21
+00:01:13,420 --> 00:01:15,620
+callback queue and the event loop.
+
+22
+00:01:15,790 --> 00:01:20,680
+Now if you've ever read an article or watched another video on how Knode works you most likely heard
+
+23
+00:01:20,680 --> 00:01:25,600
+about one or more of these terms in this video we're going to be exploring how they all fit together
+
+24
+00:01:25,720 --> 00:01:29,290
+to create a real world working node application.
+
+25
+00:01:29,320 --> 00:01:34,540
+Now for our example here the first one the synchronous one all we need to worry about is the cost stack
+
+26
+00:01:34,750 --> 00:01:36,690
+the cost stack is part of the.
+
+27
+00:01:36,760 --> 00:01:39,730
+And for our synchronous example it's the only thing that's going to run.
+
+28
+00:01:39,730 --> 00:01:41,330
+We're not using any known API.
+
+29
+00:01:41,350 --> 00:01:43,900
+And we're not doing any asynchronous program.
+
+30
+00:01:44,380 --> 00:01:50,000
+The call stack is a really simple data structure that keeps track of program execution inside of the
+
+31
+00:01:50,060 --> 00:01:50,700
+8.
+
+32
+00:01:50,830 --> 00:01:55,960
+It keeps track of the functions currently executing and the statements that Byard the cost.
+
+33
+00:01:55,970 --> 00:01:59,460
+These are really simple data structure that can do two things.
+
+34
+00:01:59,470 --> 00:02:07,020
+One you can add something on the top of it and two you can remove the top item that is all it can do.
+
+35
+00:02:07,030 --> 00:02:11,740
+That means if theres an item right here and theres an item above it you can't remove the bottom item
+
+36
+00:02:11,740 --> 00:02:16,490
+you have to remove the top item if theres already two items and you want to add something onto it.
+
+37
+00:02:16,510 --> 00:02:20,500
+It has to go on the top because thats how the call stack works.
+
+38
+00:02:20,500 --> 00:02:24,190
+Think about it like a can of Pringles or a thing of tennis balls.
+
+39
+00:02:24,250 --> 00:02:28,180
+If theres already an item in there and you drop one in the item you just dropped in.
+
+40
+00:02:28,170 --> 00:02:32,560
+Its not going to be the bottom item its going to be the top item and you cant remove the bottom tennis
+
+41
+00:02:32,560 --> 00:02:34,270
+ball from a can of tennis balls.
+
+42
+00:02:34,270 --> 00:02:36,550
+You have to remove the one on top first.
+
+43
+00:02:36,550 --> 00:02:39,320
+Thats exactly how the call stack works.
+
+44
+00:02:39,340 --> 00:02:44,920
+Now when we start executing this program the first thing that happens is node runs the main function
+
+45
+00:02:45,220 --> 00:02:48,470
+the main function is that wrapper function we saw over in node.
+
+46
+00:02:48,470 --> 00:02:52,300
+Man that gets wrapped around all of our files when we run them through node.
+
+47
+00:02:52,450 --> 00:02:57,230
+In this case by telling V8 to run the main function we are starting the program.
+
+48
+00:02:57,430 --> 00:03:02,320
+The first thing we do in the program is we create a variable x setting an equal to one and that's the
+
+49
+00:03:02,320 --> 00:03:04,000
+first statement that's going to run.
+
+50
+00:03:04,000 --> 00:03:06,750
+Notice it comes in on top of main.
+
+51
+00:03:06,790 --> 00:03:09,010
+Now this statement is going to run creating the variable.
+
+52
+00:03:09,010 --> 00:03:14,500
+Once it's done we can remove it and move on to the next statement where we make the variable y which
+
+53
+00:03:14,500 --> 00:03:23,560
+gets set equal to x which is 1 plus 9 that means y is going to be equal to 10 right here we do that
+
+54
+00:03:23,950 --> 00:03:29,860
+and we move on to the next line the next line is or counseled that live statement cancelled that log
+
+55
+00:03:29,860 --> 00:03:30,430
+is going to print.
+
+56
+00:03:30,440 --> 00:03:32,290
+Why is ten to the screen.
+
+57
+00:03:32,380 --> 00:03:35,050
+We use templates strings to inject the Y variable.
+
+58
+00:03:35,050 --> 00:03:41,430
+Right here when we run this line it gets popped onto the stack and once it's done it gets removed.
+
+59
+00:03:41,440 --> 00:03:46,480
+At this point we've executed all of the statements inside of our program and the program is almost ready
+
+60
+00:03:46,480 --> 00:03:49,060
+to complete the main function is still running.
+
+61
+00:03:49,150 --> 00:03:55,300
+But since the function ends that wrapper function it implicitly returns and when it returns we remove
+
+62
+00:03:55,330 --> 00:03:58,120
+main from the call stack and the program is finished.
+
+63
+00:03:58,120 --> 00:04:02,470
+At this point our node process is closed.
+
+64
+00:04:02,500 --> 00:04:05,740
+Now this is a really basic example using the call stack.
+
+65
+00:04:05,830 --> 00:04:09,800
+We went into the main function and we moved line by line through the program.
+
+66
+00:04:09,880 --> 00:04:15,010
+Before we get into an async example I want to go over one that is slightly more complex.
+
+67
+00:04:15,040 --> 00:04:16,680
+This is example.
+
+68
+00:04:17,020 --> 00:04:22,930
+Here we start off by defining an add function the add function takes arguments A and B it adds them
+
+69
+00:04:22,930 --> 00:04:29,230
+together storing that in a variable called total and it returns total down below we add up 3 and 8 which
+
+70
+00:04:29,230 --> 00:04:29,930
+is 11.
+
+71
+00:04:29,950 --> 00:04:32,010
+Storing it in the r s variable.
+
+72
+00:04:32,050 --> 00:04:34,690
+Then we print out the response and that's it.
+
+73
+00:04:34,690 --> 00:04:36,220
+Nothing synchronous is happening.
+
+74
+00:04:36,280 --> 00:04:38,980
+Once again we just need the call stack.
+
+75
+00:04:39,070 --> 00:04:41,250
+The first thing that happens that shouldn't surprise you.
+
+76
+00:04:41,260 --> 00:04:42,780
+We execute the main function.
+
+77
+00:04:42,790 --> 00:04:45,170
+This starts the program you see right here.
+
+78
+00:04:45,370 --> 00:04:50,290
+Then we go ahead and run the first statement where we define the variable add and we're not actually
+
+79
+00:04:50,320 --> 00:04:53,740
+executing the function we're simply defining it right here.
+
+80
+00:04:53,800 --> 00:04:58,440
+I guess added on to the stack and we define add the next line.
+
+81
+00:04:58,690 --> 00:04:59,770
+Line 7.
+
+82
+00:04:59,770 --> 00:05:05,250
+This is where we call add storing the return value on the response variable.
+
+83
+00:05:05,350 --> 00:05:10,680
+When you call a function it gets added on top of the cost stack when you return from a function.
+
+84
+00:05:10,690 --> 00:05:12,680
+It gets removed from the call stack.
+
+85
+00:05:12,790 --> 00:05:14,840
+Right here we're calling a function.
+
+86
+00:05:15,040 --> 00:05:19,900
+So we're going to add add on to the call stack and we're going to start executing that function as we
+
+87
+00:05:19,900 --> 00:05:20,370
+know.
+
+88
+00:05:20,440 --> 00:05:22,920
+When we added main we started executing main.
+
+89
+00:05:23,020 --> 00:05:30,890
+When we add add we start executing at the first line inside of ADD sets the total variable equal to
+
+90
+00:05:30,950 --> 00:05:32,830
+a plus b which would be 11.
+
+91
+00:05:32,840 --> 00:05:36,720
+Then we return from the function using return total.
+
+92
+00:05:36,980 --> 00:05:38,150
+That's the next statement.
+
+93
+00:05:38,150 --> 00:05:40,460
+And when this runs and it gets removed.
+
+94
+00:05:40,580 --> 00:05:46,680
+So return total finishes add gets removed and then we move on to the final line in the program or console
+
+95
+00:05:46,740 --> 00:05:50,120
+the log statement where we print 11 to the screen.
+
+96
+00:05:50,570 --> 00:05:51,860
+This is going to run.
+
+97
+00:05:52,070 --> 00:05:53,900
+It's going to print 11 to the screen.
+
+98
+00:05:53,990 --> 00:05:54,920
+It's going to finish.
+
+99
+00:05:55,040 --> 00:05:58,680
+And now we're at the end of the main function which gets removed from the stack.
+
+100
+00:05:58,700 --> 00:06:01,470
+When we implicitly return and there we go.
+
+101
+00:06:01,520 --> 00:06:06,860
+The second example of a program running through the V-8 call stack.
+
+102
+00:06:06,860 --> 00:06:11,540
+Now so far we haven't used node API as the callback hewe or the event loop.
+
+103
+00:06:11,540 --> 00:06:18,470
+The next example we're going to use all four and right here we have our async example exactly as we
+
+104
+00:06:18,470 --> 00:06:23,960
+wrote it in the last video in this one we are going to be using the call stack will also be using the
+
+105
+00:06:23,960 --> 00:06:24,990
+node API.
+
+106
+00:06:25,040 --> 00:06:25,760
+The callback.
+
+107
+00:06:25,760 --> 00:06:27,290
+Q And the event loop.
+
+108
+00:06:27,470 --> 00:06:33,550
+All four of these are going to come into play for our asynchronous program know things are going to
+
+109
+00:06:33,550 --> 00:06:35,400
+start off as you might expect.
+
+110
+00:06:35,470 --> 00:06:39,900
+The first thing that happens is we run the main function by adding it onto the call stack.
+
+111
+00:06:39,910 --> 00:06:43,540
+This tells ideate to kick off the code over here on the left.
+
+112
+00:06:43,540 --> 00:06:48,550
+The first statement is really simple a council that log statement that prints starting out to the screen
+
+113
+00:06:48,790 --> 00:06:54,220
+that runs right away and we move on to the second statement the second statement is where things start
+
+114
+00:06:54,220 --> 00:06:59,080
+to get interesting and this is a call to set timeout which is indeed a node API.
+
+115
+00:06:59,080 --> 00:07:01,180
+It's not available inside a V-8.
+
+116
+00:07:01,180 --> 00:07:04,850
+It's something that node gives us access to when we call it.
+
+117
+00:07:04,930 --> 00:07:09,080
+We're actually registering the event callback pair over here.
+
+118
+00:07:09,250 --> 00:07:14,410
+The event is simply to wait two seconds and the callback is the function we provided that first argument
+
+119
+00:07:14,800 --> 00:07:18,760
+when we call that time out it gets registered right over here.
+
+120
+00:07:18,770 --> 00:07:22,070
+Now this statement is going to finish up the call stack is going to move on.
+
+121
+00:07:22,210 --> 00:07:27,060
+And the set time hour is going to start counting down just because this that time is counting down.
+
+122
+00:07:27,060 --> 00:07:30,120
+It doesn't mean the call stack can't continue to do its job.
+
+123
+00:07:30,340 --> 00:07:35,950
+The call stack can only run one thing at a time but we could have events waiting to get processed even
+
+124
+00:07:35,950 --> 00:07:38,260
+when the cost is executing.
+
+125
+00:07:38,260 --> 00:07:41,550
+Now the next statement that runs is the other call to set timeout.
+
+126
+00:07:41,560 --> 00:07:47,530
+Here we register a set time out callback function with a delay of 0 milliseconds and the exact same
+
+127
+00:07:47,530 --> 00:07:48,530
+thing happens.
+
+128
+00:07:48,580 --> 00:07:49,800
+It's a node API.
+
+129
+00:07:49,900 --> 00:07:55,420
+It's going to get registered over here essentially saying hey after zero seconds go ahead and execute
+
+130
+00:07:55,420 --> 00:08:00,900
+this callback that gets registered and the call stack removes that statement.
+
+131
+00:08:00,910 --> 00:08:03,970
+Now at this point let's go ahead and assume that set time out.
+
+132
+00:08:04,060 --> 00:08:07,970
+The one that has zero second delay finishes when it finishes.
+
+133
+00:08:08,050 --> 00:08:10,200
+It's not going to get executed right away.
+
+134
+00:08:10,240 --> 00:08:13,610
+It's going to take that call back and move it down into the callback.
+
+135
+00:08:13,630 --> 00:08:18,550
+Q The callback Q Is all the callback functions that are ready to get fired.
+
+136
+00:08:19,510 --> 00:08:23,440
+Right here we move the function down into the callback queue.
+
+137
+00:08:23,470 --> 00:08:26,730
+Now the callback queue is where our callback functions are going to wait.
+
+138
+00:08:26,770 --> 00:08:30,730
+They need to wait for the call stack to be empty when the stock is empty.
+
+139
+00:08:30,730 --> 00:08:34,150
+We can run the first function does another function after it.
+
+140
+00:08:34,150 --> 00:08:38,110
+We're going to have to wait for that first function to run before the second one does.
+
+141
+00:08:38,230 --> 00:08:42,950
+And this is where the event loop comes into play the event loop takes a look at the call stack.
+
+142
+00:08:43,030 --> 00:08:46,590
+If the call stack is not empty it doesn't do anything because it can't.
+
+143
+00:08:46,690 --> 00:08:47,790
+There is nothing it can do.
+
+144
+00:08:47,790 --> 00:08:51,710
+You can only run one thing at a time if the call stack is empty.
+
+145
+00:08:51,790 --> 00:08:55,820
+The event loop says Great let's go ahead and see if has anything to run right here.
+
+146
+00:08:55,840 --> 00:09:01,090
+There is a callback function but because we don't have an empty call stack the event loop can't run
+
+147
+00:09:01,090 --> 00:09:01,640
+it.
+
+148
+00:09:01,660 --> 00:09:03,590
+So let's move on with the example.
+
+149
+00:09:03,610 --> 00:09:08,050
+The next thing that happens is we run our council that lock statement which prints finishing up to the
+
+150
+00:09:08,050 --> 00:09:08,660
+screen.
+
+151
+00:09:08,700 --> 00:09:11,940
+This is the second thing that shows up in the terminal.
+
+152
+00:09:11,950 --> 00:09:17,890
+This statement runs our main function is complete and it gets removed from the Costic at this point
+
+153
+00:09:18,100 --> 00:09:22,960
+the event loop says hey I see that we have nothing in the call stack and we do have something in the
+
+154
+00:09:22,960 --> 00:09:23,530
+callback.
+
+155
+00:09:23,530 --> 00:09:29,470
+Q So let's go ahead and run that callback function is going to take the callback and move it into the
+
+156
+00:09:29,470 --> 00:09:30,280
+call stack.
+
+157
+00:09:30,280 --> 00:09:32,690
+This means the function is executing.
+
+158
+00:09:32,710 --> 00:09:38,110
+It's going to go ahead and run the first line which is sitting right here on line 8 counsil that log
+
+159
+00:09:38,290 --> 00:09:38,740
+printing.
+
+160
+00:09:38,740 --> 00:09:41,170
+Second set time out to the screen.
+
+161
+00:09:41,170 --> 00:09:47,620
+This is why a second set time out shows up after finishing up because we can't run our call back until
+
+162
+00:09:47,620 --> 00:09:49,300
+the call stack is complete.
+
+163
+00:09:49,390 --> 00:09:53,610
+Since finishing up is part of the main function it's always going to run before.
+
+164
+00:09:53,620 --> 00:09:54,980
+Second set timeout.
+
+165
+00:09:55,210 --> 00:10:01,020
+After our second set time out statement finishes the function is going to implicitly return and call
+
+166
+00:10:01,020 --> 00:10:03,190
+back we'll get removed from the call stack.
+
+167
+00:10:03,250 --> 00:10:06,250
+At this point there's nothing in the call stack and nothing in the callback.
+
+168
+00:10:06,250 --> 00:10:09,230
+Q But there is still something in our node API.
+
+169
+00:10:09,250 --> 00:10:14,980
+We still have an event listener register so the node process is not yet complete.
+
+170
+00:10:14,980 --> 00:10:20,140
+Two seconds later this event is going to fire and it's going to take that callback function and move
+
+171
+00:10:20,140 --> 00:10:23,540
+it into the callback queue it gets removed from the node API.
+
+172
+00:10:23,680 --> 00:10:25,910
+And it gets added to the callback queue.
+
+173
+00:10:26,200 --> 00:10:30,730
+At this point the event loop is going to take a look at the call stack and see it's empty then it's
+
+174
+00:10:30,730 --> 00:10:34,900
+going to take a quick look at the callback queue and see there is indeed something to run.
+
+175
+00:10:34,900 --> 00:10:35,850
+What's it going to do.
+
+176
+00:10:35,860 --> 00:10:41,650
+It's going to take that callback added on to the call stack and start the process of executing it.
+
+177
+00:10:41,650 --> 00:10:47,290
+This means we're going to run our once statement inside of callback after that finishes the callback
+
+178
+00:10:47,290 --> 00:10:49,750
+function implicitly returns.
+
+179
+00:10:49,840 --> 00:10:51,620
+And our program is complete.
+
+180
+00:10:51,670 --> 00:10:54,700
+This is exactly how our program ran.
+
+181
+00:10:54,730 --> 00:10:58,710
+This illustrates how we're able to register our events using known API.
+
+182
+00:10:58,750 --> 00:11:04,420
+And why when we use a set time out of zero the code doesn't run right away and needs to go through the
+
+183
+00:11:04,420 --> 00:11:05,220
+node API.
+
+184
+00:11:05,230 --> 00:11:09,640
+In through the callback queue before it can ever execute on the call stack.
+
+185
+00:11:09,640 --> 00:11:15,010
+Now as I mentioned in the beginning of this video the call stack the node API the callback in the event
+
+186
+00:11:15,010 --> 00:11:17,410
+loop are pretty confusing topics.
+
+187
+00:11:17,410 --> 00:11:21,880
+And the big reason they're confusing is because you never actually directly interact with them.
+
+188
+00:11:21,910 --> 00:11:23,520
+They're happening behind the scenes.
+
+189
+00:11:23,590 --> 00:11:28,920
+You're not calling the callback here you're not firing an event loop method to make these things work.
+
+190
+00:11:28,930 --> 00:11:32,620
+This means you're not aware they exist until someone explains them to you.
+
+191
+00:11:32,620 --> 00:11:37,150
+And now that you know a little bit about how our code executes behind the scenes I want you to move
+
+192
+00:11:37,150 --> 00:11:41,650
+on with the rest of the section and start creating that weather app that interacts with third party
+
+193
+00:11:41,650 --> 00:11:46,470
+API eyes when you're done with the weather app come back and give this one a second viewing.
+
+194
+00:11:46,480 --> 00:11:52,200
+These are topics that are really hard to grasp the first time around by writing real asynchronous code.
+
+195
+00:11:52,210 --> 00:11:54,280
+It's going to become a lot clearer how it works.
+
+196
+00:11:54,280 --> 00:11:56,260
+Then when you come back and re watch this.
+
+197
+00:11:56,260 --> 00:12:00,960
+My hope is that it makes more sense if you have any questions about how this works.
+
+198
+00:12:00,980 --> 00:12:03,490
+Please ask in the Q and A section.
+
+199
+00:12:03,490 --> 00:12:07,870
+It's impossible to cover everything that happens but I've tried to go through a few examples that illustrate
+
+200
+00:12:07,900 --> 00:12:13,740
+how the cost acq note API is the callback queue and the event loop work and that is it for this one.
+
+201
+00:12:13,810 --> 00:12:17,730
+I will see you next time where we start building out the weather application
+

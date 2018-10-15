@@ -1,0 +1,900 @@
+﻿1
+00:00:00,350 --> 00:00:05,430
+In this video you are going to learn a little bit more about how we can configure yards for command
+
+2
+00:00:05,430 --> 00:00:07,390
+line interface applications.
+
+3
+00:00:07,440 --> 00:00:11,670
+We're going to learn how to set up the commands their descriptions and the arguments will be able to
+
+4
+00:00:11,670 --> 00:00:16,580
+set various properties on the arguments like whether or not they're required and others.
+
+5
+00:00:16,590 --> 00:00:21,360
+Now before we get into any of that I do want to pull up the barge docks so you at least know where this
+
+6
+00:00:21,360 --> 00:00:22,720
+information is coming from.
+
+7
+00:00:22,770 --> 00:00:27,410
+You can get it by googling NPM yards.
+
+8
+00:00:27,430 --> 00:00:31,480
+We're going to go to the first page which is the yard's package page on NPM.
+
+9
+00:00:31,480 --> 00:00:34,290
+This has the documentation for yards.
+
+10
+00:00:34,360 --> 00:00:39,570
+Now there is no table of contents for the Yards docks which makes it kind of difficult to navigate.
+
+11
+00:00:39,580 --> 00:00:44,200
+It starts off with some examples that don't go in any particular order and then eventually it gets into
+
+12
+00:00:44,200 --> 00:00:46,420
+a list of all the methods you have available.
+
+13
+00:00:46,450 --> 00:00:47,780
+And that's what we're looking for.
+
+14
+00:00:47,890 --> 00:00:54,840
+So I'm going to use command to search the page for methods and right here we get the methods Hetter.
+
+15
+00:00:54,850 --> 00:00:56,710
+This is the one we're looking for.
+
+16
+00:00:56,710 --> 00:01:01,330
+If you scroll down just a little bit we start to see an alphabetical list of all the methods you have
+
+17
+00:01:01,420 --> 00:01:03,290
+access to inside of yards.
+
+18
+00:01:03,400 --> 00:01:05,840
+And we're looking for dot command.
+
+19
+00:01:05,920 --> 00:01:09,680
+This is the method we can use to configure all four of our commands.
+
+20
+00:01:09,700 --> 00:01:14,950
+We're going to specify which options they require if any and we can also set up things like descriptions
+
+21
+00:01:15,190 --> 00:01:17,350
+and help functionality.
+
+22
+00:01:17,380 --> 00:01:22,210
+Now in order to get started we're going to pull up the terminal obviously and the Adam editor and we
+
+23
+00:01:22,210 --> 00:01:24,630
+need to do is make some changes inside of APTA.
+
+24
+00:01:24,660 --> 00:01:29,600
+Yes this is exactly where we're going to get started and we're going to start with that ad command.
+
+25
+00:01:29,710 --> 00:01:33,610
+We want to add a few helpful pieces of information in here.
+
+26
+00:01:33,760 --> 00:01:39,550
+That's going to one let dogs verify the add command is ran appropriately and to let the user know how
+
+27
+00:01:39,550 --> 00:01:41,910
+the add command is meant to be executed.
+
+28
+00:01:42,250 --> 00:01:48,310
+Now we are going to be changing property calls which means right before I access Arvie I want to call
+
+29
+00:01:48,350 --> 00:01:54,180
+dock command and then I'm going to call are we on the return value from command.
+
+30
+00:01:54,190 --> 00:01:56,230
+Now the syntax probably looks familiar.
+
+31
+00:01:56,290 --> 00:02:01,660
+This chaining syntax if you've used something like Jay query a lot of different libraries support it.
+
+32
+00:02:02,410 --> 00:02:07,670
+Anyways once we call a command on yards we're going to pass in three arguments.
+
+33
+00:02:07,790 --> 00:02:11,780
+The first one is the command name exactly how the user is going to type it in the terminal.
+
+34
+00:02:11,810 --> 00:02:16,520
+In our case it's going to be and then we're going to pass a another string in and this is going to be
+
+35
+00:02:16,520 --> 00:02:22,520
+a description of what the command does some sort of English readable description that a user can read
+
+36
+00:02:22,520 --> 00:02:24,820
+to figure out if that's the command they want to run.
+
+37
+00:02:24,990 --> 00:02:29,000
+Add a new note perfect.
+
+38
+00:02:29,180 --> 00:02:31,400
+The next one is going to be an object.
+
+39
+00:02:31,430 --> 00:02:37,050
+This is going to be the options object that lets us specify what arguments this command requires.
+
+40
+00:02:37,250 --> 00:02:42,750
+Now before we get into the options object let's go ahead and add one more call right after command.
+
+41
+00:02:43,730 --> 00:02:48,290
+We're going to call daat help which is a method so we're going to call it as a function and we don't
+
+42
+00:02:48,290 --> 00:02:55,010
+need to pass in any arguments when we add on this help call it sets up yards to return some really useful
+
+43
+00:02:55,010 --> 00:02:57,050
+information when someone runs the program.
+
+44
+00:02:57,170 --> 00:03:06,500
+For example I can run node app Jap's with the help flag to help flag is added because we call that help
+
+45
+00:03:06,590 --> 00:03:07,180
+method.
+
+46
+00:03:07,370 --> 00:03:10,980
+And when I run the program you can see all of the options we have available.
+
+47
+00:03:11,000 --> 00:03:16,970
+We have one command add add and you know and we have a Help option for the current command which is
+
+48
+00:03:16,970 --> 00:03:18,190
+nothing it's just help.
+
+49
+00:03:18,410 --> 00:03:21,990
+And the same thing holds true if we do node apps.
+
+50
+00:03:22,140 --> 00:03:22,620
+Yes.
+
+51
+00:03:22,670 --> 00:03:29,970
+And with that here we can view all of the options and arguments for ADD which in this case happens to
+
+52
+00:03:29,970 --> 00:03:32,110
+be none because we haven't set those up.
+
+53
+00:03:32,130 --> 00:03:37,680
+Let's go ahead and do that back inside of Adam in order to add properties.
+
+54
+00:03:37,680 --> 00:03:43,220
+We're going to update this options object where the key is the property name whether it's title or body
+
+55
+00:03:43,440 --> 00:03:48,900
+and the value is another object that lets us specify how that property should work.
+
+56
+00:03:48,900 --> 00:03:54,510
+So in the case of title we would add title on the left and we would put our options object on the right
+
+57
+00:03:54,760 --> 00:03:57,690
+inside of here we are going to configure three properties.
+
+58
+00:03:57,760 --> 00:03:59,830
+Describe Let's do that one first.
+
+59
+00:03:59,830 --> 00:04:06,080
+It's super simple describe describe is going to get set equal to a string and this is going to describe
+
+60
+00:04:06,110 --> 00:04:10,430
+what is supposed to be passed in and for the title in this case we can just use title
+
+61
+00:04:14,380 --> 00:04:18,110
+awesome now after described as in place we can go ahead and configure it.
+
+62
+00:04:18,110 --> 00:04:23,250
+Demand demand is going to tell Yarg whether or not this argument is required.
+
+63
+00:04:23,350 --> 00:04:25,170
+Demand is false by default.
+
+64
+00:04:25,180 --> 00:04:28,690
+We're going to go ahead and set it to true demand.
+
+65
+00:04:28,840 --> 00:04:29,700
+True.
+
+66
+00:04:29,800 --> 00:04:34,540
+Now if someone tries to run the ad command without the title it's going to fail and we can prove this
+
+67
+00:04:34,750 --> 00:04:40,360
+we can save apparat J.S. and over in the terminal we can rerun our previous command removing the help
+
+68
+00:04:40,360 --> 00:04:41,150
+flag.
+
+69
+00:04:41,260 --> 00:04:45,830
+And when I do that you see we get a warning missing required argument title.
+
+70
+00:04:46,090 --> 00:04:51,610
+Right here you see the title argument we have the title of note which is the describe string we used
+
+71
+00:04:51,820 --> 00:04:56,050
+and it's required on the right letting you know that you have to provide a title when you're calling
+
+72
+00:04:56,050 --> 00:04:57,970
+that add a command.
+
+73
+00:04:57,970 --> 00:05:02,560
+Now along with describe end demand we are going to be providing a third option.
+
+74
+00:05:02,590 --> 00:05:10,190
+This is called Aliase alias lets you provide a shortcut so you don't have to type hyphen hyphen title.
+
+75
+00:05:10,260 --> 00:05:13,860
+You can set the alias equal to a single character like ti.
+
+76
+00:05:13,980 --> 00:05:18,580
+When you do that you can now run the command in the terminal using the new syntax.
+
+77
+00:05:18,750 --> 00:05:26,490
+Let's go ahead and run our ad command node app that at instead of hyphen hyphen title.
+
+78
+00:05:26,490 --> 00:05:31,380
+We're going to use hyphen title which is the flag version and we can set that equal to whatever we like.
+
+79
+00:05:31,500 --> 00:05:38,780
+Flag title will be the title and hyphen hyphen body will get set equal to body.
+
+80
+00:05:38,840 --> 00:05:41,970
+We haven't set up the body argument yet so there is no alias.
+
+81
+00:05:41,990 --> 00:05:44,780
+But if I run this command everything works as expected.
+
+82
+00:05:44,810 --> 00:05:47,360
+The flag title shows up right where it should.
+
+83
+00:05:47,390 --> 00:05:50,950
+Even though we use the alias version which is the letter T.
+
+84
+00:05:51,050 --> 00:05:56,630
+Now that we have our title configured we can do the exact same thing for body.
+
+85
+00:05:56,670 --> 00:05:59,600
+We're going to specify our options object right here.
+
+86
+00:05:59,640 --> 00:06:02,010
+And we can provide those three arguments.
+
+87
+00:06:02,040 --> 00:06:06,550
+What I would like you to do is set up describe demand an alias for a body.
+
+88
+00:06:06,770 --> 00:06:08,430
+So describe equal to whatever you like.
+
+89
+00:06:08,460 --> 00:06:14,850
+Something like the body of note said demand equal to true and set the Aliase equal to the letter B.
+
+90
+00:06:14,970 --> 00:06:21,060
+Then over in the terminal run the help command to make sure that the body shows up like title did right
+
+91
+00:06:21,060 --> 00:06:21,670
+here.
+
+92
+00:06:22,170 --> 00:06:28,080
+Then go ahead and run ad with the body argument but use the short cut version of the b flag.
+
+93
+00:06:28,170 --> 00:06:29,880
+Take a moment to knock that out.
+
+94
+00:06:29,940 --> 00:06:33,980
+Run the commands from the terminal and when you're done go ahead and click play.
+
+95
+00:06:37,940 --> 00:06:38,520
+How to go.
+
+96
+00:06:38,600 --> 00:06:42,860
+Hopefully you didn't have too much trouble getting those three options set up.
+
+97
+00:06:42,860 --> 00:06:45,310
+The first one is describe and that one's pretty easy.
+
+98
+00:06:45,440 --> 00:06:48,500
+Describe is going to get set equal to a string.
+
+99
+00:06:48,500 --> 00:06:53,430
+And in this case body of note will get the job done.
+
+100
+00:06:53,450 --> 00:06:54,680
+Next step is going to be demand.
+
+101
+00:06:54,690 --> 00:06:57,020
+And to add a note we are going to need a body.
+
+102
+00:06:57,110 --> 00:07:00,130
+So we're going to set demand equal to true.
+
+103
+00:07:00,410 --> 00:07:07,150
+Just like we do up above for title and last but not least is the Illyas the alias is going to get set
+
+104
+00:07:07,150 --> 00:07:08,530
+equal to a single letter.
+
+105
+00:07:08,560 --> 00:07:11,950
+I'm going to use the letter B for body with this in place.
+
+106
+00:07:12,070 --> 00:07:19,550
+We can now save apparat J S and over inside of the terminal we can take a moment to rerun node after
+
+107
+00:07:19,710 --> 00:07:24,040
+J.S. ad with the help flag when we run this command.
+
+108
+00:07:24,040 --> 00:07:29,140
+We should now see the body argument showing up and you can even see it shows the flag version right
+
+109
+00:07:29,140 --> 00:07:31,990
+here the Aliase hyphen B body of note.
+
+110
+00:07:32,030 --> 00:07:33,130
+And it is required.
+
+111
+00:07:33,130 --> 00:07:34,870
+Everything looks great.
+
+112
+00:07:34,870 --> 00:07:43,070
+Now I'm going to go ahead and run add node abduct Jap's add passing in two arguments.
+
+113
+00:07:43,510 --> 00:07:49,600
+I'm going to set that equal to T and B setting an equal to B when I run the command.
+
+114
+00:07:49,600 --> 00:07:51,290
+Everything works as expected.
+
+115
+00:07:51,310 --> 00:07:55,300
+A new note was created with a title of tea and a body of B.
+
+116
+00:07:55,420 --> 00:07:56,440
+Were this in place.
+
+117
+00:07:56,440 --> 00:08:00,240
+We've now successfully completed the set up for the add command.
+
+118
+00:08:00,400 --> 00:08:01,840
+We have our ad command title.
+
+119
+00:08:01,870 --> 00:08:08,500
+We have a description and we have the block that specifies the arguments for that command now we do
+
+120
+00:08:08,500 --> 00:08:11,100
+have three more commands to add support for us.
+
+121
+00:08:11,110 --> 00:08:14,900
+Let's go ahead and get started doing that on the next line.
+
+122
+00:08:14,920 --> 00:08:19,050
+I'm going to call it Doc command again passing in the command name.
+
+123
+00:08:19,060 --> 00:08:22,080
+Let's go ahead and do the LIST command first because that one's really easy.
+
+124
+00:08:22,090 --> 00:08:28,510
+No arguments are required then we're going to pass in the description for the list command list all
+
+125
+00:08:28,720 --> 00:08:29,520
+notes.
+
+126
+00:08:29,710 --> 00:08:30,880
+Excellent.
+
+127
+00:08:30,880 --> 00:08:33,110
+Next up we're going to call a command again.
+
+128
+00:08:35,220 --> 00:08:40,740
+This time we'll do the command for read read reads an individual note.
+
+129
+00:08:40,840 --> 00:08:46,900
+So for the description for the read command will you something like read a note.
+
+130
+00:08:47,040 --> 00:08:50,440
+Now the read command does require the title argument.
+
+131
+00:08:50,490 --> 00:08:53,770
+That means we are going to need to provide that options object.
+
+132
+00:08:53,910 --> 00:08:58,860
+And I'm going to take title from up above copy and paste it below.
+
+133
+00:08:58,860 --> 00:09:04,960
+Now as you probably just noticed we have repeated code the title configuration just got copy and pasted
+
+134
+00:09:04,980 --> 00:09:06,230
+into multiple places.
+
+135
+00:09:06,270 --> 00:09:11,250
+It would be pretty nice if this was dry if it was in one variable we could reference in both locations
+
+136
+00:09:11,310 --> 00:09:13,830
+right here and right here.
+
+137
+00:09:13,980 --> 00:09:16,560
+Now this is going to be your challenge for the video.
+
+138
+00:09:16,560 --> 00:09:19,980
+What I want you to do is fill out the remove command.
+
+139
+00:09:19,980 --> 00:09:21,060
+Call it a command.
+
+140
+00:09:21,120 --> 00:09:24,510
+That means are going to set up remove the description and the options.
+
+141
+00:09:24,510 --> 00:09:28,800
+It only requires the title so the options are going to look identical to what we have here for.
+
+142
+00:09:28,800 --> 00:09:32,780
+Read then what I'd like you to do is pull the body object.
+
+143
+00:09:32,790 --> 00:09:38,150
+What I have highlighted right here and the title object right here in two separate variables that get
+
+144
+00:09:38,210 --> 00:09:45,070
+defined up above and you can reference title options and body options inside of the command arguments.
+
+145
+00:09:45,150 --> 00:09:52,200
+Right here you would put title options like this and right here you would put body options.
+
+146
+00:09:52,360 --> 00:09:55,830
+Now I'm going to undo that so we have the working code in place.
+
+147
+00:09:55,960 --> 00:10:00,880
+You can do the same thing for read read only has the title so you only need to reference the title options
+
+148
+00:10:00,940 --> 00:10:05,090
+variable and remove which you're going to add only uses the title as well.
+
+149
+00:10:05,110 --> 00:10:10,030
+So you just need to add the title setting it equal to title options.
+
+150
+00:10:10,060 --> 00:10:14,790
+Now since we've added these other commands we've actually gotten access to more help features.
+
+151
+00:10:14,920 --> 00:10:16,340
+If I run node apps.
+
+152
+00:10:16,410 --> 00:10:20,490
+J.S. with help you can see our other commands have shown up.
+
+153
+00:10:20,520 --> 00:10:24,410
+So once you're done with the challenge make sure remove shows up here as well.
+
+154
+00:10:24,480 --> 00:10:26,050
+Then try to remove a note.
+
+155
+00:10:26,070 --> 00:10:31,210
+Use the alias for title and use the regular version for title which is hyphen hyphen title.
+
+156
+00:10:31,260 --> 00:10:36,420
+Making sure everything still works as expected takes some time to knock that out.
+
+157
+00:10:36,420 --> 00:10:38,620
+That means you're going to call command for remove.
+
+158
+00:10:38,700 --> 00:10:43,650
+Set up its arguments and then you're going to move these objects one to three and the fourth one that
+
+159
+00:10:43,650 --> 00:10:49,230
+you're going to create out into separate variables that can get referenced everywhere they required.
+
+160
+00:10:49,230 --> 00:10:50,060
+All right.
+
+161
+00:10:50,070 --> 00:10:50,760
+Pause the video.
+
+162
+00:10:50,760 --> 00:10:57,070
+Knock that out and when you're done click play.
+
+163
+00:10:57,100 --> 00:10:57,970
+How'd you do.
+
+164
+00:10:57,970 --> 00:11:01,690
+I know I left this one a little open ended but that's the goal of these challenges.
+
+165
+00:11:01,780 --> 00:11:07,390
+As the course progresses I want you to make more decisions about how things are done now in order to
+
+166
+00:11:07,390 --> 00:11:07,930
+get started.
+
+167
+00:11:07,930 --> 00:11:11,270
+We are going to call command because there really is no way around that.
+
+168
+00:11:11,440 --> 00:11:14,170
+Just below where we call the command for read.
+
+169
+00:11:14,350 --> 00:11:17,570
+I'll call command again this time for remove.
+
+170
+00:11:17,770 --> 00:11:20,060
+Now the roof command is going to have a description.
+
+171
+00:11:20,110 --> 00:11:26,530
+We'll stick with something simple like remove a note and we are going to be providing a Options object
+
+172
+00:11:27,810 --> 00:11:34,240
+and in that options object I'm going to set title equal to title options.
+
+173
+00:11:34,270 --> 00:11:36,400
+Now I don't have title options created yet.
+
+174
+00:11:36,400 --> 00:11:41,920
+So the code would currently fail but the general idea we want to create the title options object once
+
+175
+00:11:42,130 --> 00:11:44,630
+and reference it in all the locations we use it.
+
+176
+00:11:45,010 --> 00:11:53,020
+I can take title options and add it here for read title options and up above for ADD.
+
+177
+00:11:53,080 --> 00:12:00,040
+I can cut out the object putting it in the clipboard and I can replace it with title options.
+
+178
+00:12:00,040 --> 00:12:07,820
+Now up above I can create a constant called Title options and I can set it equal to that object that
+
+179
+00:12:07,820 --> 00:12:09,460
+I just cut out to the clipboard.
+
+180
+00:12:10,870 --> 00:12:16,170
+Right here we now have the title options in place and this is going to work as expected.
+
+181
+00:12:16,180 --> 00:12:22,390
+We have the exact same functionality we did before but we now have the title options in a separate object.
+
+182
+00:12:22,390 --> 00:12:24,460
+Now we could also do the same thing for a body.
+
+183
+00:12:24,460 --> 00:12:29,380
+It might seem like overkill since we're only using it in one location but if we're sticking to the pattern
+
+184
+00:12:29,560 --> 00:12:32,980
+of breaking that out into variables I'm going to do it here as well.
+
+185
+00:12:33,010 --> 00:12:38,650
+I'm going to cut it out adding it to the clipboard and I'm going to reference body options now up above
+
+186
+00:12:39,040 --> 00:12:44,390
+I can create that constant body actions steady and equal to the object.
+
+187
+00:12:44,390 --> 00:12:50,990
+I just cut out and with this in place we are now done we have ADD read and remove all with their arguments
+
+188
+00:12:50,990 --> 00:12:54,540
+set up referencing the variables defined above.
+
+189
+00:12:54,710 --> 00:12:57,880
+With this in place let's go ahead and test out that remove command.
+
+190
+00:12:57,920 --> 00:13:04,930
+I'm going to list out my notes using node mapped out James list so I can see which notes I have to remove.
+
+191
+00:13:05,000 --> 00:13:09,770
+I'm going to go ahead and remove the note with the title of flag title and the note with the title of
+
+192
+00:13:09,800 --> 00:13:12,520
+t using Knode opt out.
+
+193
+00:13:12,560 --> 00:13:12,980
+Yes.
+
+194
+00:13:12,980 --> 00:13:14,120
+Remove.
+
+195
+00:13:14,120 --> 00:13:15,780
+Let's go ahead and use our flag.
+
+196
+00:13:15,780 --> 00:13:19,640
+First Tee we're going to remove the note with a title of T.
+
+197
+00:13:21,100 --> 00:13:21,760
+And then we go.
+
+198
+00:13:21,760 --> 00:13:24,200
+Note was removed Prince to the screen.
+
+199
+00:13:24,280 --> 00:13:28,660
+And if I use the up arrow key twice I can list the notes out again.
+
+200
+00:13:28,750 --> 00:13:32,210
+And you can see the note with the title of T is indeed gone.
+
+201
+00:13:32,260 --> 00:13:35,600
+Let's go ahead and remove one more note using note after J.
+
+202
+00:13:35,620 --> 00:13:35,920
+Yes.
+
+203
+00:13:35,950 --> 00:13:41,530
+Remove this time and we're going to use hyphen hyphen title which is the argument name and the note
+
+204
+00:13:41,530 --> 00:13:45,970
+we're going to remove has a title of flag title.
+
+205
+00:13:46,100 --> 00:13:48,520
+When I remove it it says no it was removed.
+
+206
+00:13:48,620 --> 00:13:52,460
+And if I rerun the list command I can see that we have three notes left.
+
+207
+00:13:52,460 --> 00:13:57,730
+The note was indeed removed and that is it for the notes application.
+
+208
+00:13:57,980 --> 00:14:03,110
+In this application we learned a lot of new things we learned how to create command line tools we learned
+
+209
+00:14:03,110 --> 00:14:09,020
+how to use third party modules how to use global modules and how to create our own files like notes
+
+210
+00:14:09,080 --> 00:14:12,970
+dodgiest that have functions we can use inside of our application.
+
+211
+00:14:12,980 --> 00:14:17,870
+We also took a look at how we can access the file system which is exactly what we did with our notes
+
+212
+00:14:17,960 --> 00:14:18,710
+data.
+
+213
+00:14:18,800 --> 00:14:24,860
+Jason File here we used a couple of functions to encode our Jason data save in a file and then read
+
+214
+00:14:24,860 --> 00:14:30,290
+it out when someone ran the command that let us store data in the file system.
+
+215
+00:14:30,290 --> 00:14:35,110
+And when I run a command like node at HHS list fetch that data back.
+
+216
+00:14:35,300 --> 00:14:41,730
+That is the end of this video and it is the end of the notes application the notes app is a great start.
+
+217
+00:14:41,780 --> 00:14:46,340
+We learned the basics of node but now it's time to learn more about asynchronous programming and how
+
+218
+00:14:46,340 --> 00:14:49,000
+we can fetch data from third party API.
+
+219
+00:14:49,130 --> 00:14:51,930
+That is the big topic of the next section.
+
+220
+00:14:51,950 --> 00:14:56,420
+I'll see you in the next video where we're going to go over aero functions in more detail it's still
+
+221
+00:14:56,420 --> 00:15:00,530
+going to be part of the notes application although we won't be updating the app itself.
+
+222
+00:15:00,650 --> 00:15:05,510
+We're going to work in the playground folder to explore how aero functions are different from the regular
+
+223
+00:15:05,510 --> 00:15:08,090
+E.S. 5 functions you're probably used to.
+
+224
+00:15:08,090 --> 00:15:08,660
+Stay tuned.
+
+225
+00:15:08,670 --> 00:15:10,220
+I will see you then.
+

@@ -1,0 +1,1124 @@
+﻿1
+00:00:00,420 --> 00:00:06,300
+In this video we are going to use Yarg as a third party NPM manual to make the process of parsing a
+
+2
+00:00:06,300 --> 00:00:07,740
+much much easier.
+
+3
+00:00:07,770 --> 00:00:12,840
+It's going to let us access things like title and body information without needing to write a manual
+
+4
+00:00:12,840 --> 00:00:13,710
+parser.
+
+5
+00:00:13,710 --> 00:00:16,890
+This is a great example of when you should look for NPM module.
+
+6
+00:00:16,950 --> 00:00:20,760
+We're about to write some really boring code if we don't use a module.
+
+7
+00:00:20,760 --> 00:00:25,890
+It's much more productive for our node application to use a third party module that has been tested
+
+8
+00:00:26,040 --> 00:00:28,890
+and thoroughly vetted now to get started.
+
+9
+00:00:28,890 --> 00:00:33,570
+We're going to install the module then we'll add it into the project parsing for things like the title
+
+10
+00:00:33,570 --> 00:00:37,880
+on the body and we'll call all the functions that are going to get defined over and notes.
+
+11
+00:00:38,130 --> 00:00:38,700
+Yes.
+
+12
+00:00:38,730 --> 00:00:42,340
+If the command is add we'll call add note so on and so forth.
+
+13
+00:00:43,270 --> 00:00:46,890
+To get started we can go view the docs page for yards.
+
+14
+00:00:46,900 --> 00:00:49,550
+It's always a good idea to know what you're getting yourself into.
+
+15
+00:00:49,870 --> 00:00:50,830
+If you google.
+
+16
+00:00:50,860 --> 00:00:52,360
+It should be the first result.
+
+17
+00:00:52,480 --> 00:00:59,140
+Here we have the get home page for the Yards library no yards is a very complex library.
+
+18
+00:00:59,170 --> 00:01:04,420
+It has a ton of features for validating all sorts of input and it has different ways you can format
+
+19
+00:01:04,420 --> 00:01:05,530
+that input.
+
+20
+00:01:05,530 --> 00:01:11,020
+We are going to start with a very basic example although we will be introducing more complex examples
+
+21
+00:01:11,110 --> 00:01:12,830
+throughout this section.
+
+22
+00:01:12,850 --> 00:01:17,320
+For now though this is the docs and if you want to look at any other features that we don't discuss
+
+23
+00:01:17,320 --> 00:01:20,470
+in the section or you just want to see how something works.
+
+24
+00:01:20,470 --> 00:01:21,420
+We have talked about.
+
+25
+00:01:21,460 --> 00:01:22,570
+You can always find that here.
+
+26
+00:01:23,720 --> 00:01:28,340
+But we're going to do though is move into the terminal to install this module inside of our application
+
+27
+00:01:28,700 --> 00:01:33,190
+that's going to get done using NPM install followed by the module name.
+
+28
+00:01:33,230 --> 00:01:35,420
+Why a large Yes yards.
+
+29
+00:01:35,540 --> 00:01:41,000
+And in this case I'm going to use the at sign to specify a specific version of the module I want to
+
+30
+00:01:41,000 --> 00:01:47,360
+use in this case for point seven point 7.1 which is the most recent version at the time this video was
+
+31
+00:01:47,360 --> 00:01:49,040
+filmed throughout the course.
+
+32
+00:01:49,160 --> 00:01:53,910
+I will be using version numbers on some modules in case they change down the line.
+
+33
+00:01:53,990 --> 00:01:58,130
+I want to make sure the videos still work after you go through the videos.
+
+34
+00:01:58,130 --> 00:02:02,390
+You can always update to the latest versions of the modules to check it out.
+
+35
+00:02:02,400 --> 00:02:04,920
+There's no breaking changes if there is no breaking changes.
+
+36
+00:02:04,930 --> 00:02:05,530
+Great.
+
+37
+00:02:05,550 --> 00:02:07,370
+Stan the latest version if there's not.
+
+38
+00:02:07,400 --> 00:02:08,890
+Go ahead and revert.
+
+39
+00:02:08,900 --> 00:02:09,650
+For now though.
+
+40
+00:02:09,740 --> 00:02:12,660
+Go ahead and use a four point seven point one.
+
+41
+00:02:12,920 --> 00:02:16,860
+I'm going to add the save flag which as we know updates the package.
+
+42
+00:02:16,880 --> 00:02:18,360
+Jason File.
+
+43
+00:02:18,410 --> 00:02:23,250
+If I leave off the saved flag yards is going to get installed into the node modules folder.
+
+44
+00:02:23,260 --> 00:02:29,390
+But if we wipe that node modules folder later and run NPM install yours won't get reinstalled because
+
+45
+00:02:29,390 --> 00:02:31,900
+it's not listed in the package on Chaisson fine.
+
+46
+00:02:32,090 --> 00:02:36,560
+This is why we use the save flag.
+
+47
+00:02:36,760 --> 00:02:42,620
+And now that uninstalling yards we can move over into atom inside of apparat genius and get started
+
+48
+00:02:42,620 --> 00:02:44,980
+using it and the basics of yards.
+
+49
+00:02:45,080 --> 00:02:49,120
+The very core of its feature set is really simple to take advantage of.
+
+50
+00:02:49,160 --> 00:02:51,410
+The first thing we're going to do is require it up above.
+
+51
+00:02:51,440 --> 00:03:00,660
+Just like we did FS and lo dash lets make a constant and call it Yard's setting an equal to you guessed
+
+52
+00:03:00,660 --> 00:03:03,710
+it require yards.
+
+53
+00:03:07,000 --> 00:03:11,390
+From here we can go ahead and fetch the arguments as your EXE parses them.
+
+54
+00:03:11,530 --> 00:03:17,290
+It's taking the same process dot org V array but it's going behind the scenes and parsing it giving
+
+55
+00:03:17,290 --> 00:03:24,250
+us something that's much more useful than what node gives us up above just above my command variable.
+
+56
+00:03:24,340 --> 00:03:30,120
+We can make a concept called art the setting is equal to yards.
+
+57
+00:03:30,210 --> 00:03:36,640
+V Yarg Scott are vi is where the args library stores its version of the arguments that your app ran
+
+58
+00:03:36,640 --> 00:03:38,080
+with.
+
+59
+00:03:38,090 --> 00:03:40,450
+Now we can go ahead and print it out down below.
+
+60
+00:03:40,550 --> 00:03:47,450
+And this is going to let us take a look at process darg V and the yards are v variable and we can compare
+
+61
+00:03:47,450 --> 00:03:55,240
+them and see how yours differs for the command where we use cancel dialog to print process r v.
+
+62
+00:03:55,450 --> 00:04:01,510
+I'm going to make the first argument is string called process so we can differentiate it in the terminal.
+
+63
+00:04:01,710 --> 00:04:03,260
+We're going to call cancel that log.
+
+64
+00:04:03,260 --> 00:04:09,270
+Again the first argument is going to be the string yards and the second one will be the actual are the
+
+65
+00:04:09,270 --> 00:04:11,970
+variable which comes from Yorke's.
+
+66
+00:04:11,970 --> 00:04:17,170
+Now we can go ahead and run our app a few different ways and see how these two differ.
+
+67
+00:04:17,170 --> 00:04:20,110
+First up we're going to run node app.
+
+68
+00:04:20,210 --> 00:04:27,010
+J.S. with the add command and we can run this very basic example and we already know what the process
+
+69
+00:04:27,030 --> 00:04:28,810
+dot org VRA looks like.
+
+70
+00:04:28,810 --> 00:04:32,300
+The useful information is this third string inside of the array which is.
+
+71
+00:04:32,300 --> 00:04:37,500
+And down below on the other hand yardages gives us an object that looks very different.
+
+72
+00:04:37,510 --> 00:04:39,950
+Here we have the underscore property.
+
+73
+00:04:39,970 --> 00:04:43,680
+This is where commands like ad are stored.
+
+74
+00:04:43,690 --> 00:04:53,000
+If I were to add another command like add and I work out a modifier like encrypted you can see that
+
+75
+00:04:53,000 --> 00:04:55,980
+ad is the first argument and encrypted is the second.
+
+76
+00:04:56,240 --> 00:04:58,960
+Now so far yours really isn't shining.
+
+77
+00:04:59,150 --> 00:05:04,190
+This isn't much more useful than what we have up above where it really shines is when we start passing
+
+78
+00:05:04,190 --> 00:05:11,510
+in key value pairs like that title example we used in the last video I can set my title equal to secrets
+
+79
+00:05:13,280 --> 00:05:14,040
+that enter.
+
+80
+00:05:14,140 --> 00:05:17,980
+And this time around we get something much more useful up above.
+
+81
+00:05:17,980 --> 00:05:23,370
+We have a string that we would need to parse in order to fetch the value and the key down below.
+
+82
+00:05:23,470 --> 00:05:29,110
+We actually have a title property with a value of secrets and yards has built in parsing for all the
+
+83
+00:05:29,110 --> 00:05:31,050
+different ways you could specify this.
+
+84
+00:05:31,120 --> 00:05:37,170
+We can put a space after title and it still works just as it did before we could add quotes around secrets.
+
+85
+00:05:37,180 --> 00:05:46,100
+Adding another word like secrets from Andrew and it parses it correctly setting the title prop to the
+
+86
+00:05:46,100 --> 00:05:46,650
+string.
+
+87
+00:05:46,650 --> 00:05:48,250
+Secrets from Andrew.
+
+88
+00:05:48,290 --> 00:05:50,810
+This is where yours really shines.
+
+89
+00:05:50,810 --> 00:05:54,100
+It makes the process of parsing your arguments much much easier.
+
+90
+00:05:54,110 --> 00:05:59,630
+That means over inside of our app we can take advantage of that parsing calling the proper functions.
+
+91
+00:05:59,690 --> 00:06:01,520
+Let's take ad for example.
+
+92
+00:06:01,850 --> 00:06:06,950
+Once the ad command gets called We want to call a function defined in notes that's going to be responsible
+
+93
+00:06:06,950 --> 00:06:12,660
+for actually adding the note notes don't add a note it's going to get the job done.
+
+94
+00:06:13,010 --> 00:06:16,070
+And what do we want to pass to add note you want to pass in two things.
+
+95
+00:06:16,070 --> 00:06:27,240
+The title which is accessible on our the title as we saw here and the body are the dot body.
+
+96
+00:06:27,410 --> 00:06:31,720
+Currently these command line arguments title and body are required.
+
+97
+00:06:31,740 --> 00:06:37,140
+So technically the user could run the application without one of them which would cause it to crash.
+
+98
+00:06:37,140 --> 00:06:40,130
+But in the future it will be requiring both of these.
+
+99
+00:06:40,350 --> 00:06:45,300
+Now that we in this in place we can remove our console that live statement which was just a placeholder
+
+100
+00:06:45,570 --> 00:06:49,800
+and we can move into the Notes application inside of notes.
+
+101
+00:06:49,840 --> 00:06:54,550
+I'm going to wipe what we have so far since it was just a basic example and we're going to get started
+
+102
+00:06:54,550 --> 00:06:59,970
+by making a variable with the same name as the method we used over and after.
+
+103
+00:07:00,030 --> 00:07:06,070
+Yes no note and it's going to get set equal to an anonymous arrow function just like this.
+
+104
+00:07:06,070 --> 00:07:11,560
+Now this alone isn't too useful because we're not exporting the ad note function down below.
+
+105
+00:07:11,560 --> 00:07:15,260
+We can define a module that exports in a slightly different way.
+
+106
+00:07:15,520 --> 00:07:19,250
+In the past we added properties onto exports to export them.
+
+107
+00:07:19,300 --> 00:07:23,020
+We can actually define an entire object that gets set to exports.
+
+108
+00:07:23,080 --> 00:07:31,780
+And in this case we can set add note equal to the ADD note function defined up above now any six there's
+
+109
+00:07:31,790 --> 00:07:33,460
+actually a shortcut for this.
+
+110
+00:07:33,620 --> 00:07:38,870
+When you're selling an object attribute and a value that's a variable and they're both exactly the same.
+
+111
+00:07:38,870 --> 00:07:43,750
+You can actually leave off the colon and the value that this is identical.
+
+112
+00:07:43,850 --> 00:07:50,270
+Here we're setting an object equal to module that exports the object has a property add note which points
+
+113
+00:07:50,360 --> 00:07:52,270
+to the ADD note function above.
+
+114
+00:07:52,340 --> 00:08:00,050
+Once again this and this are identical inside of ESX we are going to be using the e-s six syntax for
+
+115
+00:08:00,050 --> 00:08:02,850
+everything throughout this course.
+
+116
+00:08:02,860 --> 00:08:09,080
+Now I can take my two arguments title and body and actually do something with them.
+
+117
+00:08:09,310 --> 00:08:13,900
+In this case we're not going to be modifying the database just yet although we are getting pretty close
+
+118
+00:08:14,230 --> 00:08:14,820
+for now.
+
+119
+00:08:14,890 --> 00:08:23,300
+But we're going to do is call console dot log adding note passing in the two arguments as the second
+
+120
+00:08:23,330 --> 00:08:28,380
+and third argument to console dot Lague title and body.
+
+121
+00:08:28,460 --> 00:08:33,590
+And now we're in a pretty good position to run the ad command with title and body and see if we get
+
+122
+00:08:33,590 --> 00:08:39,580
+exactly what we'd expect which is this console that live statement to print over in the terminal we
+
+123
+00:08:39,580 --> 00:08:46,480
+can start by running the app with the node then specify the file name we're going to use the ad command
+
+124
+00:08:46,480 --> 00:08:52,020
+which will run the appropriate function then we're going to pass and title setting an equal to secret
+
+125
+00:08:53,070 --> 00:08:58,830
+and we can pass in a body which is going to be our second command line argument setting that equal to
+
+126
+00:08:58,830 --> 00:09:07,390
+a string and since I'm going to have some spaces this is my secret right here we have specified three
+
+127
+00:09:07,390 --> 00:09:13,570
+things the command ad in the title argument which gets set to secret and to the body argument which
+
+128
+00:09:13,570 --> 00:09:17,810
+gets set to this is my secret if all goes well we'll get the appropriate log.
+
+129
+00:09:18,000 --> 00:09:21,880
+Let's run the command and right here you can see adding note.
+
+130
+00:09:22,030 --> 00:09:23,950
+We have secret which is the title.
+
+131
+00:09:24,040 --> 00:09:29,680
+And this is my secret which is the body and this log is the one we have to find right here which is
+
+132
+00:09:29,680 --> 00:09:30,880
+fantastic.
+
+133
+00:09:30,970 --> 00:09:35,070
+With us in place we don't have one of our methods set up and ready to go.
+
+134
+00:09:35,140 --> 00:09:38,840
+The next thing we're going to do is convert the other ones we have list.
+
+135
+00:09:38,860 --> 00:09:40,810
+We have read and we have remove.
+
+136
+00:09:40,960 --> 00:09:44,390
+Let's do one more together and then you'll do the other two by yourself.
+
+137
+00:09:45,180 --> 00:09:47,400
+Now the list command is right here.
+
+138
+00:09:47,400 --> 00:09:55,170
+I'm going to remove the console log statement and call notes dot get all at some point get all is going
+
+139
+00:09:55,170 --> 00:09:56,780
+to return all of the notes.
+
+140
+00:09:56,790 --> 00:09:59,480
+Now once again this is not wired up.
+
+141
+00:09:59,660 --> 00:10:04,760
+Now get all doesn't take any arguments since it's going to return all of the notes regardless of the
+
+142
+00:10:04,760 --> 00:10:11,260
+title the read command is going to require a title and remove will also require the title of the note.
+
+143
+00:10:11,300 --> 00:10:12,330
+You want to remove.
+
+144
+00:10:12,410 --> 00:10:16,980
+For now though we can create the get all function over inside of nodes.
+
+145
+00:10:17,060 --> 00:10:19,140
+We're going to go through that process again.
+
+146
+00:10:19,190 --> 00:10:25,490
+We're going to start by making a variable calling it get all and setting an equal to an arrow function
+
+147
+00:10:26,060 --> 00:10:29,530
+which we've used before we start with our arguments list.
+
+148
+00:10:29,780 --> 00:10:34,820
+Then we set up the arrow which is the equal sign and the greater than sign then we specify the statements
+
+149
+00:10:34,820 --> 00:10:37,370
+we want to run inside of our code block.
+
+150
+00:10:37,460 --> 00:10:44,440
+We're going to run a console log getting all notes.
+
+151
+00:10:44,710 --> 00:10:50,890
+The last step to the process after adding that semi-colon is going to be to add get all to the experts
+
+152
+00:10:51,640 --> 00:10:52,090
+here.
+
+153
+00:10:52,090 --> 00:10:54,790
+We can use get all just like this.
+
+154
+00:10:54,940 --> 00:10:57,620
+And what we have here is identical to this.
+
+155
+00:10:57,700 --> 00:11:04,360
+Remember in Essex if you have a property whose name is identical to the value which is a variable you
+
+156
+00:11:04,360 --> 00:11:09,450
+can simply remove the value variable and the column perfect.
+
+157
+00:11:09,500 --> 00:11:15,080
+And now that we have this in place and we've wired it up in app japes which I did not mean to just close.
+
+158
+00:11:15,080 --> 00:11:17,990
+We can go ahead and run things over inside of the terminal.
+
+159
+00:11:17,990 --> 00:11:27,170
+In this case we're going to run that list command node app dot J.S. list and right here you can see
+
+160
+00:11:27,170 --> 00:11:30,220
+at the bottom and getting all notes Prince to the screen.
+
+161
+00:11:30,350 --> 00:11:31,960
+And this is fantastic.
+
+162
+00:11:32,150 --> 00:11:36,730
+Now that we have this in place we can go ahead and remove the process log.
+
+163
+00:11:37,100 --> 00:11:42,290
+Since we no longer need that I am going to keep the yards log around since we will be exploring other
+
+164
+00:11:42,290 --> 00:11:44,910
+ways to use yards throughout the section.
+
+165
+00:11:44,930 --> 00:11:49,820
+What I'd like you to do as the challenge for this video is to create a method for the read command and
+
+166
+00:11:49,850 --> 00:11:51,380
+the remove command.
+
+167
+00:11:51,380 --> 00:11:53,450
+You're going to create inside of notes.
+
+168
+00:11:53,530 --> 00:12:00,270
+J.S. a get note function which is going to take the title then you can go ahead and use a council log
+
+169
+00:12:00,320 --> 00:12:05,210
+to print getting note and just print the title to make sure it works and you're going to do the same
+
+170
+00:12:05,210 --> 00:12:06,430
+thing for remove.
+
+171
+00:12:06,590 --> 00:12:09,290
+Right here you're going to call notes dot remove.
+
+172
+00:12:09,290 --> 00:12:12,080
+Note passing in the title of the note you want to remove.
+
+173
+00:12:12,170 --> 00:12:16,820
+And once again when you define the function go ahead and log out the title argument to make sure it
+
+174
+00:12:16,820 --> 00:12:20,310
+was passed in properly and then over in the terminal.
+
+175
+00:12:20,330 --> 00:12:25,970
+I want to run both of them passing in the title and making sure the log prints as expected Go ahead
+
+176
+00:12:25,970 --> 00:12:26,920
+and do this.
+
+177
+00:12:27,020 --> 00:12:28,580
+Pause the video knock it out.
+
+178
+00:12:28,580 --> 00:12:37,030
+Run both read and remove from the terminal to test your work and when you're done click play.
+
+179
+00:12:37,040 --> 00:12:37,860
+How'd you do.
+
+180
+00:12:38,120 --> 00:12:42,660
+Hopefully it didn't have too much trouble creating and calling both of those functions.
+
+181
+00:12:42,770 --> 00:12:46,130
+We're going to get started with the command for read first.
+
+182
+00:12:46,460 --> 00:12:53,250
+When the read command is used we want to call notes dot get no passing in the title.
+
+183
+00:12:53,270 --> 00:12:59,480
+Now the title is going to get passed in and parsed using yours which means we can use our TV title to
+
+184
+00:12:59,480 --> 00:13:04,100
+fetch it and that's all we have to do when it comes to calling a function.
+
+185
+00:13:04,160 --> 00:13:05,460
+The next step is to define get.
+
+186
+00:13:05,460 --> 00:13:09,770
+Note because currently it doesn't exist over inside of notes.
+
+187
+00:13:09,800 --> 00:13:12,160
+J.S. Right below.
+
+188
+00:13:12,200 --> 00:13:17,370
+All we can make a variable called Get No get know is going to be a function.
+
+189
+00:13:17,570 --> 00:13:23,610
+We're going to use the arrow function and it is going to take an argument it's going to take the note
+
+190
+00:13:23,640 --> 00:13:32,190
+title get note takes the title then and returns the body for that note inside of get note we can use
+
+191
+00:13:32,190 --> 00:13:39,760
+console like to print something like getting no followed by the title of the note you're going to fetch
+
+192
+00:13:40,030 --> 00:13:43,060
+which is going to be the second argument to console that.
+
+193
+00:13:43,380 --> 00:13:44,220
+Perfect.
+
+194
+00:13:44,380 --> 00:13:45,280
+That's the first one.
+
+195
+00:13:45,370 --> 00:13:51,520
+And we can go ahead and test it before we go on to the second one which is move over in the terminal.
+
+196
+00:13:51,520 --> 00:13:59,550
+We can use Noad apt just to run the file We're going to be using the new read command passing in a title.
+
+197
+00:13:59,730 --> 00:14:05,250
+I'm going to use a different syntax or title get set equal to the value outside of quotes.
+
+198
+00:14:05,280 --> 00:14:11,330
+I'm going to use something like accounts this is going to read the accounts note in the future and it's
+
+199
+00:14:11,330 --> 00:14:12,420
+going to print it to the screen.
+
+200
+00:14:12,530 --> 00:14:15,150
+For now though we get an error which is fantastic.
+
+201
+00:14:15,290 --> 00:14:20,570
+Getting an error is not the end of the world getting an error means you usually have a small typo or
+
+202
+00:14:20,570 --> 00:14:22,890
+you forgot one step in the process.
+
+203
+00:14:23,000 --> 00:14:26,630
+And what we're going to take a moment to do is figure out how to parse through these error messages
+
+204
+00:14:26,840 --> 00:14:32,870
+because what you get which is what I've highlighted here can be pretty daunting as you can see the first
+
+205
+00:14:32,870 --> 00:14:35,080
+line it shows you where the error occurred.
+
+206
+00:14:35,090 --> 00:14:41,420
+It's inside of our app js file and the number after the colon is the line on line 19.
+
+207
+00:14:41,600 --> 00:14:45,000
+It shows you the line and it shows you exactly where things went bad.
+
+208
+00:14:45,050 --> 00:14:51,020
+Type error notes don't get no is not a function it's telling you pretty clearly that the function you
+
+209
+00:14:51,020 --> 00:14:52,170
+tried to run get.
+
+210
+00:14:52,200 --> 00:14:57,320
+Note doesn't exist and now we can take this information and go debug our app.
+
+211
+00:14:57,410 --> 00:15:00,230
+Right here we see we call notes doc get note.
+
+212
+00:15:00,230 --> 00:15:03,190
+Everything looks great but when we move into notes.
+
+213
+00:15:03,380 --> 00:15:06,230
+Yes we realize that we never actually exported get.
+
+214
+00:15:06,260 --> 00:15:10,150
+No that is why when we try to call the function we get get.
+
+215
+00:15:10,160 --> 00:15:13,090
+Note is not a function because we never exported it.
+
+216
+00:15:13,280 --> 00:15:16,100
+All we have to do to fix that error message is export get.
+
+217
+00:15:16,100 --> 00:15:16,660
+Note.
+
+218
+00:15:16,970 --> 00:15:18,110
+Just like this.
+
+219
+00:15:18,350 --> 00:15:21,980
+When I save the file and rerun the app from the terminal.
+
+220
+00:15:21,980 --> 00:15:27,710
+Now we're going to get what we expect which is getting no followed by the title which is accounts and
+
+221
+00:15:27,710 --> 00:15:33,230
+that is how we can do bug our error messages error messages for the most part contain really useful
+
+222
+00:15:33,230 --> 00:15:34,220
+information.
+
+223
+00:15:34,430 --> 00:15:37,450
+Right here we have some useful information and down below.
+
+224
+00:15:37,520 --> 00:15:39,900
+We have a lot of useless information.
+
+225
+00:15:40,040 --> 00:15:45,230
+This is the stack trace it's all the code that's running to get to the point where the air happened.
+
+226
+00:15:45,230 --> 00:15:50,630
+For the most part the first couple lines are code that you've written and the other ones are internal
+
+227
+00:15:50,720 --> 00:15:53,520
+node code or third party modules.
+
+228
+00:15:53,570 --> 00:15:56,150
+In our case the first line of the stack trace is important.
+
+229
+00:15:56,150 --> 00:15:58,660
+It shows exactly where the error occurred.
+
+230
+00:15:58,850 --> 00:16:02,390
+When you get an error inside of your app which you totally will throughout the course.
+
+231
+00:16:02,390 --> 00:16:03,270
+Don't worry.
+
+232
+00:16:03,380 --> 00:16:08,660
+It's usually the result of a simple mistake in our case we simply forgot to export the function.
+
+233
+00:16:08,660 --> 00:16:13,670
+Now though the read command is working so we can move on to the last one which is going to be the remove
+
+234
+00:16:13,700 --> 00:16:15,110
+command.
+
+235
+00:16:15,150 --> 00:16:19,800
+I'm going to remove the console lock statement and call notes dot remove.
+
+236
+00:16:19,890 --> 00:16:26,790
+Note passing in the title which as we know is available under the dot title.
+
+237
+00:16:26,800 --> 00:16:32,230
+Next up we're going to define in the Remove note function over inside of our notes API file.
+
+238
+00:16:32,260 --> 00:16:32,920
+Right below.
+
+239
+00:16:32,980 --> 00:16:35,130
+Note var remove.
+
+240
+00:16:35,200 --> 00:16:36,610
+Nope never move.
+
+241
+00:16:36,610 --> 00:16:38,850
+No it is going to work much the same way as get note.
+
+242
+00:16:39,010 --> 00:16:44,300
+All it needs is the title it can use that information to find the note and remove it from the database.
+
+243
+00:16:45,310 --> 00:16:50,380
+This is going to be an arrow function that takes the title argument and for the moment we're going to
+
+244
+00:16:50,380 --> 00:16:52,570
+print the console that lock statement.
+
+245
+00:16:52,810 --> 00:16:59,490
+Removing note then at the second argument we're going to simply print that title back to the screen
+
+246
+00:16:59,730 --> 00:17:03,450
+to make sure that it's going through the process successfully this time around.
+
+247
+00:17:03,510 --> 00:17:05,500
+We're not going to forget to export or remove.
+
+248
+00:17:05,490 --> 00:17:06,660
+Note function.
+
+249
+00:17:06,660 --> 00:17:08,040
+We're going to define it right here.
+
+250
+00:17:08,040 --> 00:17:08,630
+Remove.
+
+251
+00:17:08,670 --> 00:17:12,670
+Note using the 6 syntax.
+
+252
+00:17:12,690 --> 00:17:15,730
+The last thing to do is to test it and make sure it works.
+
+253
+00:17:15,750 --> 00:17:19,370
+We can reload the last command using the up arrow key.
+
+254
+00:17:19,600 --> 00:17:22,970
+We can change your read to remove and that is all we need to do.
+
+255
+00:17:23,410 --> 00:17:27,160
+We're still passing in the title which is great because that is what remove needs.
+
+256
+00:17:27,280 --> 00:17:30,000
+When I run the command we get exactly what we expected.
+
+257
+00:17:30,010 --> 00:17:34,660
+Removing note prints to the screen and then we get the title of the note that we were supposed to be
+
+258
+00:17:34,660 --> 00:17:37,310
+removing which is accounts which looks great.
+
+259
+00:17:37,450 --> 00:17:40,930
+That is all it takes to use yards to parse your arguments.
+
+260
+00:17:40,930 --> 00:17:43,870
+Let's take a quick moment to recap what we learned.
+
+261
+00:17:43,870 --> 00:17:48,460
+We learned that parsing in process can be a real pain in the butt.
+
+262
+00:17:48,580 --> 00:17:53,590
+We would have to write a lot of manual code to parse out those hyphens the equal signs and the optional
+
+263
+00:17:53,590 --> 00:17:54,330
+quotes.
+
+264
+00:17:54,340 --> 00:17:55,390
+It's a real pain.
+
+265
+00:17:55,390 --> 00:18:00,640
+Yagis can do all of that for us and it puts it on a really simple object we can access.
+
+266
+00:18:00,640 --> 00:18:07,270
+Now here we use the R V object coming from yards to grab the title and here we use it to grab the body.
+
+267
+00:18:07,290 --> 00:18:11,230
+These are all the methods that we're actually going to be calling throughout the course.
+
+268
+00:18:11,290 --> 00:18:12,930
+Currently none of them are wired up.
+
+269
+00:18:12,940 --> 00:18:18,310
+But we now have a place to define all of that functionality for saving notes reading notes listing notes
+
+270
+00:18:18,340 --> 00:18:20,110
+and removing notes.
+
+271
+00:18:20,260 --> 00:18:25,040
+The last thing I want to do before we wrap this video up is switch how we fetch the command.
+
+272
+00:18:25,240 --> 00:18:31,360
+As we know the command is available in the underscore property as the first and only item which means
+
+273
+00:18:31,420 --> 00:18:39,060
+right here we can set command equal to r v then dot underscore.
+
+274
+00:18:39,060 --> 00:18:43,040
+Then we're going to use brackets to grab the first item in the array.
+
+275
+00:18:43,200 --> 00:18:47,360
+With this in place we now have the same functionality but we're using yagis everywhere.
+
+276
+00:18:47,640 --> 00:18:52,920
+And if I we're on the last command we can test that the functionality still works and it does command
+
+277
+00:18:53,010 --> 00:18:55,150
+remove shows up.
+
+278
+00:18:55,270 --> 00:19:00,620
+That is it for this one I will see you next time as we start filling out the individual functions.
+
+279
+00:19:00,640 --> 00:19:07,150
+We're going to take a look first at how we can use Jason to store our notes inside of our file system
+
+280
+00:19:07,390 --> 00:19:09,100
+that is coming up next so stay tuned.
+
+281
+00:19:09,100 --> 00:19:10,510
+I will see you soon.
+

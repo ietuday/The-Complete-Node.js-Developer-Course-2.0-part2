@@ -1,0 +1,812 @@
+﻿1
+00:00:00,330 --> 00:00:02,810
+In this video we're going to be refactoring apt.
+
+2
+00:00:02,850 --> 00:00:08,270
+Yes taking a lot of the complex logic related to geocoding and moving it into a separate file.
+
+3
+00:00:08,280 --> 00:00:13,470
+Currently all of the logic for making the request and determining whether or not the request succeeded
+
+4
+00:00:13,820 --> 00:00:16,610
+if else statements live inside of apt objects.
+
+5
+00:00:16,650 --> 00:00:19,950
+This is not exactly reusable and it really doesn't belong here.
+
+6
+00:00:19,980 --> 00:00:24,710
+What I'd like to do before we add even more logic related to fetching the forecast that's the topic
+
+7
+00:00:24,710 --> 00:00:28,410
+pick up the next video is break this out into its own function.
+
+8
+00:00:28,410 --> 00:00:33,270
+This function is going to live in a separate file like we did for the notes application in the Notes
+
+9
+00:00:33,270 --> 00:00:33,640
+app.
+
+10
+00:00:33,690 --> 00:00:38,610
+We had a separate file that had functions for adding listing and removing notes from our local adjacent
+
+11
+00:00:38,610 --> 00:00:39,240
+File.
+
+12
+00:00:39,270 --> 00:00:44,700
+We're going to be creating a separate function responsible for geocoding a given address all of the
+
+13
+00:00:44,700 --> 00:00:49,320
+logic is going to stay the same there really is no way around it it's just going to be abstracted out
+
+14
+00:00:49,320 --> 00:00:52,740
+of the file and into its own location.
+
+15
+00:00:52,740 --> 00:00:54,840
+Now this is going to be the challenge for the video.
+
+16
+00:00:54,930 --> 00:00:59,340
+We're going to start with a challenge and in the end of the video we'll add a few more advanced features
+
+17
+00:00:59,340 --> 00:01:00,180
+to the function.
+
+18
+00:01:00,180 --> 00:01:02,770
+But for now I'm going to tell you what I'd like you to do.
+
+19
+00:01:03,120 --> 00:01:08,760
+First up you are going to need to create a new directory and a new file for this challenge.
+
+20
+00:01:08,760 --> 00:01:11,130
+I'm not going to actually create the directory or file.
+
+21
+00:01:11,130 --> 00:01:15,360
+That's part of the challenge but I will show you what the require statement is going to look like we're
+
+22
+00:01:15,360 --> 00:01:18,870
+going to load in via a constant variable called the code.
+
+23
+00:01:18,990 --> 00:01:23,460
+The module require daat forward slash.
+
+24
+00:01:23,480 --> 00:01:30,850
+Since we're requiring a local file We're going to add that relative path code forward slash geocoder.
+
+25
+00:01:31,190 --> 00:01:35,690
+That means that you need to make a directory called G.O. code in the weather app folder and a file called
+
+26
+00:01:35,750 --> 00:01:37,120
+geocoder G-S.
+
+27
+00:01:37,340 --> 00:01:43,190
+Since we have a dot jast extension we can actually leave it off of our require call down below.
+
+28
+00:01:43,340 --> 00:01:53,210
+What you need to do is call G.O. dot G-0 code address geocoder address that is going to be the function
+
+29
+00:01:53,210 --> 00:01:56,310
+responsible for all the logic we currently have an app.
+
+30
+00:01:56,360 --> 00:01:57,020
+Yes.
+
+31
+00:01:57,170 --> 00:02:02,760
+Joe code address is going to take the address on the address.
+
+32
+00:02:02,920 --> 00:02:07,000
+It's going to be responsible for doing everything and coding that you are all making the request and
+
+33
+00:02:07,000 --> 00:02:09,070
+handling all of the error cases.
+
+34
+00:02:09,070 --> 00:02:14,730
+This means in that new file you need to export the G.O. code address function just like we exported
+
+35
+00:02:14,740 --> 00:02:18,290
+functions from the notes application file down below.
+
+36
+00:02:18,310 --> 00:02:19,600
+We have all of the logic here.
+
+37
+00:02:19,600 --> 00:02:22,900
+This logic needs to get moved inside of that function.
+
+38
+00:02:22,900 --> 00:02:28,210
+Everything I have highlighted should not be in the laptop just file after the challenge has been completed.
+
+39
+00:02:28,210 --> 00:02:30,250
+Now you can copy and paste this directly.
+
+40
+00:02:30,250 --> 00:02:34,630
+There really is no way around some of the more complex logic but you are going to need to make a few
+
+41
+00:02:34,630 --> 00:02:35,410
+changes.
+
+42
+00:02:35,410 --> 00:02:40,210
+You're going to need to load a request into that new file since we use it and it isn't going to be required
+
+43
+00:02:40,210 --> 00:02:41,800
+in that file by default.
+
+44
+00:02:41,800 --> 00:02:46,210
+Then you can go ahead and clean up the request require call here since we won't be using it in this
+
+45
+00:02:46,210 --> 00:02:47,200
+file.
+
+46
+00:02:47,200 --> 00:02:50,100
+Next up the org object is not going to exist.
+
+47
+00:02:50,110 --> 00:02:52,960
+You're going to get that passed in via the first argument.
+
+48
+00:02:52,960 --> 00:02:54,550
+Just like I have shown right here.
+
+49
+00:02:54,580 --> 00:02:58,960
+That means you're going to need to swap this out for whatever you happen to call that first argument.
+
+50
+00:02:58,960 --> 00:03:03,180
+I'd recommend calling that first argument something like address when you're done.
+
+51
+00:03:03,190 --> 00:03:06,120
+The program should work exactly as it works now.
+
+52
+00:03:06,160 --> 00:03:08,320
+There should be no change in functionality.
+
+53
+00:03:08,320 --> 00:03:11,290
+So take a moment create the folder create the file.
+
+54
+00:03:11,380 --> 00:03:12,790
+Require request.
+
+55
+00:03:12,820 --> 00:03:14,860
+Create that geocoder address function.
+
+56
+00:03:14,860 --> 00:03:17,310
+Copying all the code below and export it.
+
+57
+00:03:17,410 --> 00:03:19,080
+Then make that quick change.
+
+58
+00:03:19,090 --> 00:03:22,990
+Changing this to whatever you happen to call that first argument when you're done.
+
+59
+00:03:22,990 --> 00:03:23,960
+Test things out.
+
+60
+00:03:23,980 --> 00:03:29,000
+Try a valid address and make sure you get the address latitude and longitude and try an invalid zip
+
+61
+00:03:29,000 --> 00:03:30,020
+code and make sure.
+
+62
+00:03:30,040 --> 00:03:38,160
+Unable to find that address prints to the screen then go ahead and click play how to go.
+
+63
+00:03:38,360 --> 00:03:43,160
+Hopefully you were able to create that file and get everything up and running to get started.
+
+64
+00:03:43,160 --> 00:03:45,490
+I'm going to make a brand new directory in weather app.
+
+65
+00:03:45,490 --> 00:03:47,510
+That's the first thing we need to do.
+
+66
+00:03:47,540 --> 00:03:53,300
+The directory is called G.O. code which aligns with the required statement I have above in geocoder
+
+67
+00:03:53,330 --> 00:03:58,720
+are going to make our file geocoder Yes new file geocoder.
+
+68
+00:03:58,910 --> 00:04:03,600
+Yes now inside of here we can get started by loading in request.
+
+69
+00:04:03,740 --> 00:04:05,900
+Let's make a constant called request.
+
+70
+00:04:07,030 --> 00:04:11,120
+And we'll set it equal to require request excellence.
+
+71
+00:04:11,150 --> 00:04:14,920
+Now we can go ahead and define the function responsible for geocoding.
+
+72
+00:04:14,920 --> 00:04:17,600
+This one will be called the G.O. code address.
+
+73
+00:04:17,620 --> 00:04:26,130
+I'm going to make a variable called G-code address setting equal to an arrow function and this arrow
+
+74
+00:04:26,130 --> 00:04:29,320
+function is gonna get an address argument passed in.
+
+75
+00:04:29,340 --> 00:04:32,800
+This is the plain text unin coded address.
+
+76
+00:04:32,820 --> 00:04:38,700
+Now before we copy the code from actually yes into the function body I want to export our geocoder address
+
+77
+00:04:38,700 --> 00:04:42,520
+function using module that exports which we know is an object.
+
+78
+00:04:42,570 --> 00:04:47,500
+Anything we put on this object is going to be available to any files that require this file.
+
+79
+00:04:47,520 --> 00:04:53,850
+In our case we want to make a G.O. code address property available setting it equal to the G.O. code
+
+80
+00:04:53,910 --> 00:04:56,300
+address function that we defined up above.
+
+81
+00:04:56,640 --> 00:04:57,530
+Excellent.
+
+82
+00:04:57,540 --> 00:05:04,530
+Now it's time to actually copy all of the code from app dot J s into geocoder Yes I'm going to highlight
+
+83
+00:05:04,560 --> 00:05:05,530
+everything here.
+
+84
+00:05:05,730 --> 00:05:06,240
+Cut it out.
+
+85
+00:05:06,240 --> 00:05:07,720
+Using command x.
+
+86
+00:05:07,770 --> 00:05:12,780
+Move into geocoder J.S. and pasted inside of the body of our function.
+
+87
+00:05:12,780 --> 00:05:17,370
+The only thing we need to change inside of here is how we get the plaintext address.
+
+88
+00:05:17,400 --> 00:05:19,580
+We no longer have that the object.
+
+89
+00:05:19,590 --> 00:05:22,640
+Instead we get the address passed in as an argument.
+
+90
+00:05:22,860 --> 00:05:23,940
+Excellent.
+
+91
+00:05:24,030 --> 00:05:27,130
+With this in place we're now done with the G.O. code file.
+
+92
+00:05:27,150 --> 00:05:32,500
+It contains all of the complex logic for making and finishing the Everquest over an opt out.
+
+93
+00:05:32,540 --> 00:05:38,550
+Yes we can clean things up by removing some extra spaces and removing the request module which is no
+
+94
+00:05:38,550 --> 00:05:40,410
+longer used in this file.
+
+95
+00:05:40,410 --> 00:05:44,700
+Now at this point the functionality should be exactly the same and this is all you needed to do for
+
+96
+00:05:44,700 --> 00:05:50,250
+the challenge over inside of the terminal you are supposed to run a few examples to make sure it worked.
+
+97
+00:05:50,250 --> 00:05:53,500
+I'm going to go ahead and run a few to confirm my changes worked.
+
+98
+00:05:53,580 --> 00:06:01,440
+I'll use the a flag to search for a zip code that does exist something like 1 9 1 4 7.
+
+99
+00:06:01,660 --> 00:06:02,410
+And here we go.
+
+100
+00:06:02,530 --> 00:06:05,410
+I can see the address the latitude and longitude.
+
+101
+00:06:05,410 --> 00:06:10,750
+Now I'm going to swap out that zip code for something that does not exist like 0 0 0 0 0 0 0.
+
+102
+00:06:10,990 --> 00:06:16,060
+When I run this through the geocoder you can see unable to find address print the screen and that's
+
+103
+00:06:16,060 --> 00:06:16,930
+fantastic.
+
+104
+00:06:16,930 --> 00:06:20,740
+It means all of the logic inside of geocoder J S is still working.
+
+105
+00:06:20,740 --> 00:06:23,740
+This is all you needed to do for the challenge.
+
+106
+00:06:23,740 --> 00:06:28,750
+Now the next step in the process and the step I'll walk you through is the process of adding a callback
+
+107
+00:06:28,750 --> 00:06:31,440
+function to code address.
+
+108
+00:06:31,450 --> 00:06:36,810
+Now the goal of refactoring the code and app down was not to get rid of the callback.
+
+109
+00:06:36,820 --> 00:06:42,820
+The goal was to abstract all the complex logic related to encoding the data making their request and
+
+110
+00:06:42,820 --> 00:06:46,790
+checking for errors Altace should not care about any of that.
+
+111
+00:06:46,800 --> 00:06:50,040
+It doesn't even need to know that an HTP request was ever made.
+
+112
+00:06:50,110 --> 00:06:55,330
+All the on jast should care about is passing an address to the function and doing something with the
+
+113
+00:06:55,330 --> 00:07:01,300
+result the result being either an error message or the data in the formatted address the latitude and
+
+114
+00:07:01,300 --> 00:07:02,360
+longitude.
+
+115
+00:07:02,590 --> 00:07:07,060
+Before we go ahead and make any changes in geocoding Yes I want to take a look at how we're going to
+
+116
+00:07:07,060 --> 00:07:09,600
+structure things over here inside of APTA.
+
+117
+00:07:09,620 --> 00:07:15,370
+Yes we're going to pass a function to code address that's going to be an arrow function and this is
+
+118
+00:07:15,370 --> 00:07:19,000
+going to get called after the request comes back in here.
+
+119
+00:07:19,030 --> 00:07:25,920
+We're going to expect two arguments error message which is going to be a string and results which is
+
+120
+00:07:25,920 --> 00:07:29,480
+going to contain the address the latitude and longitude.
+
+121
+00:07:29,790 --> 00:07:32,000
+Only one of these is going to be available out of time.
+
+122
+00:07:32,010 --> 00:07:36,210
+If we have an error message we're not going to have results and if we have results we're not going to
+
+123
+00:07:36,210 --> 00:07:37,470
+have an error message.
+
+124
+00:07:37,470 --> 00:07:39,380
+This is going to make the logic down below.
+
+125
+00:07:39,450 --> 00:07:44,530
+Of determining whether or not the call succeeded much simpler will be able to use an IF statement.
+
+126
+00:07:44,730 --> 00:07:50,550
+If error message and if there is an error message we can simply print it to the screen using Konsole
+
+127
+00:07:50,560 --> 00:07:54,480
+that lock cancel that log error message.
+
+128
+00:07:54,540 --> 00:07:58,340
+There's no need to dig into any sort of object and figure out exactly what's going on.
+
+129
+00:07:58,380 --> 00:08:01,130
+All of that logic is abstracted NGO code.
+
+130
+00:08:01,290 --> 00:08:02,230
+Yes.
+
+131
+00:08:02,580 --> 00:08:07,170
+Now if there is no error message inside of the else clause we can go ahead and print the results.
+
+132
+00:08:07,200 --> 00:08:10,840
+I'm going to use that pretty print method we talked about previously.
+
+133
+00:08:11,050 --> 00:08:15,490
+Console log Jason docstring ify
+
+134
+00:08:18,330 --> 00:08:22,800
+and we're going to pretty print the results object which will be an object containing an address property
+
+135
+00:08:22,950 --> 00:08:26,900
+a latitude property and a long tattoo'd property in here.
+
+136
+00:08:27,000 --> 00:08:30,150
+I'm going to pass the undefined argument as our second argument.
+
+137
+00:08:30,150 --> 00:08:32,920
+This skips over the filtering function which we don't need.
+
+138
+00:08:33,060 --> 00:08:36,950
+And then I can specify my spacing which is going to format this in a really nice way.
+
+139
+00:08:36,960 --> 00:08:40,010
+I'm going to use two spaces right here.
+
+140
+00:08:40,200 --> 00:08:44,790
+Now that we have our function set up over inside of geocoder address and we have a good idea about how
+
+141
+00:08:44,790 --> 00:08:48,170
+it's going to look we can go ahead and implemented over inside of geocoder.
+
+142
+00:08:48,250 --> 00:08:52,650
+Yes in our arguments definition instead of just expecting an address argument.
+
+143
+00:08:52,650 --> 00:08:58,540
+We're also going to expect a callback argument and we can call this callback argument whenever we like.
+
+144
+00:08:58,560 --> 00:09:00,450
+We're going to call it in three places.
+
+145
+00:09:00,510 --> 00:09:05,570
+We're going to call it once inside of this if block instead of calling cancel dialog.
+
+146
+00:09:05,580 --> 00:09:08,240
+We're simply going to call the callback with this string.
+
+147
+00:09:08,250 --> 00:09:11,420
+This string is going to be the error message right here.
+
+148
+00:09:11,790 --> 00:09:18,210
+In order to do this all we need to do is change our consulate call to a callback call passing the first
+
+149
+00:09:18,210 --> 00:09:20,010
+argument our error message.
+
+150
+00:09:20,010 --> 00:09:25,610
+We can take the string exactly as it appeared and counsel that log and move it into the arguments for
+
+151
+00:09:25,620 --> 00:09:26,660
+callback.
+
+152
+00:09:26,880 --> 00:09:30,110
+Then I can remove the council dialog call and save the file.
+
+153
+00:09:30,120 --> 00:09:34,220
+Now we can do the exact same thing down below for our other council dialog statement.
+
+154
+00:09:34,230 --> 00:09:40,350
+When there is zero results I'm going to replace cancel that log with callback.
+
+155
+00:09:40,570 --> 00:09:42,540
+Now the last one is going to be a little trickier.
+
+156
+00:09:42,550 --> 00:09:47,920
+It's a little tricky here because we don't exactly have our object and we also need to create an undefined
+
+157
+00:09:48,070 --> 00:09:53,810
+variable for the first argument since an error message is not going to be provided when things go well.
+
+158
+00:09:53,950 --> 00:10:00,360
+All we have to do to create that undefined error message is call callback passing an undefined as the
+
+159
+00:10:00,360 --> 00:10:01,460
+first argument.
+
+160
+00:10:01,560 --> 00:10:05,910
+Then we can go ahead and specify our object as the second argument and this object.
+
+161
+00:10:05,940 --> 00:10:08,120
+This is going to be exactly what's right here.
+
+162
+00:10:08,130 --> 00:10:09,340
+The results.
+
+163
+00:10:09,600 --> 00:10:12,330
+Now as I mentioned in the results it's going to have three properties.
+
+164
+00:10:12,330 --> 00:10:14,370
+The first one is going to be formatted address.
+
+165
+00:10:14,400 --> 00:10:16,530
+So let's go ahead and knock that out first.
+
+166
+00:10:16,620 --> 00:10:24,440
+I'm going to set address equal to body results just like we have here I'm going to grab the first item
+
+167
+00:10:24,950 --> 00:10:31,460
+formatted underscore address here we're making things even easier instead of having complex properties
+
+168
+00:10:31,460 --> 00:10:36,830
+that are nested deep inside of an object inside of Opt-Out J s we'll be able to access a simple address
+
+169
+00:10:36,830 --> 00:10:41,340
+property and we're going to do the same thing for latitude and longitude down below.
+
+170
+00:10:41,360 --> 00:10:45,220
+I'm going to grab the code that let us fetch the latitude.
+
+171
+00:10:45,400 --> 00:10:51,460
+Let me add my second property latitude setting and equal to the code I grab below.
+
+172
+00:10:51,680 --> 00:10:57,700
+Then we can go ahead and add the last property which is going to be long itude setting that equal to
+
+173
+00:10:57,910 --> 00:11:01,810
+the latitude code replacing l a t with L and G.
+
+174
+00:11:01,900 --> 00:11:06,070
+Now that we have this in place we can add a semi-colon at the end and remove the council that Lague
+
+175
+00:11:06,070 --> 00:11:08,050
+statements since they're no longer necessary.
+
+176
+00:11:08,230 --> 00:11:14,380
+And with this we are done we can now rerun the file and when we do we're going to pass an address to
+
+177
+00:11:14,380 --> 00:11:15,610
+geocoder address.
+
+178
+00:11:15,800 --> 00:11:20,260
+This is going to go off and make the request and when the request comes back we'll be able to handle
+
+179
+00:11:20,380 --> 00:11:22,770
+that response in a really simple way.
+
+180
+00:11:24,340 --> 00:11:28,810
+Over inside of the terminal I'm going to go back to commands to run the command where I used the zip
+
+181
+00:11:28,810 --> 00:11:30,580
+of 1 9 1 4 7.
+
+182
+00:11:30,610 --> 00:11:32,170
+Everything works as expected.
+
+183
+00:11:32,230 --> 00:11:38,040
+Right here you can see I have my results object with an address property a latitude property and a long
+
+184
+00:11:38,050 --> 00:11:38,800
+itude property.
+
+185
+00:11:38,950 --> 00:11:40,780
+Everything looks fantastic.
+
+186
+00:11:40,840 --> 00:11:44,700
+The last test is going to be to test what happens when I pass in a bad zip code.
+
+187
+00:11:44,710 --> 00:11:48,300
+I just want to make sure the error message still shows up and it does.
+
+188
+00:11:48,370 --> 00:11:52,810
+Unable to find that address prints to the screen and that is happening because of this if statement
+
+189
+00:11:52,810 --> 00:11:53,470
+right here.
+
+190
+00:11:53,590 --> 00:11:58,570
+We check if there is an error message and if there is we print it to the screen after abstracting all
+
+191
+00:11:58,570 --> 00:12:00,520
+of that logic to the G.O. code file.
+
+192
+00:12:00,520 --> 00:12:01,340
+Actually yes.
+
+193
+00:12:01,360 --> 00:12:04,150
+Now a lot simpler and a lot easier to maintain.
+
+194
+00:12:04,150 --> 00:12:08,820
+We can also call G.O. code address in multiple locations if we want to reuse the code.
+
+195
+00:12:08,820 --> 00:12:13,170
+We don't have to copy and paste the code which would not follow the dry principle which stands for.
+
+196
+00:12:13,170 --> 00:12:14,310
+Don't repeat yourself.
+
+197
+00:12:14,340 --> 00:12:20,740
+Instead we can do the dry thing and simply call G.O. code address like we have here with this in place
+
+198
+00:12:20,800 --> 00:12:23,610
+we are now done fetching D-Ga. code data.
+
+199
+00:12:23,650 --> 00:12:29,230
+And the next video we're going to start wiring up that forecast API fetching real time weather data
+
+200
+00:12:29,410 --> 00:12:31,150
+for the address which you coded.
+
+201
+00:12:31,150 --> 00:12:31,750
+Stay tuned.
+
+202
+00:12:31,750 --> 00:12:33,390
+I am super excited to get to that.
+
+203
+00:12:33,400 --> 00:12:34,920
+I will see you next time.
+

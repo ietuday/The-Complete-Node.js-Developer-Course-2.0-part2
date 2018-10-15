@@ -1,0 +1,556 @@
+﻿1
+00:00:00,480 --> 00:00:05,850
+In this video you are going to write the code for removing a note when someone uses that remove command
+
+2
+00:00:06,030 --> 00:00:07,800
+and they pass in the title of the note.
+
+3
+00:00:07,830 --> 00:00:09,360
+They want to remove.
+
+4
+00:00:09,360 --> 00:00:14,550
+Now we already created some utility functions that help us with fetching and saving notes so the code
+
+5
+00:00:14,550 --> 00:00:16,510
+should actually be pretty simple.
+
+6
+00:00:16,530 --> 00:00:19,100
+We're going to start this video off with a challenge.
+
+7
+00:00:19,110 --> 00:00:24,010
+Then we're going to go ahead and wrap the video up with a few things that I'll walk you through.
+
+8
+00:00:24,300 --> 00:00:29,440
+The first step in the process is going to be to fill out remove note and this is going to be your challenge.
+
+9
+00:00:29,610 --> 00:00:35,530
+Let's go ahead and remove canceled out like you only need to write three lines of code to get this done.
+
+10
+00:00:35,550 --> 00:00:38,850
+Now the first line is going to be to fetch the notes.
+
+11
+00:00:38,850 --> 00:00:40,750
+I'll leave a little comment for each line.
+
+12
+00:00:41,930 --> 00:00:54,270
+Then if the job is going to be to filter out the notes filter notes removing the one with title of argument
+
+13
+00:00:55,230 --> 00:00:59,100
+that means that we want to go through all of the notes in the notes array and if any of them have a
+
+14
+00:00:59,100 --> 00:01:03,050
+title that matches the title we want to remove it we want to get rid of them.
+
+15
+00:01:03,240 --> 00:01:05,060
+And this can be done using filter.
+
+16
+00:01:05,160 --> 00:01:09,930
+All we have to do is switch the equality statement from equals to not equals.
+
+17
+00:01:09,960 --> 00:01:11,930
+And this code will do just that.
+
+18
+00:01:12,060 --> 00:01:17,340
+It's going to go through the notes array every time it finds a note that doesn't match the title it's
+
+19
+00:01:17,340 --> 00:01:22,120
+going to keep it which is what we want and if it does find the title it'll return false.
+
+20
+00:01:22,200 --> 00:01:27,300
+It'll remove it from the array and then we're going to go ahead and add the third line which is to save
+
+21
+00:01:27,930 --> 00:01:30,540
+new notes or array.
+
+22
+00:01:30,930 --> 00:01:33,640
+Those are the only three lines you need to fill out.
+
+23
+00:01:33,720 --> 00:01:38,700
+Don't worry about returning anything from remove note or filling out anything inside of aperture.
+
+24
+00:01:38,740 --> 00:01:39,400
+Yes.
+
+25
+00:01:39,420 --> 00:01:44,910
+What I'd like you to do is take a moment to fill out these three lines and test things over inside of
+
+26
+00:01:44,910 --> 00:01:45,710
+the terminal.
+
+27
+00:01:45,840 --> 00:01:48,760
+Try to delete one of the notes you have in notes data.
+
+28
+00:01:48,840 --> 00:01:53,340
+If you don't have any that's fine go ahead and create one and then try to delete that one.
+
+29
+00:01:53,490 --> 00:01:54,270
+Take a moment.
+
+30
+00:01:54,270 --> 00:01:55,570
+Knock out these three lines.
+
+31
+00:01:55,590 --> 00:01:59,900
+Test things over in the terminal and when you're done go ahead and click play
+
+32
+00:02:02,990 --> 00:02:03,880
+out of Go.
+
+33
+00:02:04,060 --> 00:02:08,290
+Hopefully you are able to fill out these three lines without too much trouble.
+
+34
+00:02:08,290 --> 00:02:14,350
+The first thing we want to do for the fetch notes line is to create a variable called notes just like
+
+35
+00:02:14,350 --> 00:02:20,380
+we did an add note and we're going to set it equal to the return result from fetch notes.
+
+36
+00:02:20,560 --> 00:02:24,850
+At this point our notes variable stores an array of all of the notes.
+
+37
+00:02:24,880 --> 00:02:27,610
+The next thing we need to do is filter our notes.
+
+38
+00:02:27,610 --> 00:02:33,010
+If there is a note that has this title we want to remove it that is going to get done by creating a
+
+39
+00:02:33,010 --> 00:02:34,430
+new variable.
+
+40
+00:02:34,510 --> 00:02:38,670
+I'm going to call this one filtered notes.
+
+41
+00:02:38,830 --> 00:02:41,860
+You might have called it something else that is perfectly fine.
+
+42
+00:02:41,860 --> 00:02:43,390
+You might not have created a variable at all.
+
+43
+00:02:43,390 --> 00:02:45,940
+Maybe you did it in two lines and that's fine too.
+
+44
+00:02:45,940 --> 00:02:49,050
+The goal is just to get something that works here.
+
+45
+00:02:49,180 --> 00:02:55,330
+We're going to set filter notes equal to the result that's in a come back from notes dot filter which
+
+46
+00:02:55,330 --> 00:02:57,250
+we've already used up above.
+
+47
+00:02:57,250 --> 00:03:03,080
+We know that node start filter takes the function as its one and only argument and that function gets
+
+48
+00:03:03,080 --> 00:03:05,240
+called with the individual item in the array.
+
+49
+00:03:05,240 --> 00:03:11,170
+In this case it would be a note and we can do this all on one line using the ESX era syntax.
+
+50
+00:03:11,270 --> 00:03:15,900
+If we have one statement we don't need to open and close curly braces.
+
+51
+00:03:16,140 --> 00:03:23,890
+That means right here we can return true if Note title does not equal to the title that's passed into
+
+52
+00:03:23,910 --> 00:03:24,760
+the function.
+
+53
+00:03:25,010 --> 00:03:29,970
+This is going to populate filtered notes with all of the nodes whose titles do not match the one passed
+
+54
+00:03:29,970 --> 00:03:30,660
+in.
+
+55
+00:03:30,690 --> 00:03:36,390
+If the title does match the title passed in it will not be added to filter notes because of our filter
+
+56
+00:03:36,480 --> 00:03:37,580
+function.
+
+57
+00:03:37,830 --> 00:03:40,180
+Two lines down one more to go.
+
+58
+00:03:40,260 --> 00:03:43,920
+The last thing to do is call save notes right here.
+
+59
+00:03:43,920 --> 00:03:49,830
+We're going to call save notes passing in the new notes array which we have under the filtered notes
+
+60
+00:03:49,890 --> 00:03:50,850
+variable.
+
+61
+00:03:50,850 --> 00:03:53,850
+If we were to pass in notes it wouldn't work as expected.
+
+62
+00:03:53,910 --> 00:03:58,080
+We're filtering the notes out but we're not actually saving those notes so it's not going to get removed
+
+63
+00:03:58,080 --> 00:04:01,740
+from the Jason we need to pass filter notes in right here.
+
+64
+00:04:01,740 --> 00:04:06,480
+And these are the three lines I wanted to write and we can test these by saving the file and trying
+
+65
+00:04:06,480 --> 00:04:08,250
+to remove one of our notes.
+
+66
+00:04:08,250 --> 00:04:11,220
+I'm going to go ahead and try to remove secret too.
+
+67
+00:04:11,280 --> 00:04:17,520
+That means all we need to do is run the command which we called remove which is specified over in apparat.
+
+68
+00:04:17,550 --> 00:04:18,130
+Yes.
+
+69
+00:04:18,190 --> 00:04:20,220
+And then it's going to call our function.
+
+70
+00:04:20,670 --> 00:04:26,250
+I'm going to run node with app J us and we're going to pass in and lever move command.
+
+71
+00:04:26,430 --> 00:04:31,460
+And the only argument we need to provide for remove is the title there's no need to provide the body.
+
+72
+00:04:31,460 --> 00:04:35,480
+I'm going to set this equal to secret to excellent.
+
+73
+00:04:35,730 --> 00:04:40,580
+If I hit enter you can see we don't get any output although we do have the command remove printing.
+
+74
+00:04:40,590 --> 00:04:44,740
+There is no message saying whether or not a note was removed but we'll add that soon.
+
+75
+00:04:44,760 --> 00:04:46,730
+For now we can go ahead and check that data.
+
+76
+00:04:46,800 --> 00:04:52,770
+And right here you can see Secret Two is nowhere in sight and this means our removed method is indeed
+
+77
+00:04:52,770 --> 00:04:58,170
+working as expected it removed the note whose title matched and it kept all the notes whose title was
+
+78
+00:04:58,170 --> 00:05:01,830
+not equal to secret to exactly what we wanted.
+
+79
+00:05:02,650 --> 00:05:06,730
+Now the next thing we're going to do which is not part of the challenge is going to be to print a message
+
+80
+00:05:06,730 --> 00:05:09,880
+depending on whether or not a note was actually removed.
+
+81
+00:05:09,880 --> 00:05:13,130
+That means opt out jackass which calls remove note.
+
+82
+00:05:13,320 --> 00:05:17,440
+It's going to need to know whether or not a note was removed and how do we figure that out.
+
+83
+00:05:17,560 --> 00:05:21,090
+How can we possibly return that given the information we have right here.
+
+84
+00:05:21,220 --> 00:05:25,080
+Well we can't because we have two really important pieces of information.
+
+85
+00:05:25,150 --> 00:05:30,240
+We have the length of the original notes array and we have the length of the new notes array.
+
+86
+00:05:30,400 --> 00:05:33,600
+If they're equal then we can assume that no note was removed.
+
+87
+00:05:33,610 --> 00:05:38,620
+If they are not equal We're going to assume a note was removed and that is exactly what we're going
+
+88
+00:05:38,620 --> 00:05:41,870
+to do if the removed note function returns true.
+
+89
+00:05:41,950 --> 00:05:44,820
+That means a note was removed if it returns false.
+
+90
+00:05:44,830 --> 00:05:47,530
+That means a note was not removed.
+
+91
+00:05:47,530 --> 00:05:49,760
+Right here we can add return.
+
+92
+00:05:49,840 --> 00:06:00,590
+We're going to check if notes dot length does not equal filtered notes dop like if they're not equal
+
+93
+00:06:00,590 --> 00:06:05,150
+it's going to return true which is what we want because a note was removed if they're equal it's going
+
+94
+00:06:05,150 --> 00:06:07,440
+to return false which is great.
+
+95
+00:06:07,500 --> 00:06:13,730
+Now over inside of Aptor Yes we can go ahead and add a few lines down below to make the output for this
+
+96
+00:06:13,730 --> 00:06:15,300
+command a little nicer.
+
+97
+00:06:15,320 --> 00:06:18,510
+The first thing to do is to store that boolean.
+
+98
+00:06:18,560 --> 00:06:26,230
+I'm going to make a variable called note removed and we'll set that equal to the return result which
+
+99
+00:06:26,230 --> 00:06:29,080
+will either be true or false on the next line.
+
+100
+00:06:29,080 --> 00:06:33,730
+We can go ahead and create our message and I'm going to do this all on one line using the term unary
+
+101
+00:06:33,730 --> 00:06:37,960
+operator a VAR a message is going to get set equal to.
+
+102
+00:06:37,960 --> 00:06:41,140
+Now the ternary operator lets you specify a condition.
+
+103
+00:06:41,140 --> 00:06:48,210
+In this case we're going to use the condition note removed which will be true if a note was removed
+
+104
+00:06:48,240 --> 00:06:49,940
+and false if it wasn't.
+
+105
+00:06:49,950 --> 00:06:54,660
+Now the ternary operator can be a little confusing but it's really useful inside of javascript and node
+
+106
+00:06:54,690 --> 00:06:59,780
+j us after the condition we're going to put a space with a question mark and a space.
+
+107
+00:06:59,790 --> 00:07:01,470
+This is the statement that's going to run.
+
+108
+00:07:01,500 --> 00:07:09,930
+If it's true if the note removed condition passes what we want to do is set message equal to note was
+
+109
+00:07:10,320 --> 00:07:10,950
+removed.
+
+110
+00:07:12,090 --> 00:07:17,510
+Now if no remove is false we can specify that condition right after the colon.
+
+111
+00:07:17,520 --> 00:07:24,660
+This is the format for the ternary operator condition questionmark the Truthy expression to run colon.
+
+112
+00:07:24,690 --> 00:07:27,650
+And then the falsie expression to run here.
+
+113
+00:07:27,810 --> 00:07:34,460
+If there is no note removed we're going to use the text note not found.
+
+114
+00:07:34,810 --> 00:07:35,700
+Excellent.
+
+115
+00:07:35,710 --> 00:07:39,240
+Now with this in place we can go ahead and test out our message.
+
+116
+00:07:39,250 --> 00:07:44,890
+Last thing to do is print the message to the screen using cancel that log passing in message.
+
+117
+00:07:44,890 --> 00:07:52,450
+This lets us avoid if statements that make our else if clause for Remove unnecessarily complex back
+
+118
+00:07:52,450 --> 00:07:55,300
+inside an atom we can rerun the last command.
+
+119
+00:07:55,420 --> 00:08:00,280
+And in this case no no is going to get removed because we already deleted it and when I run it you can
+
+120
+00:08:00,280 --> 00:08:03,520
+see that no not found prints to the screen.
+
+121
+00:08:03,520 --> 00:08:08,320
+Now I'm going to go ahead and remove a note that does exist in notes data.
+
+122
+00:08:08,350 --> 00:08:10,780
+Jason I have a note with a title of secret.
+
+123
+00:08:11,050 --> 00:08:14,800
+Let's go ahead and rerun the command removing the 2 from the title.
+
+124
+00:08:14,800 --> 00:08:20,660
+When I run this command you can see note was removed print to the screen and this is fantastic.
+
+125
+00:08:20,710 --> 00:08:24,900
+We now have the ability to add and remove notes from our application.
+
+126
+00:08:25,150 --> 00:08:29,010
+And since we already made those utility functions we're able to reuse them here.
+
+127
+00:08:29,080 --> 00:08:31,070
+Making the process of filling out remove.
+
+128
+00:08:31,070 --> 00:08:32,890
+Note that much easier.
+
+129
+00:08:33,130 --> 00:08:34,740
+Back inside of apparat J.
+
+130
+00:08:34,900 --> 00:08:40,430
+We also did something depending on how the removed note function executed if it did remove the note
+
+131
+00:08:40,440 --> 00:08:43,640
+we print a message if it didn't we print a different message.
+
+132
+00:08:43,710 --> 00:08:44,780
+That is it for this one.
+
+133
+00:08:44,800 --> 00:08:50,680
+We now have two of our commands in place and the next one we're going to take a look at how we can create
+
+134
+00:08:50,770 --> 00:08:52,310
+our read command.
+
+135
+00:08:52,390 --> 00:08:58,090
+Read is going to be responsible for fetching the body of an individual note as opposed to a list which
+
+136
+00:08:58,090 --> 00:08:58,910
+we'll do later.
+
+137
+00:08:58,960 --> 00:09:02,220
+That is going to fetch all the notes and print them to the screen.
+
+138
+00:09:02,230 --> 00:09:03,100
+That's it for this one.
+
+139
+00:09:03,100 --> 00:09:04,660
+I will see you next time.
+

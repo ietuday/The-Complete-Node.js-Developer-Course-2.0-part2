@@ -1,0 +1,248 @@
+﻿1
+00:00:00,350 --> 00:00:05,520
+And now that we've made some awesome progress on debugging Let's go back to the commands for our app
+
+2
+00:00:05,550 --> 00:00:12,570
+because there is only one more to fill out the list command and it can be really really easy there is
+
+3
+00:00:12,570 --> 00:00:15,360
+nothing complex going on here.
+
+4
+00:00:15,630 --> 00:00:21,180
+In order to get started all we need to do is fill out the list notes function which in this case we
+
+5
+00:00:21,190 --> 00:00:26,000
+called Get all get all those responsible for returning every single note.
+
+6
+00:00:26,010 --> 00:00:30,270
+That means it's going to return an array of objects an array of all of our notes.
+
+7
+00:00:30,480 --> 00:00:35,620
+All we have to do to do that is return fetch notes.
+
+8
+00:00:35,850 --> 00:00:39,130
+There's no need to filter there's no need to manipulate the data.
+
+9
+00:00:39,180 --> 00:00:44,220
+We just need to pass the data from fecche notes back through Get all.
+
+10
+00:00:44,220 --> 00:00:48,150
+Now that we have this in place we can fill out the functionality over inside of app.
+
+11
+00:00:48,240 --> 00:00:51,760
+Yes we have to create a variable where we can store the notes.
+
+12
+00:00:51,810 --> 00:00:57,420
+I was going to call it notes but I probably shouldn't because we already have a Notes variable declared.
+
+13
+00:00:57,420 --> 00:01:04,340
+I'm going to create a variable called all notes setting it equal to the return value Froemming get 0.
+
+14
+00:01:04,560 --> 00:01:08,430
+Which is we know because we just filled out returns all the notes.
+
+15
+00:01:08,430 --> 00:01:14,640
+Now I can use Konsole dot Lague to print a little message console dialog and I'm going to use template
+
+16
+00:01:14,640 --> 00:01:18,300
+string so I can inject the actual number of notes that are going to be printed.
+
+17
+00:01:19,090 --> 00:01:26,040
+Right here I'm going to say printing then the number of notes using the dollar sign in the curly braces
+
+18
+00:01:26,700 --> 00:01:35,450
+all notes dot Langguth that's the length of the array followed by notes with the in parentheses to handle
+
+19
+00:01:35,450 --> 00:01:37,430
+both singular and plural cases.
+
+20
+00:01:37,490 --> 00:01:40,910
+So if there are six nodes it would say printing six nodes.
+
+21
+00:01:41,090 --> 00:01:45,950
+Now that we have this in place we have to go about the process of actually printing each note which
+
+22
+00:01:45,950 --> 00:01:50,780
+means we need to call Lague no once for every item in the all notes array.
+
+23
+00:01:50,780 --> 00:01:56,690
+To do this we're going to use for each which is an array method similar to filter filter lets you manipulate
+
+24
+00:01:56,690 --> 00:02:02,930
+the array by returning true or false to keep items or remove items for each simply cause a callback
+
+25
+00:02:02,930 --> 00:02:03,570
+function.
+
+26
+00:02:03,680 --> 00:02:06,000
+Once for each item in the array.
+
+27
+00:02:06,110 --> 00:02:12,410
+In this case we can use it using all notes for each passing in a callback function.
+
+28
+00:02:12,440 --> 00:02:15,120
+Now that callback function is going to be an arrow function.
+
+29
+00:02:15,230 --> 00:02:21,650
+In our case and it's going to get called with the note variable just like filter would have and all
+
+30
+00:02:21,680 --> 00:02:25,610
+we're going to do is call notes dot log.
+
+31
+00:02:25,610 --> 00:02:33,150
+Note passing in the note argument which is right here and now that we have this in place we can actually
+
+32
+00:02:33,150 --> 00:02:39,500
+simplify it taking the lag no call removing the curly braces and pasting it right here.
+
+33
+00:02:39,570 --> 00:02:43,760
+This is the exact same functionality only using the expression syntax.
+
+34
+00:02:43,950 --> 00:02:48,250
+Now that we have our arrow function in place we are calling notes that live.
+
+35
+00:02:48,270 --> 00:02:52,120
+Note once for each item in the all notes array.
+
+36
+00:02:52,170 --> 00:02:57,360
+Let's go ahead and save the app Dowton J.S. file and test this out over in the terminal in order to
+
+37
+00:02:57,360 --> 00:02:58,640
+test out the list command.
+
+38
+00:02:58,650 --> 00:03:04,330
+All I'm going to do is use node after J ass with the command list.
+
+39
+00:03:04,350 --> 00:03:07,200
+There is no need to pass in any arguments.
+
+40
+00:03:07,200 --> 00:03:13,560
+When I run this I do get printing three notes and then I get my three notes to buy to buy from store
+
+41
+00:03:13,560 --> 00:03:16,860
+and things to do which is fantastic.
+
+42
+00:03:16,920 --> 00:03:22,380
+With this in place all of our commands are now working we can add notes we can remove notes we can read
+
+43
+00:03:22,380 --> 00:03:29,070
+an individual know and we can list all of the notes stored in our Jason File with this emplace I also
+
+44
+00:03:29,070 --> 00:03:31,590
+do want to clean up some of these commands up above.
+
+45
+00:03:31,590 --> 00:03:36,870
+We have some console log statements that are printing out a few things we no longer need at the very
+
+46
+00:03:36,870 --> 00:03:37,970
+top of apt.
+
+47
+00:03:38,060 --> 00:03:40,360
+Yes I am going to remove the starting apps out.
+
+48
+00:03:40,380 --> 00:03:45,170
+J.S. console lock statement making the constant f s the first line.
+
+49
+00:03:45,210 --> 00:03:50,280
+I'm also going to remove the two statements right here that print the command and the args variable
+
+50
+00:03:50,280 --> 00:03:51,500
+value.
+
+51
+00:03:51,660 --> 00:03:56,880
+I'm also inside of nodes Don J ask to remove the console log statement at the very top of that file
+
+52
+00:03:57,010 --> 00:03:58,740
+since it's no longer necessary.
+
+53
+00:03:58,740 --> 00:04:03,270
+It was definitely useful when we first started exploring different files but now we have everything
+
+54
+00:04:03,270 --> 00:04:04,870
+in place and there's no need.
+
+55
+00:04:05,010 --> 00:04:08,640
+If I rerun the list command this time you can see it looks a lot cleaner.
+
+56
+00:04:08,670 --> 00:04:12,960
+Printing three notes is the very first line showing up with this in place.
+
+57
+00:04:13,020 --> 00:04:17,340
+We are done our commands but there is still one thing I want to do in the next video we're going to
+
+58
+00:04:17,340 --> 00:04:21,720
+take a slightly more in-depth look at how we can configure yards.
+
+59
+00:04:21,720 --> 00:04:25,650
+This is going to let us require certain arguments for our commands.
+
+60
+00:04:25,680 --> 00:04:30,900
+So if someone tries to add a note without a title we can warn the user and prevent the program from
+
+61
+00:04:30,930 --> 00:04:32,040
+executing.
+
+62
+00:04:32,040 --> 00:04:33,610
+I'll see you next time.
+

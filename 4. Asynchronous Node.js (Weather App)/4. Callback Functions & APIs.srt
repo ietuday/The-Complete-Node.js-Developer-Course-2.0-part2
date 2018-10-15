@@ -1,0 +1,1020 @@
+﻿1
+00:00:00,770 --> 00:00:04,210
+In this video you're going to take an in-depth look at callback functions.
+
+2
+00:00:04,220 --> 00:00:10,670
+Then we're going to go ahead and use them to fetch some data from that Google geolocation API that's
+
+3
+00:00:10,670 --> 00:00:16,290
+going to be the API that takes an address and returns the latitude and longitude coordinates.
+
+4
+00:00:16,430 --> 00:00:21,740
+And this is going to be great for the weather app because the weather API we use requires those coordinates
+
+5
+00:00:21,740 --> 00:00:23,710
+and it returns the real time weather data.
+
+6
+00:00:23,870 --> 00:00:29,270
+That's stuff like the temperature the five day forecast wind speed humidity and other pieces of weather
+
+7
+00:00:29,420 --> 00:00:30,620
+information.
+
+8
+00:00:30,620 --> 00:00:35,990
+Now before we get started making that request I want to take a few moments to talk about callback functions
+
+9
+00:00:36,200 --> 00:00:39,890
+and we have already used them right here inside of set time out.
+
+10
+00:00:39,890 --> 00:00:46,790
+We used a callback function in general a callback function is defined as a function that gets passed
+
+11
+00:00:46,820 --> 00:00:51,950
+as an argument to another function and is executed after some of that happens.
+
+12
+00:00:51,950 --> 00:00:53,870
+Now this is a general definition.
+
+13
+00:00:53,930 --> 00:00:59,590
+There is no strict definition in javascript but it does satisfy the function in this case.
+
+14
+00:00:59,630 --> 00:01:04,820
+Here we have a function and we pass it as an argument to another function set time out.
+
+15
+00:01:04,970 --> 00:01:10,940
+And it does get executed after some event that event and being two seconds passing now the event could
+
+16
+00:01:10,940 --> 00:01:11,810
+be other things.
+
+17
+00:01:11,900 --> 00:01:18,800
+It could be a database query finishes it could be an HTP request comes back in those cases you are going
+
+18
+00:01:18,800 --> 00:01:22,820
+to want a callback function like the one here to do something with that data.
+
+19
+00:01:22,970 --> 00:01:26,630
+In the case of that time out we don't get any data back because we're not requesting any.
+
+20
+00:01:26,630 --> 00:01:29,750
+We're just creating an arbitrary delay.
+
+21
+00:01:29,750 --> 00:01:36,260
+Now before we go ahead and actually make an HDTV request to Google I want to create a callback function
+
+22
+00:01:36,260 --> 00:01:39,060
+example inside of the playground folder.
+
+23
+00:01:39,110 --> 00:01:42,900
+Let's make a new file called callbacks.
+
+24
+00:01:43,070 --> 00:01:49,280
+Yes inside of here we're going to create a contrived example of what a callback function would look
+
+25
+00:01:49,280 --> 00:01:50,610
+like behind the scenes.
+
+26
+00:01:50,610 --> 00:01:55,010
+We're going to be making real examples throughout the course and we'll be using dozens and dozens of
+
+27
+00:01:55,010 --> 00:01:56,790
+functions that require callbacks.
+
+28
+00:01:56,840 --> 00:02:00,960
+But for now we're going to start with something pretty simple to get started.
+
+29
+00:02:01,010 --> 00:02:04,130
+Let's make a variable called Get user.
+
+30
+00:02:04,130 --> 00:02:05,940
+This is going to be the function will define.
+
+31
+00:02:05,960 --> 00:02:10,910
+That's going to show you exactly what happens behind the scenes when you pass a callback to another
+
+32
+00:02:10,910 --> 00:02:16,370
+function the get user callback is going to be something that simulates what it would look like to fetch
+
+33
+00:02:16,400 --> 00:02:19,390
+a user from a database or some sort of web API.
+
+34
+00:02:19,490 --> 00:02:20,830
+It is going to be a function.
+
+35
+00:02:20,900 --> 00:02:25,790
+So we'll set it as such using aira function and it is going to take some arguments.
+
+36
+00:02:25,790 --> 00:02:30,620
+The first argument it's going to take is that the ID this is going to be some sort of unique number
+
+37
+00:02:30,620 --> 00:02:32,650
+that represents each user.
+
+38
+00:02:32,700 --> 00:02:36,470
+I might have an idea at 54 and you might have an idea of two thousand.
+
+39
+00:02:36,470 --> 00:02:39,930
+Either way we're going to need the ID to find a user.
+
+40
+00:02:39,950 --> 00:02:43,050
+Next up we're going to get a callback function.
+
+41
+00:02:43,080 --> 00:02:48,160
+This is what we're going to call later with the data with that user object.
+
+42
+00:02:48,180 --> 00:02:53,600
+This is exactly what happens when you pass a function to set time out the set time out function definition
+
+43
+00:02:53,690 --> 00:02:55,370
+looks like this.
+
+44
+00:02:55,410 --> 00:02:57,750
+It has a callback and it has a delay.
+
+45
+00:02:57,810 --> 00:03:01,860
+You take the call back and after a certain amount of time passes you call it.
+
+46
+00:03:01,860 --> 00:03:07,080
+In our case though we're going to switch the order with an I.D. first and the callback second.
+
+47
+00:03:07,140 --> 00:03:11,640
+Now we can go ahead and call this function before actually filling it out.
+
+48
+00:03:11,640 --> 00:03:16,790
+We're going to call get user down below on line 5 just like we did with set time out.
+
+49
+00:03:17,010 --> 00:03:19,970
+I'm going to call get user passing in those two arguments.
+
+50
+00:03:20,100 --> 00:03:24,180
+The first one is going to be some I.D. since we're faking it for now it doesn't really matter.
+
+51
+00:03:24,180 --> 00:03:25,790
+I'm going to go with 31.
+
+52
+00:03:25,920 --> 00:03:31,020
+And the second argument is going to be the function that we want to run when that user data comes back.
+
+53
+00:03:31,020 --> 00:03:32,420
+And this is really important.
+
+54
+00:03:33,380 --> 00:03:36,470
+Right here we're going to define that function.
+
+55
+00:03:36,470 --> 00:03:41,900
+Now the callback alone isn't really useful to being able to run this function after the user data comes
+
+56
+00:03:41,900 --> 00:03:45,680
+back only works if we actually get the user data.
+
+57
+00:03:45,770 --> 00:03:48,030
+And that's what we're going to expect right here.
+
+58
+00:03:48,050 --> 00:03:53,930
+We're going to expect that the user object things like ID name email password or whatever comes back
+
+59
+00:03:53,930 --> 00:03:59,070
+as an argument to the callback function then and here I can actually do something with that data.
+
+60
+00:03:59,270 --> 00:04:05,150
+I could show it on a web app I could respond to an API request or in our case I can simply print it
+
+61
+00:04:05,150 --> 00:04:08,500
+to the console console log using.
+
+62
+00:04:08,810 --> 00:04:13,910
+Now that we have the call in place let's go ahead and fill out the get user function to work like we
+
+63
+00:04:13,910 --> 00:04:15,570
+have it defined here.
+
+64
+00:04:15,620 --> 00:04:20,960
+The first thing I'm going to do is create a dummy object that's going to be that user object in the
+
+65
+00:04:20,960 --> 00:04:21,350
+future.
+
+66
+00:04:21,350 --> 00:04:23,180
+This is going to come from database queries.
+
+67
+00:04:23,180 --> 00:04:27,530
+But for now we'll just create a variable user setting an equal to some object.
+
+68
+00:04:27,740 --> 00:04:34,610
+Let's set an id property equal to whatever ID that user passes in and we'll set a name property equal
+
+69
+00:04:34,610 --> 00:04:35,970
+to some name.
+
+70
+00:04:35,990 --> 00:04:41,630
+I'm going to go ahead and use Vikram now that we have our user object what we want to do is call the
+
+71
+00:04:41,630 --> 00:04:43,930
+call back passing it as an argument.
+
+72
+00:04:44,000 --> 00:04:49,160
+Then down here we'll be able to actually run this function of printing the user to the screen in order
+
+73
+00:04:49,160 --> 00:04:49,790
+to do that.
+
+74
+00:04:49,910 --> 00:04:55,430
+We would call the callback function like any other function simply referencing it by name and adding
+
+75
+00:04:55,430 --> 00:04:57,650
+our parentheses like this.
+
+76
+00:04:57,650 --> 00:05:03,060
+Now if we call it like this we're not passing any data from get user back to the callback.
+
+77
+00:05:03,110 --> 00:05:08,300
+In this case we're expecting a user to get passed back which is why I'm going to specify a user right
+
+78
+00:05:08,330 --> 00:05:09,270
+here.
+
+79
+00:05:09,320 --> 00:05:10,680
+Now the naming isn't important.
+
+80
+00:05:10,700 --> 00:05:17,540
+I happen to call it user here here and here but I could easily call this user object and user object
+
+81
+00:05:17,570 --> 00:05:18,590
+here.
+
+82
+00:05:18,650 --> 00:05:20,560
+All that matters is the arguments position.
+
+83
+00:05:20,570 --> 00:05:25,730
+In this case we called the first argument and user object and the first argument passed back is indeed
+
+84
+00:05:25,790 --> 00:05:27,680
+that user object.
+
+85
+00:05:27,680 --> 00:05:31,640
+With this in place we can now run our example over in the terminal.
+
+86
+00:05:31,730 --> 00:05:33,600
+I'm going to run this using node.
+
+87
+00:05:33,970 --> 00:05:35,540
+It's in the playground folder.
+
+88
+00:05:36,630 --> 00:05:38,990
+And we call the file callbacks.
+
+89
+00:05:39,120 --> 00:05:40,210
+Yes.
+
+90
+00:05:40,470 --> 00:05:44,410
+When I go ahead and run the file right away our data prints to the screen.
+
+91
+00:05:44,430 --> 00:05:46,100
+And this is awesome.
+
+92
+00:05:46,100 --> 00:05:50,710
+We have created a callback function using synchronous programming.
+
+93
+00:05:50,730 --> 00:05:55,890
+Now as I mentioned this is still a contrived example because there is no need for a callback in this
+
+94
+00:05:55,890 --> 00:05:56,520
+case.
+
+95
+00:05:56,580 --> 00:05:58,980
+We could simply return the user object.
+
+96
+00:05:59,070 --> 00:06:03,750
+But in that case we wouldn't be using a callback and the whole point here is to explore what happens
+
+97
+00:06:03,750 --> 00:06:09,080
+behind the scenes how we actually call the function like it's passed in as an argument.
+
+98
+00:06:09,090 --> 00:06:11,940
+Now we can also simulate a delay using set time out.
+
+99
+00:06:11,940 --> 00:06:16,330
+So let's go ahead and do that before going into a real world example right here.
+
+100
+00:06:16,440 --> 00:06:18,050
+I'm going to use SET TIME OUT.
+
+101
+00:06:19,350 --> 00:06:24,460
+Just like we did before I'm going to pass an arrow function in as the first argument.
+
+102
+00:06:26,210 --> 00:06:31,750
+And I'm going to go ahead and set a delay of three seconds using three thousand milliseconds.
+
+103
+00:06:31,760 --> 00:06:33,600
+Now I can take my call back.
+
+104
+00:06:33,620 --> 00:06:41,890
+Call delete it from line 10 and add it inside of the callback function call back user.
+
+105
+00:06:41,900 --> 00:06:46,790
+Now we're not going to be responding to the get user request until three seconds have passed.
+
+106
+00:06:46,790 --> 00:06:52,010
+Now this is going to be more or less similar to what happens when we create real world examples of callbacks
+
+107
+00:06:52,280 --> 00:06:57,080
+we pass in a callback some sort of delay happens whether we're requesting from a database or from an
+
+108
+00:06:57,110 --> 00:07:01,010
+HTP endpoint then the callback gets fired.
+
+109
+00:07:01,100 --> 00:07:07,390
+If I save callbacks J.S. and to rerun it from the terminal you can see if we wait those three seconds
+
+110
+00:07:07,630 --> 00:07:11,920
+that's the simulated delay and then the user object prints to the screen.
+
+111
+00:07:11,920 --> 00:07:13,790
+This is fantastic.
+
+112
+00:07:13,810 --> 00:07:18,490
+This is exactly the principles that we need to understand in order to start working with callbacks and
+
+113
+00:07:18,490 --> 00:07:21,330
+that is exactly what we're going to start doing right now.
+
+114
+00:07:22,510 --> 00:07:27,400
+Now the request that we're going to be making to that geo location API it can actually be simulated
+
+115
+00:07:27,400 --> 00:07:30,690
+over in the browser before we ever make the request in node.
+
+116
+00:07:30,850 --> 00:07:33,120
+And that's exactly what I want to do to get started.
+
+117
+00:07:33,160 --> 00:07:38,080
+This is going to require you to type a kind of long u r l but hopefully you only have to type it once
+
+118
+00:07:38,080 --> 00:07:40,580
+because it will be saved in your browser history.
+
+119
+00:07:40,630 --> 00:07:42,790
+So follow along for just a second.
+
+120
+00:07:43,120 --> 00:07:52,060
+HTP ass Colan forward slash forward slash maps dot Google API is dot com.
+
+121
+00:07:52,120 --> 00:07:59,440
+Now we're going to go to forward's slash maps forward slash API forward slash geocoder forward slash
+
+122
+00:07:59,510 --> 00:08:00,260
+Jason.
+
+123
+00:08:00,490 --> 00:08:01,060
+That's it.
+
+124
+00:08:01,060 --> 00:08:05,470
+I promise you only have to type at this one time hopefully it saved in your browser history and you
+
+125
+00:08:05,470 --> 00:08:07,230
+can simply copy and paste it.
+
+126
+00:08:07,240 --> 00:08:09,300
+Now this is the actual end point and you are Al.
+
+127
+00:08:09,340 --> 00:08:12,880
+But we do have to specify the address for which we want to geocoder.
+
+128
+00:08:13,060 --> 00:08:17,470
+We're going to do that using query strings which are going to be provided right after the question mark
+
+129
+00:08:17,580 --> 00:08:18,040
+here.
+
+130
+00:08:18,160 --> 00:08:24,730
+We can set up a set of key value pairs key followed by the equal sign value and we can add multiples
+
+131
+00:08:24,850 --> 00:08:26,170
+using the ampersand.
+
+132
+00:08:26,170 --> 00:08:29,760
+Here we have two equals value two.
+
+133
+00:08:30,040 --> 00:08:37,110
+In our case all we need is one query string address and for the address query string we're going to
+
+134
+00:08:37,110 --> 00:08:38,910
+set it equal to an address.
+
+135
+00:08:38,910 --> 00:08:42,390
+Now I'm not using my actual address so please don't try to send me an e-mail.
+
+136
+00:08:42,400 --> 00:08:46,890
+They will not get to me in order to fill out that query address.
+
+137
+00:08:46,920 --> 00:08:52,040
+I'm going to go ahead and start typing 13:1 space Lombard Street.
+
+138
+00:08:52,820 --> 00:08:57,330
+Space Philadelphia now you'll notice that I am using spaces here.
+
+139
+00:08:57,350 --> 00:09:02,330
+I'm doing this to illustrate a point you can use spaces in the browser because it's going to automatically
+
+140
+00:09:02,450 --> 00:09:07,430
+convert those spaces to something else but inside of node we're going to have to take care of that ourselves
+
+141
+00:09:07,580 --> 00:09:08,960
+and we'll talk about that a little later.
+
+142
+00:09:08,960 --> 00:09:09,940
+It's super easy.
+
+143
+00:09:10,010 --> 00:09:12,300
+For now though we can leave the spaces in.
+
+144
+00:09:12,350 --> 00:09:18,170
+Hit enter and you can see they automatically get converted for us space characters get converted 2 percent
+
+145
+00:09:18,170 --> 00:09:22,210
+to 20 which is the encoded version of a space down below.
+
+146
+00:09:22,310 --> 00:09:28,640
+I have all of the data that comes back now I'm using a extension called Jason view which is available
+
+147
+00:09:28,640 --> 00:09:30,190
+for Chrome and Firefox.
+
+148
+00:09:30,200 --> 00:09:32,980
+I highly recommend installing Jason view.
+
+149
+00:09:33,110 --> 00:09:38,090
+You can even take a moment to pause the video install it for your browser then refresh the page and
+
+150
+00:09:38,090 --> 00:09:40,930
+you should see a much nicer version of your Jason data.
+
+151
+00:09:40,940 --> 00:09:47,050
+It lets you minimize and expand various properties and makes it super easy to navigate.
+
+152
+00:09:47,060 --> 00:09:49,630
+Now the data below has exactly what we need.
+
+153
+00:09:49,640 --> 00:09:51,410
+We have an address component's property.
+
+154
+00:09:51,410 --> 00:09:55,930
+We don't need that down below we have a formatted address which is really nice.
+
+155
+00:09:56,000 --> 00:09:57,570
+13:1 Lombard Street.
+
+156
+00:09:57,650 --> 00:10:02,540
+It includes the state the zip code and the country which I didn't even provide in the address query.
+
+157
+00:10:02,870 --> 00:10:06,310
+Down below though we have what we really came for in geometry.
+
+158
+00:10:06,380 --> 00:10:10,940
+We have location and this includes the latitude and longitude data.
+
+159
+00:10:10,970 --> 00:10:16,310
+Now what we got back from the Google Maps API request is nothing more than some Jason data which means
+
+160
+00:10:16,310 --> 00:10:21,680
+we can take that Jason data convert it to a javascript object and start accessing these properties in
+
+161
+00:10:21,740 --> 00:10:22,650
+our code.
+
+162
+00:10:22,880 --> 00:10:28,970
+To do this we're going to use a third party module that lets you make these HTP requests inside of your
+
+163
+00:10:28,970 --> 00:10:29,460
+app.
+
+164
+00:10:29,570 --> 00:10:31,850
+This one is called request.
+
+165
+00:10:31,910 --> 00:10:35,090
+You can visit it by going to NPM.
+
+166
+00:10:35,090 --> 00:10:45,390
+J.S. dot com forward slash package forward slash request when you visit that page you're going to see
+
+167
+00:10:45,390 --> 00:10:51,630
+all the documentation all the different ways you can use the request package to make your HTP requests.
+
+168
+00:10:51,630 --> 00:10:56,460
+For now though we're going to stick with some basic examples down below on the right hand side you can
+
+169
+00:10:56,460 --> 00:10:59,100
+see this is a super popular package.
+
+170
+00:10:59,100 --> 00:11:04,200
+It has several hundred thousand downloads in the last day which is pretty ridiculous.
+
+171
+00:11:04,200 --> 00:11:08,880
+In order to get started we're going to install it inside of our project and we're going to make a request
+
+172
+00:11:08,940 --> 00:11:12,480
+to this exact you are out to do this.
+
+173
+00:11:12,480 --> 00:11:19,620
+Let's go to the terminal first and install the module using and PM in it first to create that package.
+
+174
+00:11:19,650 --> 00:11:21,040
+Jason File.
+
+175
+00:11:21,450 --> 00:11:26,440
+I'm going to run NPM in it and use enter to use the defaults for every single option.
+
+176
+00:11:27,640 --> 00:11:30,530
+At the end I'll type yes and hit enter again.
+
+177
+00:11:30,580 --> 00:11:38,310
+Now that we have our package Jason File we can use NPM install followed by the module name request and
+
+178
+00:11:38,320 --> 00:11:44,260
+I am going to specify a version you can always find the latest version of modules on and the NPM page
+
+179
+00:11:44,260 --> 00:11:49,380
+if you scroll down here you can see two point seventy three point zero is the latest version.
+
+180
+00:11:49,420 --> 00:11:54,880
+At the current time that I'm filming so I'm going to go ahead and add that at two point seventy three
+
+181
+00:11:55,300 --> 00:11:56,560
+point zero.
+
+182
+00:11:56,710 --> 00:12:01,550
+Then I can specify the save flag because I do want to save this module in my package.
+
+183
+00:12:01,570 --> 00:12:06,970
+Jason File it's going to be critical for running in the weather application and now that we have the
+
+184
+00:12:06,970 --> 00:12:11,660
+request module installed we can go ahead and start using it over inside of them.
+
+185
+00:12:11,740 --> 00:12:16,630
+We're going to wrap this video up by making a request to that you R-AL in a new file in the root of
+
+186
+00:12:16,630 --> 00:12:18,160
+the project called app.
+
+187
+00:12:18,420 --> 00:12:23,860
+Yes this is going to be the starting point for the weather application the weather app is going to be
+
+188
+00:12:23,860 --> 00:12:29,290
+the last command line as we create in the future we'll be making the backend for web apps as well as
+
+189
+00:12:29,290 --> 00:12:31,440
+real time apps using socket IO.
+
+190
+00:12:31,540 --> 00:12:36,400
+But to illustrate asynchronous programming a command line app is the nicest way to go.
+
+191
+00:12:36,400 --> 00:12:41,320
+Here we have our out file and we can get started by loading in request just like we did with our other
+
+192
+00:12:41,410 --> 00:12:43,130
+NPM modules.
+
+193
+00:12:43,180 --> 00:12:45,220
+I'm going to make a constant variable.
+
+194
+00:12:45,220 --> 00:12:54,340
+I'm going to call it request and I'm going to set it equal to require request perfect.
+
+195
+00:12:54,370 --> 00:12:56,410
+Nothing here should look new.
+
+196
+00:12:56,450 --> 00:12:59,850
+Now what we need to do is make a request in order to do this.
+
+197
+00:12:59,920 --> 00:13:02,790
+We're going to have to call this request function.
+
+198
+00:13:02,800 --> 00:13:05,920
+Let's go ahead and call it on line 3 request.
+
+199
+00:13:06,100 --> 00:13:07,700
+And it takes two arguments.
+
+200
+00:13:07,780 --> 00:13:12,290
+The first argument is going to be an options object where we can configure all sorts of information.
+
+201
+00:13:12,310 --> 00:13:13,870
+We'll use that in just a second.
+
+202
+00:13:13,900 --> 00:13:16,440
+The second one is going to be a callback function.
+
+203
+00:13:16,450 --> 00:13:21,160
+This is going to get called once the data comes back from the HTP endpoint.
+
+204
+00:13:21,160 --> 00:13:26,620
+In our case it's going to get called once that Jason data the data right here comes back into the node
+
+205
+00:13:26,800 --> 00:13:33,250
+application back inside of atom we can add the arguments that are going to get passed back from request.
+
+206
+00:13:33,250 --> 00:13:36,420
+Now these are arguments that are outlined in the request documentation.
+
+207
+00:13:36,430 --> 00:13:39,820
+I'm not making up the names for these here in the docs.
+
+208
+00:13:39,820 --> 00:13:43,300
+You can see they call it error response and body.
+
+209
+00:13:43,300 --> 00:13:52,090
+That's exactly what we're going to call ours back inside an atom we can add air response and body just
+
+210
+00:13:52,090 --> 00:13:53,950
+like they do now.
+
+211
+00:13:53,950 --> 00:13:56,910
+From here we can go ahead and fill out that options object.
+
+212
+00:13:56,920 --> 00:14:01,720
+This is where we are going to specify the things unique to our request in this case.
+
+213
+00:14:01,720 --> 00:14:07,780
+One of the unique things is that you are Al that you are Al specifies exactly what you want to request.
+
+214
+00:14:07,810 --> 00:14:10,160
+And in our case we have that in the browser.
+
+215
+00:14:10,330 --> 00:14:14,000
+Let's go ahead and copy the well exactly as it appears.
+
+216
+00:14:14,200 --> 00:14:16,360
+Pasting it inside of the string.
+
+217
+00:14:16,540 --> 00:14:18,190
+You are al property.
+
+218
+00:14:18,370 --> 00:14:23,380
+Now that we have the U R L property in place we can Atacama at the very end and hit enter because we
+
+219
+00:14:23,380 --> 00:14:25,840
+are going to specify one more property.
+
+220
+00:14:25,840 --> 00:14:31,960
+We're going to set Jason equal to true this tells request that the data coming back is going to be Jason
+
+221
+00:14:31,960 --> 00:14:37,150
+data and it should go ahead and take that Jason string and convert it to an object for us that lets
+
+222
+00:14:37,150 --> 00:14:38,230
+us skip a step.
+
+223
+00:14:38,230 --> 00:14:43,840
+It's a really useful option with this in place we can now do something in the callback in the future
+
+224
+00:14:43,840 --> 00:14:47,250
+we'll be taking this long to toute and latitude and fetching weather.
+
+225
+00:14:47,260 --> 00:14:54,950
+For now we're simply going to print the body to the screen console dialog printing body right here.
+
+226
+00:14:55,030 --> 00:14:58,130
+I'm going to pass the body argument into console that lock.
+
+227
+00:14:58,390 --> 00:15:04,210
+Now that we have our very first HTP request set up and we have a callback that's going to fire when
+
+228
+00:15:04,210 --> 00:15:09,340
+the data comes back we can run it from the terminal to do this like you might expect.
+
+229
+00:15:09,340 --> 00:15:14,710
+We're going to use node and we're going to run that app file when we do this.
+
+230
+00:15:14,710 --> 00:15:19,450
+The file is going to start executing and there's going to be a really short delay before the body prints
+
+231
+00:15:19,450 --> 00:15:20,230
+to the screen.
+
+232
+00:15:20,320 --> 00:15:25,300
+As you saw it really wasn't that long maybe a fifth of a second maybe even less.
+
+233
+00:15:25,330 --> 00:15:28,540
+And when we get back is exactly what we saw in the browser.
+
+234
+00:15:28,630 --> 00:15:32,000
+Some of the properties like address components show object.
+
+235
+00:15:32,020 --> 00:15:36,310
+In this case because we're printing it to the screen but those properties do indeed exist.
+
+236
+00:15:36,310 --> 00:15:38,500
+We'll talk about how to get them a little later.
+
+237
+00:15:38,530 --> 00:15:41,350
+For now though we do have our formatted address right here.
+
+238
+00:15:41,350 --> 00:15:47,260
+We also have the geometry object a place id and types and this is what we're going to be using to fetch
+
+239
+00:15:47,260 --> 00:15:51,920
+the long 9:58 the latitude and the later to fetch the weather data.
+
+240
+00:15:52,000 --> 00:15:57,460
+A few students reported getting the following error in the response body over queery limit.
+
+241
+00:15:57,580 --> 00:16:02,830
+If you're seeing that or if you are not I recommend heading over to this u r l this you or I was going
+
+242
+00:16:02,830 --> 00:16:07,530
+to redirect you to a course Q&amp;A on you to me in one of my replies.
+
+243
+00:16:07,540 --> 00:16:10,310
+I list out a guide for how you can fix it.
+
+244
+00:16:10,330 --> 00:16:15,610
+Now I recommend doing this even if you're not getting any error right now and you are seeing the expected
+
+245
+00:16:15,670 --> 00:16:20,110
+output that's going to make sure that you don't run into any issues in the next several videos.
+
+246
+00:16:20,110 --> 00:16:20,500
+All right.
+
+247
+00:16:20,500 --> 00:16:21,500
+That's it for the update.
+
+248
+00:16:21,520 --> 00:16:26,150
+Let's dive back into the regular video now that we have this in place.
+
+249
+00:16:26,160 --> 00:16:27,190
+We are done.
+
+250
+00:16:27,210 --> 00:16:29,850
+We have the first step of the process complete.
+
+251
+00:16:29,850 --> 00:16:34,860
+We've made a request to the Google geolocation API and we're getting the data back.
+
+252
+00:16:34,890 --> 00:16:37,820
+We'll continue on creating the weather app in the next video.
+
+253
+00:16:37,830 --> 00:16:40,750
+I am super excited to get started building it out.
+
+254
+00:16:40,770 --> 00:16:41,770
+So stay tuned.
+
+255
+00:16:41,770 --> 00:16:43,390
+I will see you soon.
+

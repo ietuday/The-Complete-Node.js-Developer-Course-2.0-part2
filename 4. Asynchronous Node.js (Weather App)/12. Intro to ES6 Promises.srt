@@ -1,0 +1,768 @@
+﻿1
+00:00:00,270 --> 00:00:06,490
+In this video you're going to learn about promises now promises are available in javascript sense yes.
+
+2
+00:00:06,490 --> 00:00:11,400
+Six although they have been around in third party libraries for quite some time but they finally made
+
+3
+00:00:11,400 --> 00:00:16,830
+their way into the core javascript language which is great because they're a really fantastic feature
+
+4
+00:00:17,250 --> 00:00:22,170
+promises aim to solve a lot of the problems that come up when you have a lot of asynchronous code in
+
+5
+00:00:22,170 --> 00:00:26,910
+your application and then make it a lot easier to manage your asynchronous computations.
+
+6
+00:00:27,030 --> 00:00:32,400
+Things like requesting data from a database or in the case of the weather app things like fetching data
+
+7
+00:00:32,460 --> 00:00:34,560
+from you are out down below.
+
+8
+00:00:34,560 --> 00:00:37,050
+We do a similar thing using callbacks.
+
+9
+00:00:37,060 --> 00:00:38,700
+Here we have two callbacks.
+
+10
+00:00:38,700 --> 00:00:44,160
+One that gets passed into your code address and one that gets passed in to get whether we use this to
+
+11
+00:00:44,160 --> 00:00:50,980
+manage our asynchronous actions in our case it's things like fetching data from an API using an HTP
+
+12
+00:00:51,000 --> 00:00:51,820
+request.
+
+13
+00:00:51,930 --> 00:00:56,050
+We can use promises in this example to make the code a lot nicer.
+
+14
+00:00:56,130 --> 00:00:58,530
+And that's exactly what the aim is going to be a little later.
+
+15
+00:00:58,530 --> 00:01:01,210
+For now though we're going to explore the very basics.
+
+16
+00:01:01,320 --> 00:01:06,450
+I'm not going to compare and contrast callbacks versus promises just yet because there's a lot more
+
+17
+00:01:06,450 --> 00:01:11,250
+subtleties than can be described without knowing exactly how promises work.
+
+18
+00:01:11,250 --> 00:01:16,530
+So what I'd like to do before we even talk about why they're better is go ahead and simply create some
+
+19
+00:01:16,860 --> 00:01:21,690
+over inside of the playground folder we're going to do that and we're going to call this file promise
+
+20
+00:01:22,080 --> 00:01:28,000
+dot J as before we define promises and talk about exactly how they work.
+
+21
+00:01:28,000 --> 00:01:32,770
+I want to go ahead and just run through a simple example because I find that is the best way to learn
+
+22
+00:01:32,770 --> 00:01:36,500
+just about anything going through an example and seeing how it works.
+
+23
+00:01:36,610 --> 00:01:41,290
+We'll learn a little bit about how promises work and we'll start to understand exactly why they're useful
+
+24
+00:01:41,320 --> 00:01:45,300
+why they've even come to exist inside of javascript to get started.
+
+25
+00:01:45,400 --> 00:01:48,280
+We're going to work through a very very basic example.
+
+26
+00:01:48,310 --> 00:01:49,990
+We're not going to do anything complex.
+
+27
+00:01:49,990 --> 00:01:54,940
+We're going to stick to the core promise features to get started with this very simple example.
+
+28
+00:01:54,940 --> 00:01:57,680
+I'm going to make a variable called some promise.
+
+29
+00:01:57,790 --> 00:02:00,500
+This is going to eventually store the promised object.
+
+30
+00:02:00,520 --> 00:02:05,710
+We'll be calling various methods on this to do something with the promise we're going to set the some
+
+31
+00:02:05,710 --> 00:02:11,740
+promise variable equal to the return result from the constructor function for promises we're going to
+
+32
+00:02:11,740 --> 00:02:16,540
+use the new keyword to create a new instance of a promise and then we're going to provide the thing
+
+33
+00:02:16,540 --> 00:02:20,380
+we want to create a new instance of promise with a capital P..
+
+34
+00:02:20,860 --> 00:02:24,720
+Now this promise function which is indeed a function you have to call it like one.
+
+35
+00:02:24,730 --> 00:02:26,500
+It takes one argument.
+
+36
+00:02:26,500 --> 00:02:31,930
+This argument is going to be a function I'm going to use an anonymous arrow function and inside of here
+
+37
+00:02:31,960 --> 00:02:34,600
+we're going to do all of the asynchronous stuff we want to do.
+
+38
+00:02:34,660 --> 00:02:40,720
+It's all going to be abstracted kind of like we extract the HTP request inside of this geocoder address
+
+39
+00:02:40,720 --> 00:02:41,360
+function.
+
+40
+00:02:41,620 --> 00:02:47,260
+All of the complex logic in here does indeed need to happen but the opt out file doesn't need to worry
+
+41
+00:02:47,260 --> 00:02:47,950
+about it.
+
+42
+00:02:47,950 --> 00:02:53,110
+Opt-Out J us has a very very simple statement that checks if there's an error and if there is we print
+
+43
+00:02:53,110 --> 00:02:58,090
+a message if there's not great we move on the same thing is going to be true with promises inside of
+
+44
+00:02:58,090 --> 00:02:58,530
+here.
+
+45
+00:02:58,570 --> 00:03:00,090
+We're going to do anything we need to do.
+
+46
+00:03:00,160 --> 00:03:02,650
+That's going to be involved with that asynchronous action.
+
+47
+00:03:03,040 --> 00:03:09,170
+This callback function is going to get called with two arguments resolve and reject.
+
+48
+00:03:09,460 --> 00:03:12,420
+And this is how we're going to manage the state of our promise.
+
+49
+00:03:12,520 --> 00:03:16,690
+When you make a promise you're making a promise you're saying hey I'm going to go off it I'm going to
+
+50
+00:03:16,690 --> 00:03:18,860
+fetch that Web site data for you.
+
+51
+00:03:18,880 --> 00:03:24,850
+Now this could go well in which case you would resolve the promise setting it state to fulfilled when
+
+52
+00:03:24,850 --> 00:03:29,260
+a promise is fulfilled it's gone out and it's done the thing you've expected it to do.
+
+53
+00:03:29,260 --> 00:03:34,180
+That could be a database request NHT request or something else completely.
+
+54
+00:03:34,180 --> 00:03:39,620
+Now when you call reject you're saying hey we tried to get that thing done man but we just could not.
+
+55
+00:03:39,730 --> 00:03:42,200
+So the promise has been considered rejected.
+
+56
+00:03:42,280 --> 00:03:48,600
+Those are the two states that you can set a promise to fulfilled or rejected just like inside of geocoder
+
+57
+00:03:48,640 --> 00:03:49,300
+Jay.
+
+58
+00:03:49,390 --> 00:03:54,880
+We either provide one argument for an error or we provide that second argument if things went well instead
+
+59
+00:03:54,880 --> 00:04:00,430
+of doing that though promises give us two functions we can call now in order to illustrate exactly how
+
+60
+00:04:00,430 --> 00:04:05,800
+we can use these We're going to go ahead and call resolve once again this is not asynchronous we're
+
+61
+00:04:05,800 --> 00:04:07,350
+not doing anything quite yet.
+
+62
+00:04:07,420 --> 00:04:11,670
+So all of this is going to happen in essentially real time as far as you see in the terminal.
+
+63
+00:04:12,010 --> 00:04:15,770
+We're going to call resolved with some data in this case I'm going to pass in a string.
+
+64
+00:04:15,910 --> 00:04:19,290
+Hey it worked.
+
+65
+00:04:19,300 --> 00:04:23,260
+Now this string this is the value the promise was fulfilled with.
+
+66
+00:04:23,290 --> 00:04:26,620
+This is exactly what someone is going to get back in our case.
+
+67
+00:04:26,620 --> 00:04:29,610
+It could be the data whether it's the results or the error message.
+
+68
+00:04:29,610 --> 00:04:31,890
+In our case though we're using resolve.
+
+69
+00:04:31,900 --> 00:04:34,780
+So this is going to be the actual data the user wanted.
+
+70
+00:04:34,810 --> 00:04:38,230
+When things go well this is what they expected.
+
+71
+00:04:38,230 --> 00:04:43,300
+Now you can only pass one argument to both resolve and reject which means if you want to provide multiple
+
+72
+00:04:43,300 --> 00:04:49,150
+pieces of information I recommend resolving or rejecting an object that you can set multiple properties
+
+73
+00:04:49,150 --> 00:04:49,680
+on.
+
+74
+00:04:49,750 --> 00:04:51,890
+In our case though a simple message hey it works.
+
+75
+00:04:51,900 --> 00:04:53,280
+We'll do the job.
+
+76
+00:04:53,620 --> 00:04:59,410
+Now in order to actually do something when the promise gets either resolved or rejected we need to call
+
+77
+00:04:59,410 --> 00:05:07,960
+a promise method called then some promise dot then and then lets us provide callback functions for both
+
+78
+00:05:07,960 --> 00:05:10,460
+success cases and error cases.
+
+79
+00:05:10,540 --> 00:05:15,150
+And this is one of the areas that callbacks differ from premises in a callback.
+
+80
+00:05:15,160 --> 00:05:17,670
+We had one function that fired no matter what.
+
+81
+00:05:17,760 --> 00:05:23,270
+And the arguments let us know whether or not things went well and promises were going to have two functions.
+
+82
+00:05:23,350 --> 00:05:27,180
+And that is going to be what determines whether or not things went as planned.
+
+83
+00:05:27,190 --> 00:05:31,570
+Now before we dive into adding two functions let's start with just one right here.
+
+84
+00:05:31,720 --> 00:05:34,710
+I'm going to call then passing in one function.
+
+85
+00:05:34,720 --> 00:05:40,360
+This function is only only only going to get called if the promise gets fulfilled meaning it works as
+
+86
+00:05:40,360 --> 00:05:46,060
+expected when it does it's going to get called with the value passed to resolve in our case it's a simple
+
+87
+00:05:46,060 --> 00:05:50,030
+message but it could be something like a user object.
+
+88
+00:05:50,060 --> 00:05:51,830
+In the case of a database request.
+
+89
+00:05:51,950 --> 00:05:56,810
+For now though we'll stick with message and we'll print that message to the screen right inside of the
+
+90
+00:05:56,810 --> 00:05:59,050
+callback when the promise gets fulfilled.
+
+91
+00:05:59,060 --> 00:06:05,530
+We're going to call cancel that log printing success and then as a second argument I'm going to print
+
+92
+00:06:05,530 --> 00:06:07,930
+in the actual message variable.
+
+93
+00:06:08,110 --> 00:06:10,830
+And now that we had a very basic premise example in place.
+
+94
+00:06:10,840 --> 00:06:15,700
+Let's go ahead and run it from the terminal using gnomon which we installed in the previous section
+
+95
+00:06:16,190 --> 00:06:18,160
+node man.
+
+96
+00:06:18,230 --> 00:06:20,290
+Then we're going to go into the playground folder.
+
+97
+00:06:20,300 --> 00:06:23,280
+Forward slash promis dot J as.
+
+98
+00:06:23,360 --> 00:06:27,430
+When we do this right away our app runs and right away we get success.
+
+99
+00:06:27,440 --> 00:06:31,430
+Hey it worked as you saw this happened instantaneously.
+
+100
+00:06:31,460 --> 00:06:35,020
+There was no delay because we haven't done anything asynchronously.
+
+101
+00:06:35,060 --> 00:06:40,250
+Now when we first explored callbacks we used set time out to simulate a delay and that's exactly what
+
+102
+00:06:40,250 --> 00:06:43,340
+we're going to do here right inside of our function.
+
+103
+00:06:43,350 --> 00:06:49,750
+I'm going to call set time out passing the two arguments the function to call after the delay and the
+
+104
+00:06:49,750 --> 00:06:51,400
+delay in milliseconds.
+
+105
+00:06:51,400 --> 00:06:55,420
+I'll go with two thousand five hundred which is two and a half seconds.
+
+106
+00:06:55,500 --> 00:07:00,790
+Now after those two and a half seconds are up then and only then do we want to resolve the problems.
+
+107
+00:07:00,790 --> 00:07:06,100
+This means that our function that when we pass into then this is not going to get called for two and
+
+108
+00:07:06,100 --> 00:07:10,860
+a half seconds because as we know this is not going to get called until the promise resolves.
+
+109
+00:07:10,930 --> 00:07:15,910
+I'm going to save the file which will restart gnomon over in the terminal you can see we have our delay
+
+110
+00:07:15,950 --> 00:07:17,140
+and then success.
+
+111
+00:07:17,170 --> 00:07:17,970
+Hey it worked.
+
+112
+00:07:17,980 --> 00:07:19,280
+Prints to the screen.
+
+113
+00:07:19,390 --> 00:07:24,830
+That two and a half second delay was caused by this set timed out and after the delay was up.
+
+114
+00:07:24,940 --> 00:07:26,510
+In this case it's an artificial delay.
+
+115
+00:07:26,590 --> 00:07:28,330
+But later it'll be a real delay.
+
+116
+00:07:28,360 --> 00:07:31,120
+We're able to resolve with the data.
+
+117
+00:07:31,120 --> 00:07:33,090
+Now there's a chance that things didn't go well.
+
+118
+00:07:33,100 --> 00:07:36,060
+You have to handle errors inside of your node applications.
+
+119
+00:07:36,070 --> 00:07:38,280
+In that case you wouldn't call resolve.
+
+120
+00:07:38,380 --> 00:07:39,900
+You would call reject.
+
+121
+00:07:40,240 --> 00:07:45,540
+Let's go ahead and comment out this resolve line and create a second one where we call Project.
+
+122
+00:07:45,820 --> 00:07:48,790
+I'm going to call Project much the same way I called resolve.
+
+123
+00:07:48,800 --> 00:07:53,000
+You have to pass in one argument and in this case a simple error message will do.
+
+124
+00:07:53,390 --> 00:08:01,350
+Unable to fulfill promise not one we call reject.
+
+125
+00:08:01,450 --> 00:08:06,460
+We're telling the promise that it has been rejected meaning the thing we tried to do did not go well
+
+126
+00:08:06,610 --> 00:08:09,340
+and currently we don't have an argument that handles that.
+
+127
+00:08:09,390 --> 00:08:12,910
+As you mentioned this function only gets called when things go as expected.
+
+128
+00:08:12,910 --> 00:08:14,390
+Not when we have errors.
+
+129
+00:08:14,470 --> 00:08:20,020
+If I save the file and rerun it over in the terminal what we're going to get is a promise that rejects
+
+130
+00:08:20,110 --> 00:08:23,240
+but we don't have a handler for so nothing is going to print to the screen.
+
+131
+00:08:23,350 --> 00:08:25,200
+And this is going to be a pretty big problem.
+
+132
+00:08:25,210 --> 00:08:29,560
+What we need to do is do something with that error message maybe we want to alert the user or we want
+
+133
+00:08:29,560 --> 00:08:31,360
+to try some other code here.
+
+134
+00:08:31,360 --> 00:08:37,210
+You can see that nothing printed between the restarting and the exiting in order to do something with
+
+135
+00:08:37,210 --> 00:08:41,250
+the error we're going to add a second argument to then this second argument.
+
+136
+00:08:41,260 --> 00:08:44,660
+This is what lets us handle errors in our promises.
+
+137
+00:08:44,680 --> 00:08:49,870
+This argument is going to get executed and called with that value in this case is our message.
+
+138
+00:08:50,080 --> 00:08:55,910
+I'm going to create an argument called error message right here inside of here we can do something with
+
+139
+00:08:55,910 --> 00:09:01,190
+that and this case will print it to the screen using console log printing error with a calling and a
+
+140
+00:09:01,190 --> 00:09:08,840
+space to add some nice formatting followed by the actual value that was rejected error message.
+
+141
+00:09:09,120 --> 00:09:14,060
+And now that we have this in place we can go ahead and refresh things by saving the file and we are
+
+142
+00:09:14,060 --> 00:09:18,680
+going to see our error message over in the terminal because we now have a place for it to do something.
+
+143
+00:09:18,710 --> 00:09:23,270
+In this case we have a place for it to print the message to the screen on able to fill promis prints
+
+144
+00:09:23,270 --> 00:09:25,640
+to the screen which works exactly as expected.
+
+145
+00:09:25,640 --> 00:09:27,680
+And this is fantastic.
+
+146
+00:09:27,710 --> 00:09:33,050
+We don't have a promise that can either get resolved the rejected if it gets resolved meaning the promise
+
+147
+00:09:33,050 --> 00:09:33,890
+was fulfilled.
+
+148
+00:09:33,980 --> 00:09:37,030
+We have a function that handles that if it gets rejected.
+
+149
+00:09:37,130 --> 00:09:39,560
+We have a function that handles that as well.
+
+150
+00:09:39,560 --> 00:09:42,230
+And this is one of the reasons I really love promises.
+
+151
+00:09:42,230 --> 00:09:46,670
+You're going to provide different functions depending on whether or not the promise got resolved the
+
+152
+00:09:46,670 --> 00:09:47,500
+rejected.
+
+153
+00:09:47,540 --> 00:09:52,610
+This lets you avoid a lot of the complex if statements inside of your code which we needed to do in.
+
+154
+00:09:52,660 --> 00:09:58,180
+Yes to manage whether or not the actual callback succeeded or failed.
+
+155
+00:09:58,220 --> 00:10:03,410
+Now inside of premise it's important to understand that you can only either resolve or reject a promise
+
+156
+00:10:03,440 --> 00:10:06,760
+once if you resolve a promise you can't reject it later.
+
+157
+00:10:06,830 --> 00:10:11,140
+And if you resolve that with one value you can't change your mind at a later point in time.
+
+158
+00:10:11,150 --> 00:10:16,220
+For example if I have code like this where I resolve it first and then I reject we're going to get our
+
+159
+00:10:16,220 --> 00:10:20,900
+success message printing to the screen and we're never going to see the error message because as I just
+
+160
+00:10:20,900 --> 00:10:26,960
+said you can only do one of those actions once you can either resolve wants or you can reject once you
+
+161
+00:10:26,960 --> 00:10:29,780
+can't do both and you can't do either twice.
+
+162
+00:10:29,810 --> 00:10:32,890
+This is another great advantage over callbacks.
+
+163
+00:10:32,900 --> 00:10:37,460
+There's nothing preventing us from accidentally calling the callback function twice.
+
+164
+00:10:37,460 --> 00:10:40,610
+For example I could have another line right here.
+
+165
+00:10:40,610 --> 00:10:46,160
+This is a more obvious example but it could easily be hidden inside of complex if else statements.
+
+166
+00:10:46,310 --> 00:10:52,310
+And this case our callback function and J S is indeed going to get called twice which can cause really
+
+167
+00:10:52,310 --> 00:10:54,060
+big problems for our program.
+
+168
+00:10:55,490 --> 00:10:58,200
+Inside of the promise example this callback.
+
+169
+00:10:58,280 --> 00:11:00,170
+It is never going to get called twice.
+
+170
+00:11:00,230 --> 00:11:05,390
+No matter how many times you try to call resolver reject this function is only going to get fired once
+
+171
+00:11:05,630 --> 00:11:09,110
+we can prove that right now by calling resolve again.
+
+172
+00:11:09,530 --> 00:11:14,000
+In this case when I saved the file and refresh things we're going to resolve with our message hey it
+
+173
+00:11:14,000 --> 00:11:18,740
+worked and we're never ever going to have the function fired a second time with no message because as
+
+174
+00:11:18,740 --> 00:11:24,170
+we said the promise is already resolved once you set a promise is state to either fulfilled or rejected.
+
+175
+00:11:24,170 --> 00:11:26,130
+You can't set it again.
+
+176
+00:11:26,150 --> 00:11:32,420
+Now before a promise is resolved or object function gets called a promise is in a state which is known
+
+177
+00:11:32,420 --> 00:11:37,010
+as pending meaning that you're waiting for information to come back or you're waiting for your async
+
+178
+00:11:37,040 --> 00:11:38,600
+computation to finish.
+
+179
+00:11:38,630 --> 00:11:43,640
+In our case while we're waiting for that weather data to come back the promise would be considered pending
+
+180
+00:11:44,000 --> 00:11:49,220
+and a promise is considered settled when it has been either fulfilled or rejected.
+
+181
+00:11:49,220 --> 00:11:52,340
+No matter which one you chose you could say that promise has settled.
+
+182
+00:11:52,340 --> 00:11:59,360
+Meaning that it's no longer pending in our case this would be a settled promise that was indeed fulfilled
+
+183
+00:11:59,390 --> 00:12:02,000
+because resolve is called right here.
+
+184
+00:12:02,000 --> 00:12:06,770
+So those are just a couple of the benefits of promises you don't have to worry about having callbacks
+
+185
+00:12:06,770 --> 00:12:07,660
+called twice.
+
+186
+00:12:07,760 --> 00:12:12,850
+You can provide multiple functions one for success handling and one for error handling.
+
+187
+00:12:12,850 --> 00:12:19,650
+It really is a fantastic utility and now that we've gone through a quick example of how promises work
+
+188
+00:12:19,790 --> 00:12:24,270
+going over just the very fundamentals we're going to move on to something a slightly more complex and
+
+189
+00:12:24,270 --> 00:12:26,200
+they'll also be a challenge for you.
+
+190
+00:12:26,280 --> 00:12:30,520
+So you can learn how to create your own promises that is coming up in the next video.
+
+191
+00:12:30,540 --> 00:12:31,610
+So stay tuned.
+
+192
+00:12:31,620 --> 00:12:33,340
+I will see you then.
+

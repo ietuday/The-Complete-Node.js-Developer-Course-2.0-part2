@@ -1,0 +1,504 @@
+﻿1
+00:00:00,300 --> 00:00:05,610
+In this video you're going to create your first asynchronous nonblocking program which means your app
+
+2
+00:00:05,610 --> 00:00:09,010
+is going to continue to run while it waits for something else to happen.
+
+3
+00:00:09,030 --> 00:00:11,780
+In this case we're going to stick with a really basic example.
+
+4
+00:00:11,790 --> 00:00:16,350
+But in this section we're going to be building out a weather app that communicates with third party
+
+5
+00:00:16,350 --> 00:00:19,690
+API like the Google API and a weather API.
+
+6
+00:00:19,920 --> 00:00:25,800
+We're going to need to use asynchronous code to fetch data from those sources before we get into any
+
+7
+00:00:25,800 --> 00:00:26,110
+of that.
+
+8
+00:00:26,120 --> 00:00:30,870
+So in this video we're going to go over a basic example of asynchronous programming and in the next
+
+9
+00:00:30,870 --> 00:00:35,610
+one we're going to talk about what happens behind the scenes when you run a synchronous code.
+
+10
+00:00:35,670 --> 00:00:40,380
+That video coming up next we'll give you a really good idea about how your program runs.
+
+11
+00:00:40,380 --> 00:00:45,020
+What tools and tricks are happening behind the scenes to make it run the way it does.
+
+12
+00:00:45,030 --> 00:00:50,030
+For now though all we need to do is make a new folder on the desktop for this section.
+
+13
+00:00:50,190 --> 00:00:56,100
+I'm going to navigate onto my desktop and use M-K DVR to make a new directory and I'm going to call
+
+14
+00:00:56,100 --> 00:00:59,100
+this one whether an app.
+
+15
+00:00:59,340 --> 00:01:05,540
+All I need to do before I switch to Adam is navigate into the weather app perfect and I'm going to use
+
+16
+00:01:05,540 --> 00:01:08,480
+clear to clear the terminal output.
+
+17
+00:01:08,510 --> 00:01:09,370
+Awesome.
+
+18
+00:01:09,380 --> 00:01:12,980
+Now we can open up that new weather app directory inside of atom.
+
+19
+00:01:13,040 --> 00:01:17,470
+This is the directory we'll be using throughout this entire section in this video.
+
+20
+00:01:17,480 --> 00:01:19,760
+We're not going to be building out the weather app just yet.
+
+21
+00:01:19,760 --> 00:01:22,690
+We're going to be playing around with the async features.
+
+22
+00:01:22,730 --> 00:01:26,280
+So inside of weather app I want to make that playground folder.
+
+23
+00:01:26,330 --> 00:01:30,800
+This code is not going to be part of the weather app but it will be really useful when it comes to creating
+
+24
+00:01:30,800 --> 00:01:32,640
+the weather app in a couple of videos.
+
+25
+00:01:32,750 --> 00:01:36,490
+Now inside a playground we can go ahead and make the file for this video.
+
+26
+00:01:36,540 --> 00:01:38,880
+Eysenck hyphen basics.
+
+27
+00:01:38,960 --> 00:01:40,100
+J.S..
+
+28
+00:01:40,130 --> 00:01:40,940
+Awesome.
+
+29
+00:01:40,940 --> 00:01:43,770
+I'm going to close this untitled tab and we can get started.
+
+30
+00:01:45,380 --> 00:01:49,640
+To illustrate how the asynchronous programming model works we're going to get started with a really
+
+31
+00:01:49,640 --> 00:01:52,630
+basic example using console Lague.
+
+32
+00:01:52,910 --> 00:01:56,790
+Let's get started by adding a couple console dialog statements in a synchronous way.
+
+33
+00:01:56,840 --> 00:01:58,010
+Nothing new here.
+
+34
+00:01:58,040 --> 00:02:04,200
+We're going to create one at the beginning of the app that's going to say starting app and we can add
+
+35
+00:02:04,200 --> 00:02:08,620
+a second one to the end down below console log.
+
+36
+00:02:08,730 --> 00:02:13,850
+And this one will print finishing up awesome.
+
+37
+00:02:13,860 --> 00:02:18,240
+Now these are always going to run synchronously no matter how many times you run the program starting
+
+38
+00:02:18,240 --> 00:02:23,200
+app is always going to show up before finishing app in order to add some asynchronous code.
+
+39
+00:02:23,220 --> 00:02:29,850
+We're going to take a look at a function that node provides called set timeout set capital-T time out
+
+40
+00:02:30,170 --> 00:02:35,800
+said time out is a great method for illustrating the basics of nonblocking programming.
+
+41
+00:02:35,820 --> 00:02:37,170
+It takes two arguments.
+
+42
+00:02:37,260 --> 00:02:39,040
+The first one is a function.
+
+43
+00:02:39,070 --> 00:02:41,870
+This is going to be referred to as a callback function.
+
+44
+00:02:41,880 --> 00:02:45,880
+It's going to get fired after a certain amount of time and that's the second argument.
+
+45
+00:02:45,900 --> 00:02:48,830
+It's a number the number of milliseconds you want to wait.
+
+46
+00:02:48,960 --> 00:02:53,110
+So if you want to wait one second you would pass in 1000 milliseconds.
+
+47
+00:02:53,130 --> 00:02:57,850
+Let's go ahead and call set time out passing an arrow function as our first argument.
+
+48
+00:02:57,860 --> 00:02:59,800
+This is going to be the callback function.
+
+49
+00:02:59,820 --> 00:03:01,420
+It's not going to get fired right away.
+
+50
+00:03:01,510 --> 00:03:07,680
+It's going to get fired after the time out is up after are two seconds and then we can set up our second
+
+51
+00:03:07,680 --> 00:03:14,750
+argument which is the delay 2000 milliseconds which equals those two seconds inside of year.
+
+52
+00:03:14,790 --> 00:03:19,530
+We're going to do is use a console that logs so we can figure out exactly when this function fires because
+
+53
+00:03:19,710 --> 00:03:25,320
+the statement will print to the screen console log and something like inside of callback will get the
+
+54
+00:03:25,320 --> 00:03:33,020
+job done inside of callback awesome now with this in place we're actually ready to run our very first
+
+55
+00:03:33,050 --> 00:03:33,960
+async program.
+
+56
+00:03:34,100 --> 00:03:36,500
+And I'm not going to use gnomon to execute it.
+
+57
+00:03:36,500 --> 00:03:41,270
+I'll show you why in just a second I'm going to run this file from the terminal using the basic node
+
+58
+00:03:41,300 --> 00:03:41,870
+command.
+
+59
+00:03:42,970 --> 00:03:50,700
+Node space playground and the file inside the playground folder is a async hyphen basics.
+
+60
+00:03:50,870 --> 00:03:51,920
+Yes.
+
+61
+00:03:51,920 --> 00:03:55,720
+Now pay close attention to exactly what happens when I hit Enter right away.
+
+62
+00:03:55,760 --> 00:04:02,030
+Two messages show up then two seconds later our final message inside of callback prints to the screen.
+
+63
+00:04:02,030 --> 00:04:07,750
+Right away we got starting app basically immediately after that finishing up prints to the screen finally
+
+64
+00:04:07,820 --> 00:04:13,340
+inside of callback over here inside of the file this is not the order we wrote the code but it is the
+
+65
+00:04:13,340 --> 00:04:14,600
+order of the code executes.
+
+66
+00:04:14,600 --> 00:04:20,660
+In starting out prints to the screen as you expected down here we call set time out but we're not actually
+
+67
+00:04:20,660 --> 00:04:22,240
+telling it to wait two seconds.
+
+68
+00:04:22,280 --> 00:04:26,000
+We're registering a callback that's going to get fired in two seconds.
+
+69
+00:04:26,000 --> 00:04:31,070
+This is going to be an asynchronous callback which means that node can do other things while these two
+
+70
+00:04:31,070 --> 00:04:32,180
+seconds are happening.
+
+71
+00:04:32,180 --> 00:04:36,190
+In this case the other thing it does is it moves down to finish it up.
+
+72
+00:04:36,200 --> 00:04:41,060
+Now since we did register this callback by using that time out it is going to fire at some point in
+
+73
+00:04:41,060 --> 00:04:46,790
+time and two seconds later we do indeed see inside of callback printing to the screen.
+
+74
+00:04:46,790 --> 00:04:50,850
+Hopefully this makes a little bit of sense by using non-blocking I O.
+
+75
+00:04:50,900 --> 00:04:51,790
+We're able to wait.
+
+76
+00:04:51,800 --> 00:04:56,330
+In this case two seconds without preventing the rest of the program from executing.
+
+77
+00:04:56,420 --> 00:05:00,030
+If this was blocking we would have to wait two seconds for this code to fire.
+
+78
+00:05:00,060 --> 00:05:04,970
+Then finishing up would print to the screen and obviously that would not be ideal.
+
+79
+00:05:04,970 --> 00:05:07,820
+Now obviously this is a pretty contrived example.
+
+80
+00:05:07,820 --> 00:05:12,950
+We're not exactly going to be using set time out in our real world apps to create unnecessary arbitrary
+
+81
+00:05:12,950 --> 00:05:15,320
+delays but the principles are the same.
+
+82
+00:05:15,320 --> 00:05:22,070
+For example when we fetch data from the Google API we're going to need to wait about 100 to 200 milliseconds
+
+83
+00:05:22,070 --> 00:05:26,210
+for that data to come back and we don't want the rest of the program to just be idle it's going to continue
+
+84
+00:05:26,210 --> 00:05:26,740
+on.
+
+85
+00:05:26,870 --> 00:05:31,820
+We're going to register a callback in that callback is going to get fired once the data comes back from
+
+86
+00:05:31,820 --> 00:05:34,740
+the Google servers the same principles apply.
+
+87
+00:05:34,790 --> 00:05:37,940
+Even though what's actually happening is quite different.
+
+88
+00:05:37,940 --> 00:05:41,030
+Now in order to wrap this video up I want you to write another set.
+
+89
+00:05:41,030 --> 00:05:43,190
+Time out right here on line 7.
+
+90
+00:05:43,250 --> 00:05:48,500
+I want you to register a set time out that prints a message something like second set timeout works
+
+91
+00:05:48,830 --> 00:05:50,230
+that's going to be inside the callback.
+
+92
+00:05:50,390 --> 00:05:54,300
+I want you to register a delay of 0 milliseconds 0.
+
+93
+00:05:54,440 --> 00:05:55,900
+No delay at all.
+
+94
+00:05:55,940 --> 00:06:00,500
+Then go ahead and run the program from the terminal and see exactly what happens.
+
+95
+00:06:04,530 --> 00:06:05,220
+How to go.
+
+96
+00:06:05,350 --> 00:06:10,330
+Hopefully you were able to run the program and maybe you saw something that didn't quite make sense.
+
+97
+00:06:10,350 --> 00:06:12,720
+Let's go ahead and fill out the async basics.
+
+98
+00:06:12,720 --> 00:06:13,950
+Set time out.
+
+99
+00:06:14,040 --> 00:06:21,170
+I'm going to call set time out with my arrow function passing in a delay of 0 milliseconds.
+
+100
+00:06:21,410 --> 00:06:23,410
+Us inside of here.
+
+101
+00:06:23,410 --> 00:06:28,330
+I'm going to use cancel that log so I can see exactly when this function executes and I'm going to use
+
+102
+00:06:28,360 --> 00:06:33,870
+second set time out as the text.
+
+103
+00:06:34,100 --> 00:06:38,270
+Now that we have this in place we can go ahead and run the program over from the terminal and it's really
+
+104
+00:06:38,270 --> 00:06:41,830
+important to pay attention to the order the statements print.
+
+105
+00:06:41,990 --> 00:06:44,380
+Or on the program right away we get three statements.
+
+106
+00:06:44,390 --> 00:06:45,310
+And then at the very end.
+
+107
+00:06:45,320 --> 00:06:47,720
+Two seconds later we get our final statement.
+
+108
+00:06:47,720 --> 00:06:49,640
+We start with starting out which makes sense.
+
+109
+00:06:49,640 --> 00:06:56,150
+It's at the top then we get finishing up after finishing up we get second set time out which seems weird
+
+110
+00:06:56,420 --> 00:07:01,670
+because we clearly told node hey we want to run this function after 0 milliseconds which should run
+
+111
+00:07:01,670 --> 00:07:02,560
+it right away.
+
+112
+00:07:02,780 --> 00:07:04,040
+But in our example.
+
+113
+00:07:04,070 --> 00:07:05,860
+Second set time out printed.
+
+114
+00:07:05,870 --> 00:07:13,250
+After finishing up finally inside of callback printed to the screen this behavior is completely expected.
+
+115
+00:07:13,280 --> 00:07:18,410
+This is exactly how no jackass is supposed to operate and it's going to become a lot clearer after that
+
+116
+00:07:18,410 --> 00:07:24,100
+next video where I go through this example exactly showing you what happens behind the scenes.
+
+117
+00:07:24,140 --> 00:07:28,640
+We're going to get started with a more basic example showing you how the call stack works we'll talk
+
+118
+00:07:28,640 --> 00:07:30,310
+all about that in the next video.
+
+119
+00:07:30,440 --> 00:07:35,330
+And then we're going to go on to a more complex example like this one that has some asynchronous events
+
+120
+00:07:35,360 --> 00:07:36,530
+attached to it.
+
+121
+00:07:36,890 --> 00:07:37,580
+I promise.
+
+122
+00:07:37,580 --> 00:07:43,490
+The reason why second set timeout comes up after finishing up is going to be very obvious after the
+
+123
+00:07:43,490 --> 00:07:44,270
+next video.
+
+124
+00:07:44,300 --> 00:07:45,710
+I'm super excited to get to it.
+
+125
+00:07:45,710 --> 00:07:46,790
+So stay tuned.
+
+126
+00:07:46,800 --> 00:07:48,480
+I will see you then.
+

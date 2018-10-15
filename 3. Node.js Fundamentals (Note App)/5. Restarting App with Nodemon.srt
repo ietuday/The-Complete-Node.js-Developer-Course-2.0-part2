@@ -1,0 +1,348 @@
+﻿1
+00:00:00,910 --> 00:00:06,080
+The number one complaint I got about version 1 of this course was the fact that students had to restart
+
+2
+00:00:06,080 --> 00:00:11,240
+the app from the terminal every time they wanted to see the changes they just made inside of their text
+
+3
+00:00:11,240 --> 00:00:11,720
+editor.
+
+4
+00:00:11,810 --> 00:00:17,480
+Luckily there is a better way to do things in this video we're going to take a look at how we can automatically
+
+5
+00:00:17,480 --> 00:00:20,920
+restart our app as we make changes to the file.
+
+6
+00:00:20,930 --> 00:00:29,100
+That means if I change Andrew to Mike and say that it would automatically restart over in the terminal.
+
+7
+00:00:29,340 --> 00:00:36,250
+Now to do this we have to install a command line utility and we're going to do this using NPM to get
+
+8
+00:00:36,250 --> 00:00:36,700
+started.
+
+9
+00:00:36,700 --> 00:00:40,290
+We're going to go to Google Chrome and head over to NPM.
+
+10
+00:00:40,360 --> 00:00:47,890
+Jay ass at dot com just like we did previously and the module we're looking for is called node mine
+
+11
+00:00:48,170 --> 00:00:54,310
+mon node mine is going to be responsible for watching out for changes and restarting the app when those
+
+12
+00:00:54,310 --> 00:00:55,590
+changes occur.
+
+13
+00:00:56,330 --> 00:01:02,880
+Right here we can view the docs for gnomon as well as various things like current version numbers etc..
+
+14
+00:01:02,980 --> 00:01:07,870
+You can also see it's a really popular module with over 13000 downloads a day.
+
+15
+00:01:07,900 --> 00:01:13,780
+Now this module is a little different than the one we used in the last video low dash low Dash got installed
+
+16
+00:01:13,930 --> 00:01:16,230
+and added into our project package.
+
+17
+00:01:16,270 --> 00:01:18,250
+Jason File right here.
+
+18
+00:01:18,250 --> 00:01:23,270
+That means it went into our node modules folder and we were able to require it in our apt at jast file
+
+19
+00:01:24,700 --> 00:01:31,480
+gnomon however works a little differently it's a command line utility that gets executed from the terminal.
+
+20
+00:01:31,480 --> 00:01:36,700
+It's going to be a completely new way of starting our application and to install modules to be run from
+
+21
+00:01:36,700 --> 00:01:41,320
+the command line and we have to tweak the install command that we used in the last video.
+
+22
+00:01:41,470 --> 00:01:47,260
+For now we can start off much the same way though we're going to use NPM install just like we did in
+
+23
+00:01:47,260 --> 00:01:48,390
+the last video.
+
+24
+00:01:48,550 --> 00:01:54,130
+We're going to tape the name just like we did in the last video but instead of using the Save flag what
+
+25
+00:01:54,170 --> 00:01:58,040
+we're going to do is use the G flag which is short for global.
+
+26
+00:01:58,120 --> 00:02:03,580
+This installs gnomon as a global utility on your machine which means it's not going to get added to
+
+27
+00:02:03,580 --> 00:02:07,110
+your specific project and you're never going to require node one.
+
+28
+00:02:07,140 --> 00:02:13,070
+Instead you're going to be running the node on command from the terminal when we install this command.
+
+29
+00:02:13,090 --> 00:02:17,890
+It's going to go off to NPM fetch all of the code that comes with gnomon and that's going to add it
+
+30
+00:02:17,890 --> 00:02:24,250
+into the installation where node and NPM live on your machine outside of the project you're working
+
+31
+00:02:24,250 --> 00:02:24,820
+on.
+
+32
+00:02:24,820 --> 00:02:28,060
+This command could be executed from anywhere in your machine.
+
+33
+00:02:28,060 --> 00:02:33,190
+It does not need to be executed from the project folder since it doesn't actually update the project
+
+34
+00:02:33,190 --> 00:02:34,250
+at all.
+
+35
+00:02:34,360 --> 00:02:41,680
+With this in place though we now have a brand new command on our machine node on gnomon is going to
+
+36
+00:02:41,680 --> 00:02:46,990
+get executed just like node did where we type the command and then we type the file we want to start.
+
+37
+00:02:47,110 --> 00:02:50,430
+In our case app is the root of our project.
+
+38
+00:02:50,530 --> 00:02:52,650
+When you run it you're going to see a few things.
+
+39
+00:02:52,780 --> 00:02:58,930
+We're going to see a combination of our apps output along with no demand logs that show you what's happening
+
+40
+00:02:59,200 --> 00:03:05,370
+here you can see the version node using the files it's watching and the command it actually ran.
+
+41
+00:03:05,830 --> 00:03:08,200
+Now at this point it's waiting for more changes.
+
+42
+00:03:08,200 --> 00:03:11,220
+It already ran through the entire app and it's just going to sit here.
+
+43
+00:03:11,260 --> 00:03:18,190
+It's going to keep running until another change happens or until you shut it down inside out.
+
+44
+00:03:18,220 --> 00:03:21,440
+That means we can go ahead and make a few changes to our app.
+
+45
+00:03:21,520 --> 00:03:26,500
+Let's get started by changing Andrew to Mike and then we're going to go ahead and remove everything
+
+46
+00:03:26,500 --> 00:03:30,200
+else from the array leaving it just like this.
+
+47
+00:03:30,220 --> 00:03:35,080
+Now I'm going to be saving the file to pay attention to what happens in the terminal right here.
+
+48
+00:03:35,080 --> 00:03:40,450
+You can see the app automatically restarted and within a split second the new output is shown to the
+
+49
+00:03:40,450 --> 00:03:41,030
+screen.
+
+50
+00:03:41,140 --> 00:03:44,740
+You can see we now have our array with one item a string Mike.
+
+51
+00:03:44,860 --> 00:03:47,010
+And this is the real power of gnomon.
+
+52
+00:03:47,080 --> 00:03:51,940
+You can create your applications and it will automatically restart over inside of the terminal which
+
+53
+00:03:51,940 --> 00:03:53,140
+is super useful.
+
+54
+00:03:53,140 --> 00:03:55,620
+It's going to save you a ton of time and a ton of headaches.
+
+55
+00:03:55,630 --> 00:03:59,670
+You don't have to switch back and forth every time you make a small tweak.
+
+56
+00:03:59,680 --> 00:04:03,360
+This also prevents ton of errors where you are running a web server.
+
+57
+00:04:03,520 --> 00:04:06,700
+You make a change and you forget to restart that web server.
+
+58
+00:04:06,700 --> 00:04:10,970
+You might think your change didn't work as expected because the app is not working as expected.
+
+59
+00:04:11,020 --> 00:04:16,270
+But in reality you just never restarted the app for the most part we are going to be using node mom
+
+60
+00:04:16,270 --> 00:04:18,540
+throughout the course since it's super useful.
+
+61
+00:04:18,580 --> 00:04:23,770
+It's only used for development purposes which is exactly what we're doing on our local machine.
+
+62
+00:04:23,770 --> 00:04:29,560
+Later on in the course when we deploy our node apps to a real web server we won't be using gnomon but
+
+63
+00:04:29,560 --> 00:04:34,900
+gnomon is awesome for local development because it makes it that much easier.
+
+64
+00:04:34,930 --> 00:04:36,180
+That is it for this video.
+
+65
+00:04:36,190 --> 00:04:41,290
+Now it's time to start exploring how we can get input from the user to create our notes application
+
+66
+00:04:41,520 --> 00:04:43,690
+that's going to be the topic of the next few videos.
+
+67
+00:04:43,690 --> 00:04:46,090
+I am super excited to get started.
+
+68
+00:04:46,390 --> 00:04:50,440
+Before we do get started we're going to take a quick second to clean up a lot of the code we've already
+
+69
+00:04:50,440 --> 00:04:51,390
+written.
+
+70
+00:04:51,430 --> 00:04:57,460
+I'm going to remove all of the commented out code down below and up above where we have FS OS and low
+
+71
+00:04:57,460 --> 00:04:58,270
+dash.
+
+72
+00:04:58,270 --> 00:05:03,000
+I'm going to simply remove OS since we're not going to be using it for the project.
+
+73
+00:05:03,230 --> 00:05:10,280
+I'm also going to be adding a space between the third party and node modules and the files I've written.
+
+74
+00:05:10,280 --> 00:05:15,930
+I find this to be a good syntax that makes it a lot easier to quickly scan for either third party slash
+
+75
+00:05:15,940 --> 00:05:20,840
+known modules and modules that I've created and required down below.
+
+76
+00:05:20,850 --> 00:05:25,200
+Next up over in notes we're going to go ahead and remove the add function.
+
+77
+00:05:25,200 --> 00:05:30,480
+This was only added for demonstration purposes and we can go ahead and save both of these files and
+
+78
+00:05:30,480 --> 00:05:33,070
+gnomon is automatically going to restart.
+
+79
+00:05:33,090 --> 00:05:34,770
+Last but not least we can remove that.
+
+80
+00:05:34,770 --> 00:05:41,070
+Greetings itx tif file that was used to demonstrate how the FS module works and since we already know
+
+81
+00:05:41,070 --> 00:05:47,360
+how it works we can go ahead and wipe that file and last but not least we can always shut down gnomon
+
+82
+00:05:47,390 --> 00:05:49,150
+and using control-C.
+
+83
+00:05:49,170 --> 00:05:55,350
+Now we're back at the regular terminal and with this in place we are done it's time to move on figuring
+
+84
+00:05:55,350 --> 00:06:00,290
+out how we can get input from the user because that's how users are going to be able to create notes
+
+85
+00:06:00,360 --> 00:06:03,050
+remove notes and fetch their notes.
+
+86
+00:06:03,090 --> 00:06:06,650
+That is all coming up in the next several videos so stay tuned.
+
+87
+00:06:06,780 --> 00:06:08,180
+I will see you then
+

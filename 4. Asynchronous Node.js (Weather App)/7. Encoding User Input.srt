@@ -1,0 +1,860 @@
+﻿1
+00:00:00,330 --> 00:00:04,320
+In this video you're going to learn how to set up your eggs for the weather app and you're going to
+
+2
+00:00:04,320 --> 00:00:08,990
+learn how to include user input and that is going to be really important for our application.
+
+3
+00:00:09,120 --> 00:00:12,840
+The user is not going to type their encoded address into the terminal.
+
+4
+00:00:12,870 --> 00:00:19,230
+Instead they're going to be typing in a plain text address like 13:1 space Lombard space street.
+
+5
+00:00:19,230 --> 00:00:21,430
+Now this is not going to work for are you rl.
+
+6
+00:00:21,480 --> 00:00:26,940
+We need to encode those special characters like the space replacing them with percent 20 now percent
+
+7
+00:00:26,940 --> 00:00:29,130
+20 is the special character for the space.
+
+8
+00:00:29,130 --> 00:00:32,330
+Other special characters have different encoding values.
+
+9
+00:00:32,340 --> 00:00:37,710
+We're going to learn how to encode and decode strings so we can set up this you r l to be dynamic.
+
+10
+00:00:37,710 --> 00:00:41,250
+It's going to be based off of the address provided in the terminal.
+
+11
+00:00:41,250 --> 00:00:42,760
+That's all going to happen in this video.
+
+12
+00:00:42,810 --> 00:00:48,090
+By the end you'll be able to type in any address you like and you'll see the formatted address the latitude
+
+13
+00:00:48,120 --> 00:00:51,890
+and longitude before we can get started doing any encoding.
+
+14
+00:00:51,900 --> 00:00:56,340
+We have to get the address from the user and before we can set up yours we have to install it.
+
+15
+00:00:56,370 --> 00:00:59,400
+So that's exactly what I want to do first in the terminal.
+
+16
+00:00:59,400 --> 00:01:06,330
+I'm going to run NPM install the module name is yours and we're looking for a version four point eight
+
+17
+00:01:06,330 --> 00:01:09,990
+point one which is the latest version at the time of the filming.
+
+18
+00:01:10,140 --> 00:01:14,100
+I am going to use the save flag to run this installation.
+
+19
+00:01:14,100 --> 00:01:18,990
+Now the save flag is great because as you remember it updates the package that Jason File and that's
+
+20
+00:01:18,990 --> 00:01:20,310
+exactly what we want.
+
+21
+00:01:20,340 --> 00:01:24,810
+This means we can get rid of the node modules folder which takes up a ton of space but we can always
+
+22
+00:01:24,810 --> 00:01:27,060
+regenerate it using NPM and stuff.
+
+23
+00:01:27,120 --> 00:01:32,340
+If you're on NPM install of out anything else no other module names or flags.
+
+24
+00:01:32,340 --> 00:01:33,940
+It's going to dig through that package.
+
+25
+00:01:33,980 --> 00:01:39,690
+Jason File looking for all the modules to install and it'll install them recreating your node modules
+
+26
+00:01:39,690 --> 00:01:42,290
+folder exactly as you left it.
+
+27
+00:01:42,300 --> 00:01:46,320
+Now we don't have to wait for this installation to complete because we still have quite a bit of configuration
+
+28
+00:01:46,320 --> 00:01:47,840
+to do so over and out.
+
+29
+00:01:47,920 --> 00:01:51,480
+Yes we can get started by first loading in yards.
+
+30
+00:01:51,480 --> 00:01:58,680
+I'm going to make a constant called yards setting equal to require yards just like this.
+
+31
+00:01:58,680 --> 00:02:03,150
+Now we can go ahead and actually do that configuration down below.
+
+32
+00:02:03,150 --> 00:02:06,090
+We're going to make another constant called Arvie.
+
+33
+00:02:06,180 --> 00:02:11,520
+This is going to be the object that stores the final parsed output that's going to take the input from
+
+34
+00:02:11,520 --> 00:02:15,720
+the process variable pass it through yards and the result will be right here.
+
+35
+00:02:15,750 --> 00:02:18,360
+This is going to get set equal to yards.
+
+36
+00:02:18,480 --> 00:02:20,440
+And now we can start adding some calls.
+
+37
+00:02:20,670 --> 00:02:24,320
+Now when we created the Notes app we had various commands you could add a no.
+
+38
+00:02:24,330 --> 00:02:28,830
+And that required some arguments you could list a note which required just the title you could list
+
+39
+00:02:28,830 --> 00:02:33,780
+all notes which didn't require any arguments and we specified all of that inside of Yorke's for the
+
+40
+00:02:33,780 --> 00:02:34,260
+weather app.
+
+41
+00:02:34,260 --> 00:02:36,500
+The configuration is going to be a lot simpler.
+
+42
+00:02:36,510 --> 00:02:41,220
+There is no command the only command would be get weather but if we only have one.
+
+43
+00:02:41,230 --> 00:02:43,020
+Why even make someone type it.
+
+44
+00:02:43,020 --> 00:02:49,680
+In our case when a user wants to fetch the weather all they're going to do is type node apt J.S. followed
+
+45
+00:02:49,680 --> 00:02:52,220
+by the address flag just like this.
+
+46
+00:02:52,260 --> 00:02:54,720
+Then they can type their address inside of quotes.
+
+47
+00:02:54,750 --> 00:02:59,110
+In my case it could be something like 1801 Lombard Street.
+
+48
+00:02:59,170 --> 00:03:04,780
+Once again that is not my real address but this is exactly how the command is going to get executed.
+
+49
+00:03:04,780 --> 00:03:10,270
+There's no need for an actual command like fetch whether we go right from the file name right into our
+
+50
+00:03:10,270 --> 00:03:12,420
+arguments to configure that.
+
+51
+00:03:12,520 --> 00:03:15,570
+Things are going to look a little different but still pretty similar.
+
+52
+00:03:15,610 --> 00:03:21,760
+I'm going to get started by calling dot options which is going to let us configure some top level options
+
+53
+00:03:22,120 --> 00:03:22,850
+in our case.
+
+54
+00:03:22,900 --> 00:03:27,790
+We're going to pass in an object where we can figure all of the options we need.
+
+55
+00:03:27,790 --> 00:03:32,830
+Now I'm going to format this like I do for all of my chained calls where I move the call to the next
+
+56
+00:03:32,830 --> 00:03:35,500
+line and I indented like this.
+
+57
+00:03:35,500 --> 00:03:39,080
+Now we can set up our options and in this case we just have one.
+
+58
+00:03:39,160 --> 00:03:42,940
+It's going to be that a option is going to be short for address.
+
+59
+00:03:42,940 --> 00:03:48,340
+I could either type address here and I could put in the alias or I could put a here and type address
+
+60
+00:03:48,400 --> 00:03:49,230
+in the alias.
+
+61
+00:03:49,300 --> 00:03:52,110
+In this case I'm going to put a right here.
+
+62
+00:03:52,330 --> 00:03:58,390
+Next up I can go ahead and provide that empty object and we're going to go through the same exact options
+
+63
+00:03:58,390 --> 00:04:00,370
+we used inside of the notes app.
+
+64
+00:04:00,490 --> 00:04:01,820
+We are going to demand it.
+
+65
+00:04:01,900 --> 00:04:05,900
+If you're going to fetch the whether we need an address to fetch the weather for.
+
+66
+00:04:05,920 --> 00:04:08,680
+So all set demand equal to true.
+
+67
+00:04:08,680 --> 00:04:11,620
+Next up we can set an alias.
+
+68
+00:04:11,820 --> 00:04:21,180
+I'm going to set alias equal to address and finally we'll set describe we can describe anything we think
+
+69
+00:04:21,180 --> 00:04:22,440
+would be useful in this case.
+
+70
+00:04:22,440 --> 00:04:29,610
+I'm going to go with address to fetch whether for perfect.
+
+71
+00:04:29,900 --> 00:04:33,080
+No these are the three options we provided for the Notes app.
+
+72
+00:04:33,170 --> 00:04:38,670
+But I'm going to add a fourth one to make our yagis configuration for the weather app even more foolproof.
+
+73
+00:04:38,690 --> 00:04:41,960
+This is going to be an option called string.
+
+74
+00:04:42,050 --> 00:04:44,540
+Now string takes a boolean either true or false.
+
+75
+00:04:44,540 --> 00:04:47,720
+In our case we want true to be the value.
+
+76
+00:04:47,720 --> 00:04:54,860
+This tells yardages to always always parse the A or address argument as a string as opposed to something
+
+77
+00:04:54,860 --> 00:04:57,110
+else like a number or a boolean.
+
+78
+00:04:57,230 --> 00:05:03,400
+Back in the terminal if I were to delete the actual string address yards would still accept this.
+
+79
+00:05:03,440 --> 00:05:07,670
+It would just think I'm trying to add a boolean flag which could be useful in some situations.
+
+80
+00:05:07,670 --> 00:05:11,420
+For example do I want to fetch in Celsius or Fahrenheit.
+
+81
+00:05:11,450 --> 00:05:14,310
+But in our case we don't need any sort of true false flag.
+
+82
+00:05:14,330 --> 00:05:15,340
+We need some data.
+
+83
+00:05:15,440 --> 00:05:19,220
+So we're going to set string to true to make sure we get that data.
+
+84
+00:05:19,560 --> 00:05:23,810
+Now that we have our options configuration in place we can go ahead and out a couple of other calls
+
+85
+00:05:23,810 --> 00:05:25,020
+that we've explored.
+
+86
+00:05:25,020 --> 00:05:29,730
+I'm going to add help calling it like this which adds the help flag.
+
+87
+00:05:29,740 --> 00:05:35,290
+This is really useful especially when someone is first using a command and then we can access our Wii
+
+88
+00:05:35,530 --> 00:05:41,500
+which takes all of this configuration runs it through our arguments and stores the result right here
+
+89
+00:05:41,520 --> 00:05:43,370
+in the variable.
+
+90
+00:05:43,390 --> 00:05:48,850
+Now with the help method ads that help argument we can also add an alias for it right afterwards by
+
+91
+00:05:48,850 --> 00:05:53,840
+calling dot alias now that alias takes two arguments.
+
+92
+00:05:53,940 --> 00:05:57,780
+The actual argument that you want to set an alias for the alias.
+
+93
+00:05:57,790 --> 00:06:02,710
+In our case we already have help registered it gets registered when we call help and we're going to
+
+94
+00:06:02,710 --> 00:06:05,690
+set an alias which will just be the letter H.
+
+95
+00:06:05,710 --> 00:06:06,340
+Awesome.
+
+96
+00:06:06,340 --> 00:06:11,080
+Now we have all sorts of really great configurations set up for the weather app for example.
+
+97
+00:06:11,080 --> 00:06:14,810
+Over inside of the terminal I can now run help.
+
+98
+00:06:14,930 --> 00:06:18,320
+I can see all of the help information for this application.
+
+99
+00:06:18,320 --> 00:06:22,770
+I could also use the shortcut hyphen H and I get the exact same data back.
+
+100
+00:06:22,890 --> 00:06:27,650
+Now the address is also getting passed through but we don't print it to the screen so I'm going to take
+
+101
+00:06:27,650 --> 00:06:31,940
+a quick moment to do just that right after the configuration.
+
+102
+00:06:32,000 --> 00:06:36,650
+Let's use console dialog to print the entire the variable to the screen.
+
+103
+00:06:36,650 --> 00:06:40,070
+This is going to include everything that got parsed by Yorke's.
+
+104
+00:06:40,220 --> 00:06:43,280
+Let's go ahead and rerun it this time passing in an address.
+
+105
+00:06:43,280 --> 00:06:48,850
+I'm going to use the a flag and specifying something like 13 0 1 Lombard Street.
+
+106
+00:06:50,270 --> 00:06:52,070
+Closing the quotes and hitting enter.
+
+107
+00:06:52,160 --> 00:06:59,370
+When I do this we get our object and right here we have 13 0 1 Lombard Street the plain text address.
+
+108
+00:06:59,510 --> 00:07:04,550
+Now down below we happened to fetch the latitude and longitude for that address but that's just because
+
+109
+00:07:04,550 --> 00:07:06,330
+we have it hardcoded right here.
+
+110
+00:07:06,350 --> 00:07:09,730
+I am going to still need to make some changes in order to get the address.
+
+111
+00:07:09,830 --> 00:07:16,040
+The one that got typed inside of the argument to be the address that shows up right here to explore
+
+112
+00:07:16,040 --> 00:07:18,170
+how to encode and decode strings.
+
+113
+00:07:18,200 --> 00:07:21,940
+We're going to head into the terminal I'm going to clear the screen using clear.
+
+114
+00:07:22,280 --> 00:07:25,020
+And then we can boot up a node process by typing node.
+
+115
+00:07:25,100 --> 00:07:30,170
+We've explored this in the past right and here we can run any statements we like when I'm exploring
+
+116
+00:07:30,170 --> 00:07:34,910
+a really basic node or javascript feature I'd like to mess around in here first and then I go ahead
+
+117
+00:07:34,910 --> 00:07:37,000
+and add it into the actual application.
+
+118
+00:07:37,040 --> 00:07:40,270
+In our case we're going to look at two functions in code.
+
+119
+00:07:40,280 --> 00:07:43,920
+You are a component and decode you are-I component.
+
+120
+00:07:44,150 --> 00:07:50,350
+Let's get started with encoding first the method itself is called in code you are a component in code.
+
+121
+00:07:50,630 --> 00:07:56,800
+You are I in upper case component and it takes just one argument the string you want to code.
+
+122
+00:07:56,990 --> 00:08:05,090
+In our case that string is going to be the address something like 13:1 space Lombard space street space
+
+123
+00:08:05,150 --> 00:08:07,010
+Philadelphia.
+
+124
+00:08:07,130 --> 00:08:11,960
+When I actually run this address through code you or I component by hitting enter I get the uncoated
+
+125
+00:08:11,960 --> 00:08:13,500
+version back right here.
+
+126
+00:08:13,520 --> 00:08:18,740
+You can see all of the spaces like the space between 13:1 and Lombard have been replaced with their
+
+127
+00:08:18,740 --> 00:08:22,630
+uncoded character and for the case of the space it is percent 20.
+
+128
+00:08:22,730 --> 00:08:27,340
+And this is fantastic bypassing our string through encode you or I component.
+
+129
+00:08:27,350 --> 00:08:32,120
+We're creating something that's ready to get injected right into the R L so we can fire off that dynamic
+
+130
+00:08:32,120 --> 00:08:33,550
+request.
+
+131
+00:08:33,560 --> 00:08:37,510
+Now the alternative to encode you are i component is de-code you or I.
+
+132
+00:08:37,520 --> 00:08:42,420
+Component de-code you are by component.
+
+133
+00:08:42,650 --> 00:08:47,180
+This is going to take an encoded string like the one here and take all the special characters like percent
+
+134
+00:08:47,180 --> 00:08:49,770
+20 and convert them back into their original values.
+
+135
+00:08:49,790 --> 00:08:53,810
+In this case space inside of de-code you or I component.
+
+136
+00:08:53,810 --> 00:08:56,130
+Once again we're just going to pass a string.
+
+137
+00:08:56,180 --> 00:08:58,150
+Let's go ahead and type our first and last name.
+
+138
+00:08:58,160 --> 00:08:59,520
+In my case it's Andrew.
+
+139
+00:08:59,660 --> 00:09:04,200
+And instead of a space between them I'm going to add percent 20 which we know is the encoded character
+
+140
+00:09:04,230 --> 00:09:08,450
+first space and since we're trying to decode something it's important to have some encoded characters
+
+141
+00:09:08,480 --> 00:09:09,190
+in here.
+
+142
+00:09:09,500 --> 00:09:13,580
+Once yours looks like this with your first and last name you can go ahead and enter.
+
+143
+00:09:13,580 --> 00:09:16,480
+And what we get back is the decoded version right here.
+
+144
+00:09:16,520 --> 00:09:20,390
+I have Andrew Mead with the percent 20 being replaced by the space.
+
+145
+00:09:20,420 --> 00:09:22,210
+Exactly what we expected.
+
+146
+00:09:22,250 --> 00:09:27,320
+This is how we can encode and decode you are the components in our app.
+
+147
+00:09:27,320 --> 00:09:32,180
+Now your challenge for this video is going to be this what I want you to do is pull the address out
+
+148
+00:09:32,180 --> 00:09:32,930
+of our Wii.
+
+149
+00:09:33,020 --> 00:09:34,510
+We already saw that it's there.
+
+150
+00:09:34,700 --> 00:09:39,620
+I want you to encode it and I want you to inject it right here replacing everything that I currently
+
+151
+00:09:39,620 --> 00:09:40,680
+have highlighted.
+
+152
+00:09:40,820 --> 00:09:44,880
+This is going to essentially create that dynamic request we've been talking about.
+
+153
+00:09:44,960 --> 00:09:50,060
+Someone will be able to type in any address they want whether it's an address or a zip code or city
+
+154
+00:09:50,060 --> 00:09:55,880
+state combination and they'll be able to fetch the formatted address the latitude and longitude take
+
+155
+00:09:55,880 --> 00:09:57,690
+a few moments to knock that out.
+
+156
+00:09:57,740 --> 00:09:59,180
+You're going to need to call in code.
+
+157
+00:09:59,180 --> 00:10:04,250
+You are component passing in the address then you're going to want to inject that result right here
+
+158
+00:10:04,310 --> 00:10:05,750
+inside of the you are l.
+
+159
+00:10:05,810 --> 00:10:06,890
+You can use template strings.
+
+160
+00:10:06,890 --> 00:10:11,180
+Currently we're using regular strings but feel free to swap that out when you're done.
+
+161
+00:10:11,180 --> 00:10:12,370
+Go ahead and test it.
+
+162
+00:10:12,380 --> 00:10:14,660
+Type in your home address over in the terminal.
+
+163
+00:10:14,690 --> 00:10:19,640
+Make sure you get the proper formatted address as well as a latitude and longitude and then try somewhere
+
+164
+00:10:19,640 --> 00:10:22,830
+else completely to make sure you get a different result when you're done.
+
+165
+00:10:22,880 --> 00:10:27,920
+You can go ahead and click play how to go.
+
+166
+00:10:27,990 --> 00:10:32,260
+Hopefully you were able to encode that address get it to show up inside of that you are.
+
+167
+00:10:32,370 --> 00:10:38,010
+And then you were able to make dynamic location requests from the terminal in order to get started.
+
+168
+00:10:38,010 --> 00:10:42,060
+The first thing I'm going to do is get the encoded address.
+
+169
+00:10:42,120 --> 00:10:46,840
+Let's make a variable called in coded address where we can store that result.
+
+170
+00:10:48,960 --> 00:10:53,100
+I'm going to set this equal to the return value from the method we just explore it over in the terminal
+
+171
+00:10:53,130 --> 00:10:55,140
+in code you are-I component.
+
+172
+00:10:55,470 --> 00:11:01,360
+This is going to take the plaintext address and return the encoded result.
+
+173
+00:11:01,360 --> 00:11:07,000
+Now we do need to pass the string and we have that available on the dot which is the alias.
+
+174
+00:11:07,000 --> 00:11:11,050
+You could also use that address both are going to work the same.
+
+175
+00:11:11,050 --> 00:11:12,750
+I'm going to go ahead and use dot address.
+
+176
+00:11:12,760 --> 00:11:14,640
+And now we have that encoded result.
+
+177
+00:11:14,650 --> 00:11:18,460
+All that's left to do is inject it inside of the u r l string.
+
+178
+00:11:18,460 --> 00:11:20,570
+Currently I'm using a regular string.
+
+179
+00:11:20,590 --> 00:11:25,540
+I'm going to swap this out for a template string so I can inject a variable inside of it.
+
+180
+00:11:25,540 --> 00:11:26,630
+Perfect.
+
+181
+00:11:26,710 --> 00:11:31,480
+Now that we have a template string we can highlight the static address which ends at Philadelphia and
+
+182
+00:11:31,480 --> 00:11:33,580
+goes up to the equal sign and remove it.
+
+183
+00:11:33,580 --> 00:11:40,300
+And then here instead of typing in a static address we can inject the dynamic variable inside of my
+
+184
+00:11:40,300 --> 00:11:45,610
+curly braces encoded address excellence.
+
+185
+00:11:45,610 --> 00:11:47,610
+With this in place we are now done.
+
+186
+00:11:47,740 --> 00:11:49,230
+We get the address from the terminal.
+
+187
+00:11:49,240 --> 00:11:53,040
+We encode it and we use that inside of our geocoder call.
+
+188
+00:11:53,110 --> 00:11:59,180
+So the formatted address latitude and longitude should match up over inside the terminal.
+
+189
+00:11:59,230 --> 00:12:05,230
+I'm going to shut down node by using Control-C twice and use clear to clear the terminal output.
+
+190
+00:12:05,230 --> 00:12:09,790
+Then I can go ahead and run our app using node X..
+
+191
+00:12:09,830 --> 00:12:13,330
+J.S. passing in either the A or address flag.
+
+192
+00:12:13,370 --> 00:12:17,740
+In this case I'll just use a then I can go ahead and type in an address.
+
+193
+00:12:17,840 --> 00:12:25,810
+I'm going to use one of my old addresses 16:14 South Broad Street Philadelphia awesome.
+
+194
+00:12:25,820 --> 00:12:30,650
+Go ahead and type in either your current or a previous address when you run it you should have that
+
+195
+00:12:30,650 --> 00:12:34,140
+small delay while we fetch the data from the geocoding you are out.
+
+196
+00:12:34,250 --> 00:12:37,730
+And in this case you can see it's actually taking a little longer than I would expect about three or
+
+197
+00:12:37,730 --> 00:12:38,410
+four seconds.
+
+198
+00:12:38,450 --> 00:12:40,820
+But we do get the address back.
+
+199
+00:12:40,940 --> 00:12:45,110
+Here we have the formatted address with the proper zip codes state and country.
+
+200
+00:12:45,110 --> 00:12:50,570
+We also have the latitude and longitude showing up great over inside of the terminal.
+
+201
+00:12:50,570 --> 00:12:52,410
+I'm going to try a few other examples.
+
+202
+00:12:53,560 --> 00:12:57,820
+For example a town in Pennsylvania called Chalfont.
+
+203
+00:12:58,040 --> 00:13:04,100
+I can type in Chalfont P-A which is not a complete address but the Google geocoder API is going to convert
+
+204
+00:13:04,100 --> 00:13:06,080
+it into the closest thing in this case.
+
+205
+00:13:06,080 --> 00:13:13,300
+It's essentially the address of the town Chalfont P-A 1 8 9 1 for the zip with the State USA right here.
+
+206
+00:13:13,300 --> 00:13:17,060
+I have the general latitude and longitude data for that town.
+
+207
+00:13:17,150 --> 00:13:19,520
+And this is going to be fine for fetching weather data.
+
+208
+00:13:19,610 --> 00:13:23,210
+The weather isn't exactly changing when you move a few blocks over.
+
+209
+00:13:23,210 --> 00:13:28,400
+Now that we have our data coming in dynamically we are able to move on to the next video where we're
+
+210
+00:13:28,400 --> 00:13:31,510
+going to handle a lot of the errors that happen inside of callbacks.
+
+211
+00:13:31,520 --> 00:13:35,750
+There's a lot of ways this request can go wrong and we're going to want to figure out how to recover
+
+212
+00:13:35,750 --> 00:13:40,510
+from errors inside of our callback functions when we're doing asynchronous programming.
+
+213
+00:13:40,580 --> 00:13:42,260
+That's the topic of the next video.
+
+214
+00:13:42,260 --> 00:13:43,230
+So stay tuned.
+
+215
+00:13:43,230 --> 00:13:44,810
+I will see you soon.
+

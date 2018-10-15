@@ -1,0 +1,696 @@
+﻿1
+00:00:00,570 --> 00:00:05,320
+In this video you're going to learn how to get input from the user which is exactly what we need to
+
+2
+00:00:05,320 --> 00:00:07,150
+create the notes application.
+
+3
+00:00:07,420 --> 00:00:11,750
+If a user wants to add a note we need to know the notes title as well as the body of the note.
+
+4
+00:00:12,010 --> 00:00:14,690
+If they want to fetch a note we need to know the title of the note.
+
+5
+00:00:14,710 --> 00:00:19,690
+They want to fetch and all this information needs to come into our app and note apps they don't really
+
+6
+00:00:19,690 --> 00:00:23,820
+do anything cool until they do get this dynamic user input.
+
+7
+00:00:23,840 --> 00:00:27,110
+This is what makes your scripts useful and awesome.
+
+8
+00:00:27,190 --> 00:00:31,240
+Now throughout the course we're going to be creating node apps that get input from the user in a lot
+
+9
+00:00:31,240 --> 00:00:32,590
+of different ways.
+
+10
+00:00:32,620 --> 00:00:36,980
+We're going to be using socket IO to get realtime info from a web app.
+
+11
+00:00:37,060 --> 00:00:39,250
+We'll be creating our own API.
+
+12
+00:00:39,250 --> 00:00:45,370
+So other Web sites and servers can make Ajax requests to our app but in this video we're going to start
+
+13
+00:00:45,370 --> 00:00:48,840
+things off with a very basic example of how to get user input.
+
+14
+00:00:48,910 --> 00:00:52,550
+We're going to be getting input from the user inside of the command line.
+
+15
+00:00:52,600 --> 00:00:57,430
+That means when you run the app in the command line you'll be able to pass in some arguments those arguments
+
+16
+00:00:57,640 --> 00:01:02,550
+will be available inside of node and then we can do something with them like create a note delete a
+
+17
+00:01:02,560 --> 00:01:06,430
+note or return notes to kick things off.
+
+18
+00:01:06,430 --> 00:01:09,110
+Let's go ahead and run our app from the terminal.
+
+19
+00:01:09,250 --> 00:01:12,040
+We're going to run it pretty similar lead to how we ran in the past.
+
+20
+00:01:12,040 --> 00:01:13,380
+We're going to start with node.
+
+21
+00:01:13,610 --> 00:01:18,920
+I'm not using node Mansons we're going to be changing the input and then we're going to use app dot
+
+22
+00:01:18,940 --> 00:01:23,380
+J asked which is the file we want to run but then we can still type.
+
+23
+00:01:23,380 --> 00:01:29,410
+Other variables we can pass all sorts of command line arguments and we could have a comment and this
+
+24
+00:01:29,410 --> 00:01:34,510
+would tell the app what to do whether you want to add a note remove a note or list a note that might
+
+25
+00:01:34,510 --> 00:01:36,060
+look something like this.
+
+26
+00:01:36,070 --> 00:01:37,270
+This would add a note.
+
+27
+00:01:37,540 --> 00:01:42,450
+We could remove a note like this and we could list all of our notes using the list command.
+
+28
+00:01:42,850 --> 00:01:48,490
+Now when we run this command the app is still going to work as expected just because we passed in a
+
+29
+00:01:48,490 --> 00:01:54,320
+new argument doesn't mean our app is going to crash and we actually have access to this argument already.
+
+30
+00:01:54,400 --> 00:01:59,260
+We're just not using it inside of the application to access the command line arguments.
+
+31
+00:01:59,260 --> 00:02:00,970
+Your app was initialized with.
+
+32
+00:02:00,970 --> 00:02:06,280
+You're going to want to use that process object that we explored in the very first section of this course.
+
+33
+00:02:06,400 --> 00:02:12,140
+We can go ahead and log out all of the arguments using cancel that log to print them to the screen.
+
+34
+00:02:12,640 --> 00:02:17,260
+It's on the process object and the property we're looking for is arg.
+
+35
+00:02:17,290 --> 00:02:24,530
+The RV is short for arguments of vector or in the case of javascript it's more like an argument array.
+
+36
+00:02:24,550 --> 00:02:29,860
+This is going to be an array of all of the command line arguments passed in and we can use them to start
+
+37
+00:02:29,860 --> 00:02:32,230
+creating our application.
+
+38
+00:02:32,260 --> 00:02:37,600
+Take a moment to save apage Yes and then we're going to go ahead and rerun this file and right here
+
+39
+00:02:37,600 --> 00:02:41,200
+we have three items the first two are not particularly useful.
+
+40
+00:02:41,230 --> 00:02:44,710
+One that points to the executable for node that was used.
+
+41
+00:02:44,770 --> 00:02:49,370
+The second one points to the app file that was started in this case it was app dot.
+
+42
+00:02:49,410 --> 00:02:50,010
+Yes.
+
+43
+00:02:50,170 --> 00:02:54,420
+The third one though this is where our command line arguments start to come into play.
+
+44
+00:02:54,610 --> 00:02:58,080
+Right here we have our list showing up as a string.
+
+45
+00:02:58,120 --> 00:02:59,720
+And this is fantastic.
+
+46
+00:02:59,740 --> 00:03:05,140
+That means we can access that third item in the array and that is going to be the command for our note
+
+47
+00:03:05,230 --> 00:03:06,190
+application.
+
+48
+00:03:06,400 --> 00:03:08,100
+Let's go ahead and do that right now.
+
+49
+00:03:09,430 --> 00:03:18,570
+I'm going to make a variable called the command and set it equal to process dot R V and we're going
+
+50
+00:03:18,570 --> 00:03:23,690
+to grab that item in the third position which is the index of two.
+
+51
+00:03:23,850 --> 00:03:31,730
+Then we can go ahead and log that out to the screen by logging out command the string.
+
+52
+00:03:31,910 --> 00:03:37,540
+Then I'm going to go ahead and as the second argument passed in into the actual command that was used
+
+53
+00:03:38,200 --> 00:03:41,920
+and this is just a simple log to keep track of how the app is getting executed.
+
+54
+00:03:42,070 --> 00:03:47,640
+The cost of is going to come when we add if statements that do different things depending on that command.
+
+55
+00:03:48,010 --> 00:03:51,010
+Let's go ahead and create an if else block down below.
+
+56
+00:03:51,430 --> 00:04:00,900
+If the command equals add if that's the case we're going to go through the process of adding a new note.
+
+57
+00:04:00,940 --> 00:04:05,400
+Now as you notice we're not specifying the other arguments that are going to be necessary for that.
+
+58
+00:04:05,440 --> 00:04:09,240
+Like the title or the body we'll get to that in just a few years.
+
+59
+00:04:09,280 --> 00:04:14,730
+For now though if the command does equal add we're going to go ahead and use console log.
+
+60
+00:04:15,560 --> 00:04:23,860
+To print adding new note awesome and we can go ahead and do the exact same thing with a command like
+
+61
+00:04:23,860 --> 00:04:31,520
+list else if command equals the string list.
+
+62
+00:04:31,520 --> 00:04:38,030
+If the command does equal the string list we're going to go ahead and run this block of code using Konsole
+
+63
+00:04:38,030 --> 00:04:38,890
+dot log.
+
+64
+00:04:41,240 --> 00:04:54,380
+To print listing all notes we can also add an else clause if there is no command else console larg command
+
+65
+00:04:55,400 --> 00:04:56,470
+not recognized
+
+66
+00:04:59,420 --> 00:05:00,610
+perfect.
+
+67
+00:05:00,830 --> 00:05:06,140
+With this in place we can now rerun our app for a third time and this time around you see we have the
+
+68
+00:05:06,140 --> 00:05:09,920
+command equal to list and listing all notes shows up.
+
+69
+00:05:09,920 --> 00:05:13,680
+This means we were able to use our argument to run different code.
+
+70
+00:05:13,700 --> 00:05:18,720
+Notice that we didn't run adding you know and we didn't run command not recognized.
+
+71
+00:05:18,830 --> 00:05:25,700
+We could however switch this from list to add and in that case we're going to get adding new note printing
+
+72
+00:05:25,730 --> 00:05:26,690
+down below.
+
+73
+00:05:26,840 --> 00:05:34,010
+And if we run a command that doesn't exist like a read you can see command not recognized prints.
+
+74
+00:05:34,130 --> 00:05:36,120
+So far everything is working great.
+
+75
+00:05:36,170 --> 00:05:38,600
+We're able to get that input from the user.
+
+76
+00:05:38,630 --> 00:05:45,590
+What I'd like you to do is add two more else if clauses to are if block one is going to be for the read
+
+77
+00:05:45,590 --> 00:05:51,920
+command which will be responsible for getting an individual note back and another one called remove
+
+78
+00:05:51,920 --> 00:05:54,510
+is going to be responsible for removing the note.
+
+79
+00:05:54,530 --> 00:05:58,760
+All you have to do is add the else if statement for both of them.
+
+80
+00:05:58,760 --> 00:06:05,270
+And then just put a quick counsel dot log printing something like fetching note or removing note.
+
+81
+00:06:05,290 --> 00:06:08,290
+Take a moment to knock that out as your challenge for this video.
+
+82
+00:06:08,630 --> 00:06:13,310
+Once you add those two LCF clauses go ahead and run them both of them from the terminal and make sure
+
+83
+00:06:13,310 --> 00:06:14,700
+your log shows up.
+
+84
+00:06:14,750 --> 00:06:16,040
+If it does show up you are done.
+
+85
+00:06:16,040 --> 00:06:17,780
+You can go ahead and click play.
+
+86
+00:06:17,780 --> 00:06:19,250
+Take a moment to pause the video.
+
+87
+00:06:19,250 --> 00:06:21,850
+Knock that out and when you're done click Play
+
+88
+00:06:25,420 --> 00:06:26,260
+How to go.
+
+89
+00:06:26,470 --> 00:06:32,290
+Hopefully you were able to add those two LCF clauses and test things out from the terminal.
+
+90
+00:06:32,320 --> 00:06:39,310
+The first thing I'm going to do is add a ELSE IF for read I'm going to open and close my curly braces
+
+91
+00:06:39,310 --> 00:06:40,870
+and hit enter right in the middle.
+
+92
+00:06:40,900 --> 00:06:44,010
+So everything gets formatted correctly here.
+
+93
+00:06:44,170 --> 00:06:51,040
+I'm going to check if the command variable equals the string read in the future we're going to be calling
+
+94
+00:06:51,040 --> 00:06:55,210
+methods that update our local database with the notes.
+
+95
+00:06:55,210 --> 00:07:00,300
+But for now we're going to use console log to print reading.
+
+96
+00:07:00,550 --> 00:07:10,100
+Note perfect the next thing you need to do was at an ELSE IF clause that checks if the command equals
+
+97
+00:07:10,220 --> 00:07:16,260
+remove else if I'm going to open and close my condition.
+
+98
+00:07:17,400 --> 00:07:25,350
+And had entered just like I did before this time if the command equals remove We want to do something.
+
+99
+00:07:25,350 --> 00:07:31,710
+And in that case all we're going to do is use console log to print removing.
+
+100
+00:07:31,710 --> 00:07:33,830
+Note excellence.
+
+101
+00:07:33,960 --> 00:07:36,390
+And with this in place we are done.
+
+102
+00:07:36,390 --> 00:07:37,730
+We've added two new commands.
+
+103
+00:07:37,720 --> 00:07:41,220
+We can run over inside of the terminal and we can test those.
+
+104
+00:07:41,280 --> 00:07:45,530
+First up I'm going to run node apps out with the read command.
+
+105
+00:07:45,540 --> 00:07:49,770
+And here a reading note shows up and then I'm going to rerun the command.
+
+106
+00:07:49,950 --> 00:07:56,550
+This time I'm going to be using remove and when I do that removing note prints to the screen I'm going
+
+107
+00:07:56,550 --> 00:08:00,410
+to wrap up my testing by using a command that doesn't exist.
+
+108
+00:08:00,960 --> 00:08:06,060
+And when I run that you can see command not recognize shows up which is fantastic.
+
+109
+00:08:06,060 --> 00:08:07,490
+Now this is step one.
+
+110
+00:08:07,530 --> 00:08:10,250
+We now have support for various commands.
+
+111
+00:08:10,260 --> 00:08:14,990
+The next thing we have to figure out is how we're going to get more specific information for example.
+
+112
+00:08:14,990 --> 00:08:16,890
+Which note do you want to remove.
+
+113
+00:08:16,920 --> 00:08:18,570
+Which note do you want to read.
+
+114
+00:08:18,690 --> 00:08:22,220
+And what do you want the note text to be in the case of ADD.
+
+115
+00:08:22,410 --> 00:08:25,890
+This is all information we need to get from the terminal.
+
+116
+00:08:25,890 --> 00:08:30,570
+Now getting it is going to be pretty similar to what we did before and to show you what it looks like
+
+117
+00:08:30,780 --> 00:08:37,750
+we're going to be printing out the entire arc of the object once again using council log.
+
+118
+00:08:39,120 --> 00:08:43,970
+Process Dot are the over in the terminal.
+
+119
+00:08:43,970 --> 00:08:46,290
+We can now run a more complex command.
+
+120
+00:08:46,730 --> 00:08:50,150
+Let's say we want to remove a note using node opt out.
+
+121
+00:08:50,190 --> 00:08:54,080
+Yes remove and we're going to do that by its title.
+
+122
+00:08:54,170 --> 00:08:57,470
+We might use the title argument which looks like this.
+
+123
+00:08:57,500 --> 00:09:03,270
+Here we have two hyphens followed by the argument name which is title followed by the equals sign.
+
+124
+00:09:03,350 --> 00:09:08,640
+Then we can type or no title maybe the note title is secrets.
+
+125
+00:09:08,680 --> 00:09:12,320
+This is going to pass the title argument into our application.
+
+126
+00:09:12,340 --> 00:09:14,960
+Now there is a couple of different ways you could format this.
+
+127
+00:09:14,980 --> 00:09:17,650
+We can have title secrets like this.
+
+128
+00:09:17,650 --> 00:09:24,520
+We can have title equals secrets inside of quotes which is going to let us use spaces in the title or
+
+129
+00:09:24,820 --> 00:09:29,320
+we can remove the equal sign altogether and simply put a space no matter how you choose to format your
+
+130
+00:09:29,320 --> 00:09:29,710
+argument.
+
+131
+00:09:29,710 --> 00:09:32,830
+These are all valid ways to pass in the title.
+
+132
+00:09:32,830 --> 00:09:39,160
+This is Andrew with a quick update as you see here I am using double quotes when wrapping my string.
+
+133
+00:09:39,160 --> 00:09:43,930
+Now if you switch to single quotes it's not going to break on Linux or OSX but it is going to break
+
+134
+00:09:43,960 --> 00:09:44,870
+on Windows.
+
+135
+00:09:44,950 --> 00:09:50,020
+That means when you're passing in command line arguments like the title or the note body you're going
+
+136
+00:09:50,020 --> 00:09:54,840
+to want to wrap your strings when you have spaces in double quotes not single.
+
+137
+00:09:54,970 --> 00:09:59,830
+So if you are using Windows and you're getting some sort of unexpected behavior with your arguments
+
+138
+00:10:00,070 --> 00:10:02,570
+make sure you are using double quotes instead of single.
+
+139
+00:10:02,590 --> 00:10:04,340
+That should fix the issue.
+
+140
+00:10:05,270 --> 00:10:10,310
+For the moment I'm going to keep the equal sign and the quotes and rerun the command when I run the
+
+141
+00:10:10,310 --> 00:10:11,090
+command this time.
+
+142
+00:10:11,090 --> 00:10:13,080
+You can see we have our two arguments.
+
+143
+00:10:13,220 --> 00:10:14,990
+These are the arguments that we don't need.
+
+144
+00:10:15,020 --> 00:10:20,960
+We have our command which is the third one and we now have a new fourth string the title that is equal
+
+145
+00:10:20,960 --> 00:10:21,280
+to.
+
+146
+00:10:21,290 --> 00:10:22,750
+Secrets 2.
+
+147
+00:10:23,240 --> 00:10:24,210
+And this is great.
+
+148
+00:10:24,230 --> 00:10:27,740
+Our argument was successfully passed into the application.
+
+149
+00:10:27,740 --> 00:10:30,550
+The problem is that it's not very easy to use.
+
+150
+00:10:30,620 --> 00:10:36,740
+Here we have to parse out the key which is title and the value which is secrets too when we use the
+
+151
+00:10:36,740 --> 00:10:38,690
+command which is the third argument.
+
+152
+00:10:38,690 --> 00:10:41,010
+It was a lot easier to use inside of our app.
+
+153
+00:10:41,090 --> 00:10:46,130
+We simply pulled it out of the arguments array and we referenced it by using the command variable and
+
+154
+00:10:46,130 --> 00:10:52,760
+checking if it equaled add list read or remove things get a lot more complex as we use different styles
+
+155
+00:10:52,760 --> 00:10:54,450
+for passing in the arguments.
+
+156
+00:10:54,560 --> 00:11:01,410
+If we rerun the last command with a space instead of an equal sign which is perfectly valid our arguments
+
+157
+00:11:01,410 --> 00:11:03,390
+are right now looks completely different.
+
+158
+00:11:03,390 --> 00:11:09,150
+Here we have the title as the fourth item and we have the value which is secret to as the fifth which
+
+159
+00:11:09,150 --> 00:11:11,710
+means we have to add other conditions for parsing.
+
+160
+00:11:11,790 --> 00:11:15,250
+And this turns into a pain really quick which is why we are not going to do it.
+
+161
+00:11:15,300 --> 00:11:21,090
+We're going to use a third party module called yards in the next video to make parsing the command line
+
+162
+00:11:21,120 --> 00:11:27,340
+arguments effortless instead of having strings like this one or the one up above.
+
+163
+00:11:27,390 --> 00:11:33,150
+We're going to get an object where the title property equals the secrets to string that's going to make
+
+164
+00:11:33,150 --> 00:11:34,550
+it super easy to implement.
+
+165
+00:11:34,560 --> 00:11:40,920
+The rest of the notes application before we go let's take a quick moment to recap what we learned.
+
+166
+00:11:40,920 --> 00:11:46,860
+First up we learned that we can use command line arguments to pass data into our app inside of the app.
+
+167
+00:11:46,860 --> 00:11:51,760
+We can use process vi to grab that information and do something with it.
+
+168
+00:11:51,840 --> 00:11:58,810
+In the case of our command we run different code depending on the command the user wanted to use.
+
+169
+00:11:58,830 --> 00:12:04,350
+This is all done because process that our TVs automatically populated with all the command line arguments.
+
+170
+00:12:04,410 --> 00:12:09,690
+You don't have to do anything special to get them now parsing certain types of command line arguments
+
+171
+00:12:09,960 --> 00:12:15,120
+like key value pairs becomes a lot more complex which is why in the next video we're going to be using
+
+172
+00:12:15,150 --> 00:12:17,600
+yarns to do just that.
+
+173
+00:12:17,610 --> 00:12:18,590
+So stay tuned.
+
+174
+00:12:18,600 --> 00:12:20,120
+I will see you soon.
+
